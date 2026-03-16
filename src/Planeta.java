@@ -5,7 +5,7 @@ public class Planeta {
 	    private int vidas;
 	    private String nombre;
 	    private int misiles_ronda;
-	    private static int numeroEquipos = 0;
+	    public static int numeroEquipos = 0;
 
 	    // Constructor
 	    public Planeta(String nombre, int vidas, int misiles_ronda) {
