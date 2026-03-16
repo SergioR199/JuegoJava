@@ -8,13 +8,43 @@ public class Main{
         //comentario
 
         do {
-            System.out.println("---- MENU ----");
-            System.out.println("JUGAR => 1");
-            System.out.println("REGLAS DEL JUEGO => 2");
-            System.out.println("INFORMACION => 3");
-            System.out.println("APARTADO ABIERTO => 4");
-            System.out.println("SALIR => 0");
-            opcion = sc.nextInt();
+            try {
+                System.out.println("---- MENU ----");
+                System.out.println("1º JUGAR");
+                System.out.println("2º REGLAS DEL JUEGO");
+                System.out.println("3º INFORMACIÓN");
+                System.out.println("4º APARTADO ABIERTO");
+                System.out.println("0º SALIR");
+                opcion = sc.nextInt();
+            }catch (InputMismatchException e){
+                System.out.print("Has introducido un valor no válido. Elige otra opción (0-4)")
+            }
+
+            if (opcion < 0 || opcion > 4){
+                System.out.print("Has introducido una opción no existente. Elige otra opción (0-4)")
+            }
+
+            switch (opcion){
+                case 0:
+
+                    break;
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+            }
 
         } while (opcion != 0);
     }
