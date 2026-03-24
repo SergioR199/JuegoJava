@@ -112,6 +112,16 @@ public class Main {
             for (String ataque : listaAtaques) {
                 System.out.println(ataque);
             }
+
+            // Mostramos el estado de los equipos al final de cada ronda
+            System.out.println("\n---- ESTADO FINAL DE LA RONDA ----");
+            System.out.println("Equipos vivos: " + equiposVivos(equipos));
+            for (Planeta e : equipos) {
+                if (e.getVidas() > 0) {
+                    System.out.println(e.getNombre() + ": " + e.getVidas() + " vidas");
+                }
+            }
+            System.out.println();
         }
 
         anunciarGanador(equipos);
