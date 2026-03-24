@@ -1,31 +1,24 @@
-
 public class Planeta {
 
     // Atributos
     private int vidas;
     private String nombre;
     private int misiles_ronda;
-    public static int numeroEquipos = 0;
 
     // Constructor
     public Planeta(String nombre, int vidas, int misiles_ronda) {
         this.nombre = nombre;
         this.vidas = vidas;
         this.misiles_ronda = misiles_ronda;
-        numeroEquipos++;
     }
 
     // Metodo combate
     public void combate(int misiles, Planeta atacante) {
-        System.out.println(atacante.getNombre() + " ataca a " + this.nombre);
-
         this.vidas -= misiles;
 
         if (this.vidas <= 0) {
             this.vidas = 0;
-            System.out.println(this.nombre + " ha sido destruido.");
-        } else {
-            System.out.println(this.nombre + " ahora tiene " + this.vidas + " vidas.");
+            System.out.println("\n" + this.nombre + " ha sido destruido.");
         }
     }
 
@@ -52,9 +45,5 @@ public class Planeta {
 
     public void setMisiles_ronda(int misiles_ronda) {
         this.misiles_ronda = misiles_ronda;
-    }
-
-    public static int getNumeroEquipos() {
-        return numeroEquipos;
     }
 }
