@@ -363,6 +363,7 @@ public class Main {
         } while (personaje != 0);
     }
 
+    // Método para mostrar los personajes
     public static void mostrarPersonajes(){
         System.out.println("\n---- PERSONAJES ----");
         System.out.println("1-  Jinx ");
