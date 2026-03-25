@@ -98,19 +98,20 @@ public class Main {
             System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
-            // Guardamos en un ArrayList los mensajes de cada ataque
-            ArrayList<String> listaAtaques = new ArrayList<>();
+            // Guardamos en un array estático los mensajes de cada ataque
+            String[] listaAtaques = new String[100];
+            int numAtaques = 0;
 
             for (int i = 0; i < equipos.length && equiposVivos(equipos) > 1; i++) {
                 if (equipos[i].getVidas() > 0) {
-                    turnoEquipo(equipos, i, sc, listaAtaques);
+                    numAtaques = turnoEquipo(equipos, i, sc, listaAtaques, numAtaques);
                 }
             }
 
             // Mostramos todos los ataques de la ronda al final de cada una
             System.out.println("\n---- ATAQUES DE LA RONDA ----");
-            for (String ataque : listaAtaques) {
-                System.out.println(ataque);
+            for (int i = 0; i < numAtaques; i++) {
+                System.out.println(listaAtaques[i]);
             }
 
             // Mostramos el estado de los equipos al final de cada ronda
@@ -146,7 +147,8 @@ public class Main {
     }
 
     // Método para procesar el turno de un equipo
-    public static void turnoEquipo(Planeta[] equipos, int indiceAtacante, Scanner sc, ArrayList<String> listaAtaques) {
+    public static int turnoEquipo(Planeta[] equipos, int indiceAtacante, Scanner sc, String[] listaAtaques,
+                                   int numAtaques) {
         Planeta atacante = equipos[indiceAtacante];
         System.out.println("\nTurno de ataque de: " + atacante.getNombre());
         System.out.println("1. Atacar");
@@ -170,41 +172,46 @@ public class Main {
         } while (accion < 1 || accion > 2);
 
         if (accion == 2) {
-            int misilesDefensa = 0;
-            do {
-                try {
-                    System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
-                    System.out.print("¿Cuántos misiles quieres usar para defenderte? ");
-                    misilesDefensa = sc.nextInt();
-                    sc.nextLine();
-                } catch (InputMismatchException e) {
-                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisiles_ronda()
-                            + ")");
-                    sc.nextLine();
-                    continue;
+            while (atacante.getMisiles_ronda() > 0) {
+                int misilesDefensa = 0;
+
+                do {
+                    try {
+                        System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
+                        System.out.print("¿Cuántos misiles quieres usar para defenderte? ");
+                        misilesDefensa = sc.nextInt();
+                        sc.nextLine();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisiles_ronda() + ")");
+                        sc.nextLine();
+                        continue;
+                    }
+
+                    if (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda()) {
+                        System.out.println("Usa entre 0 y " + atacante.getMisiles_ronda() + " misiles");
+                    }
+                } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda());
+
+                if (misilesDefensa == 0) {
+                    break;
                 }
 
-                if (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda()) {
-                    System.out.println("Usa entre 0 y " + atacante.getMisiles_ronda() + " misiles");
-                }
-            } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda());
-
-            // Restamos los misiles gastados y sumamos los misiles de defensa
-            if (misilesDefensa > 0) {
                 atacante.setMisiles_ronda(atacante.getMisiles_ronda() - misilesDefensa);
 
                 int defensaTotal = misilesDefensa / 2;
                 atacante.setVidas(atacante.getVidas() + defensaTotal);
-                if(atacante.getVidas() > 200){
+                if (atacante.getVidas() > 200) {
                     atacante.setVidas(200);
                 }
 
                 String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa +
                         " misiles (" + defensaTotal + " de defensa efectiva).";
-                listaAtaques.add(mensaje);
+                listaAtaques[numAtaques] = mensaje;
+                numAtaques++;
             }
+
             atacante.setMisiles_ronda(50);
-            return;
+            return numAtaques;
         }
 
         System.out.println("Objetivos disponibles: ");
@@ -260,11 +267,14 @@ public class Main {
             // Guardamos el mensaje del ataque en el ArrayList
             String mensaje = atacante.getNombre() + " ataca a " + equipos[objetivo].getNombre() + " con "
                     + misiles + " misiles.";
-            listaAtaques.add(mensaje);
+            listaAtaques[numAtaques] = mensaje;
+            numAtaques++;
         }
 
         // Recargamos misiles para la próxima ronda
         atacante.setMisiles_ronda(50);
+
+        return numAtaques;
     }
 
     // Método para anunciar el ganador
