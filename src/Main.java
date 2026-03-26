@@ -30,11 +30,11 @@ public class Main {
 
             switch (opcion) {
                 case 0:
-                    System.out.println("Saliendo del juego");
+                    System.out.println("Saliendo del juego...");
                     break;
 
                 case 1:
-                    System.out.println("Creando equipos");
+                    System.out.println("Creando equipos...");
                     equipos = new Planeta[pedirNumeroEquipos(sc)];
                     crearEquipos(equipos, sc);
                     jugar(equipos, sc);
@@ -83,7 +83,7 @@ public class Main {
     // Método para crear los equipos
     public static void crearEquipos(Planeta[] equipos, Scanner sc) {
         for (int i = 0; i < equipos.length; i++) {
-            System.out.println("\nJugador " + (i + 1));
+            System.out.println("\n[Jugador " + (i + 1) + "]");
             String nombre = pedirPersonaje(sc);
             equipos[i] = new Planeta(nombre, 200, 50);
         }
@@ -147,10 +147,14 @@ public class Main {
                     case 12:
                         nombre = "Corki";
                         break;
+
+                    // Opción extra para elegir un nombre a tu gusto
                     case 13:
                         System.out.print("Escribe el nombre que quieras: ");
                         nombre = sc.nextLine();
                         break;
+
+                    // Opción extra para escoger un personaje aleatoriamente
                     case 14:
                         int aleatorio = (int) (Math.random() * 12) + 1;
 
@@ -218,6 +222,8 @@ public class Main {
         int ronda = 1;
 
         while (equiposVivos(equipos) > 1) {
+
+            // Mostramos el número de ronda y las vidas de los equipos al principio de cada ronda
             System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
@@ -225,6 +231,8 @@ public class Main {
             String[] listaAtaques = new String[100];
             int numAtaques = 0;
 
+            // Ejecutamos los ataques de cada equipo que esté vivo y guardamos el número de ataques
+            // para mostrar luego los mensajes de todos los ataques
             for (int i = 0; i < equipos.length && equiposVivos(equipos) > 1; i++) {
                 if (equipos[i].getVidas() > 0) {
                     numAtaques = turnoEquipo(equipos, i, sc, listaAtaques, numAtaques);
@@ -248,6 +256,7 @@ public class Main {
             System.out.println();
         }
 
+        //Mostramos el ganador de la partida
         anunciarGanador(equipos);
     }
 
@@ -278,6 +287,7 @@ public class Main {
         System.out.println("2. Defenderse");
         int accion = 0;
 
+        // Preguntamos si se quiere atacar o defender
         do {
             try {
                 System.out.print("¿Qué quieres hacer? (1-2): ");
@@ -294,6 +304,7 @@ public class Main {
             }
         } while (accion < 1 || accion > 2);
 
+        // Si elegimos defendernos nos pregunta cuántos queremos usar
         if (accion == 2) {
             while (atacante.getMisiles_ronda() > 0) {
                 int misilesDefensa = 0;
@@ -319,14 +330,17 @@ public class Main {
                     break;
                 }
 
+                // Se le restan las vidas y se calcula cuántas vidas se recuperan
                 atacante.setMisiles_ronda(atacante.getMisiles_ronda() - misilesDefensa);
-
                 int defensaTotal = misilesDefensa / 2;
                 atacante.setVidas(atacante.getVidas() + defensaTotal);
+
+                // Máximo 200 vidas
                 if (atacante.getVidas() > 200) {
                     atacante.setVidas(200);
                 }
 
+                // Guardamos el mensaje del ataque en el array estático
                 String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa +
                         " misiles (" + defensaTotal + " de defensa efectiva).";
                 listaAtaques[numAtaques] = mensaje;
@@ -337,6 +351,7 @@ public class Main {
             return numAtaques;
         }
 
+        // Nos muestra los objetivos con vida
         System.out.println("Objetivos disponibles: ");
         for (int j = 0; j < equipos.length; j++) {
             if (j != indiceAtacante && equipos[j].getVidas() > 0) {
@@ -344,7 +359,6 @@ public class Main {
             }
         }
 
-        // Mostramos los objetivos válidos
         while(atacante.getMisiles_ronda() > 0) {
 
             // Pedimos cuántos misiles se quieren usar
@@ -387,7 +401,7 @@ public class Main {
             equipos[objetivo].combate(misiles, atacante);
             atacante.setMisiles_ronda(atacante.getMisiles_ronda() - misiles);
 
-            // Guardamos el mensaje del ataque en el ArrayList
+            // Guardamos el mensaje del ataque en el array estático
             String mensaje = atacante.getNombre() + " ataca a " + equipos[objetivo].getNombre() + " con "
                     + misiles + " misiles.";
             listaAtaques[numAtaques] = mensaje;
@@ -397,6 +411,7 @@ public class Main {
         // Recargamos misiles para la próxima ronda
         atacante.setMisiles_ronda(50);
 
+        // Devolvemos el número de acciones que se realizaron
         return numAtaques;
     }
 
