@@ -82,12 +82,135 @@ public class Main {
 
     // Método para crear los equipos
     public static void crearEquipos(Planeta[] equipos, Scanner sc) {
-        mostrarPersonajes();
         for (int i = 0; i < equipos.length; i++) {
-            System.out.print("Escribe el nombre del jugador " + (i + 1) + ": ");
-            String nombre = sc.nextLine();
+            System.out.println("\nJugador " + (i + 1));
+            String nombre = pedirPersonaje(sc);
             equipos[i] = new Planeta(nombre, 200, 50);
         }
+    }
+
+    // Método para pedir un personaje asegurando que sea uno de la lista predefinida
+    public static String pedirPersonaje(Scanner sc) {
+        int personaje = 0;
+        boolean valido = false;
+        String nombre = "";
+
+        while (!valido) {
+            try {
+                mostrarPersonajes();
+                System.out.println("13- Otro nombre");
+                System.out.println("14- Aleatorio");
+                System.out.println("0-  Salir");
+                System.out.print("Escoge el número del personaje: ");
+                personaje = sc.nextInt();
+                sc.nextLine();
+
+                if (personaje < 1 || personaje > 14) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (1-14)");
+                    continue;
+                }
+
+                switch (personaje) {
+                    case 1:
+                        nombre = "Jinx";
+                        break;
+                    case 2:
+                        nombre = "Jhin";
+                        break;
+                    case 3:
+                        nombre = "Gangplank";
+                        break;
+                    case 4:
+                        nombre = "Rumble";
+                        break;
+                    case 5:
+                        nombre = "Heimerdinger";
+                        break;
+                    case 6:
+                        nombre = "Kog'Maw";
+                        break;
+                    case 7:
+                        nombre = "Aurelion Sol";
+                        break;
+                    case 8:
+                        nombre = "Sylas";
+                        break;
+                    case 9:
+                        nombre = "Tristana";
+                        break;
+                    case 10:
+                        nombre = "Xerath";
+                        break;
+                    case 11:
+                        nombre = "Ziggs";
+                        break;
+                    case 12:
+                        nombre = "Corki";
+                        break;
+                    case 13:
+                        System.out.print("Escribe el nombre que quieras: ");
+                        nombre = sc.nextLine();
+                        break;
+                    case 14:
+                        int aleatorio = (int) (Math.random() * 12) + 1;
+
+                        switch (aleatorio) {
+                            case 1:
+                                nombre = "Jinx";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 2:
+                                nombre = "Jhin";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 3:
+                                nombre = "Gangplank";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 4:
+                                nombre = "Rumble";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 5:
+                                nombre = "Heimerdinger";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 6:
+                                nombre = "Kog'Maw";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 7:
+                                nombre = "Aurelion Sol";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 8:
+                                nombre = "Sylas";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 9:
+                                nombre = "Tristana";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 10:
+                                nombre = "Xerath";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 11:
+                                nombre = "Ziggs";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                                break;
+                            case 12:
+                                nombre = "Corki";
+                                System.out.println("¡Te ha tocado " + nombre + "!");
+                        }
+                }
+                valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Has introducido un valor no válido. Elige otra opción (0-14)");
+                sc.nextLine();
+            }
+        }
+        return nombre;
     }
 
     // Método para gestionar las rondas del juego
@@ -311,11 +434,14 @@ public class Main {
         do {
             try {
                 mostrarPersonajes();
+                System.out.println("0-  Salir");
                 System.out.print("Escoge el número del personaje: \n");
                 personaje = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Has introducido un valor no válido. Elige otra opción (0-12)");
+                sc.nextLine();
+                continue;
             }
 
             if (personaje < 0 || personaje > 12) {
@@ -378,6 +504,5 @@ public class Main {
         System.out.println("10- Xerath");
         System.out.println("11- Ziggs");
         System.out.println("12- Corki");
-        System.out.println("0-  Salir");
     }
 }
