@@ -10,46 +10,37 @@ public class Main {
     private static final int MIN_EQUIPOS = 3;
     private static final int MAX_EQUIPOS = 5;
 
-    private static final String[] PERSONAJES = {
-            "Jinx", "Jhin", "Gangplank", "Rumble",
-            "Heimerdinger", "Kog'Maw", "Aurelion Sol",
-            "Sylas", "Tristana", "Xerath", "Ziggs", "Corki"
-    };
-
     public static void main(String[] args) {
 
         int opcion;
         Planeta[] equipos;
 
-        do {
-            opcion = mostrarMenu();
+        opcion = mostrarMenu();
 
-            switch (opcion) {
-                case 1:
-                    System.out.println("Creando equipos...");
-                    equipos = new Planeta[pedirNumeroEquipos()];
-                    crearEquipos(equipos);
-                    jugar(equipos);
-                    break;
+        switch (opcion) {
+            case 1:
+                System.out.println("Creando equipos...");
+                equipos = new Planeta[pedirNumeroEquipos()];
+                crearEquipos(equipos);
+                jugar(equipos);
+                break;
 
-                case 2:
-                    mostrarReglas();
-                    break;
+            case 2:
+                InformacionJuego.mostrarReglas();
+                break;
 
-                case 3:
-                    mostrarInformacion();
-                    break;
+            case 3:
+                InformacionJuego.mostrarInformacionGeneral();
+                break;
 
-                case 4:
-                    infoPersonajes();
-                    break;
+            case 4:
+                InformacionJuego.mostrarInfoPersonajes(sc);
+                break;
 
-                case 0:
-                    System.out.println("Saliendo del juego...");
-                    break;
-            }
-
-        } while (opcion != 0);
+            case 0:
+                System.out.println("Saliendo del juego...");
+                break;
+        }
 
         sc.close();
     }
@@ -100,7 +91,7 @@ public class Main {
     public static String pedirPersonaje() {
         while (true) {
             try {
-                mostrarPersonajes();
+                InformacionJuego.mostrarPersonajes();
                 System.out.println("13- Otro nombre");
                 System.out.println("14- Aleatorio");
                 System.out.println("0- Salir");
@@ -113,8 +104,8 @@ public class Main {
                     return "SinNombre";
                 }
 
-                if (personaje >= 1 && personaje <= PERSONAJES.length) {
-                    return PERSONAJES[personaje - 1];
+                if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
+                    return InformacionJuego.getPersonaje(personaje - 1);
                 }
 
                 if (personaje == 13) {
@@ -123,8 +114,8 @@ public class Main {
                 }
 
                 if (personaje == 14) {
-                    int aleatorio = (int) (Math.random() * PERSONAJES.length);
-                    String nombre = PERSONAJES[aleatorio];
+                    int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
+                    String nombre = InformacionJuego.getPersonaje(aleatorio);
                     System.out.println("¡Te ha tocado " + nombre + "!");
                     return nombre;
                 }
@@ -413,46 +404,6 @@ public class Main {
                 System.out.println("Valor no válido. Introduce un número entero.");
                 sc.nextLine();
             }
-        }
-    }
-
-    public static void mostrarReglas() {
-        System.out.println("\n--- REGLAS DEL JUEGO ---");
-        System.out.println("1. La partida se juega con entre 3 y 5 equipos.");
-        System.out.println("2. Cada equipo comienza con " + VIDAS_INICIALES + " vidas y "
-                + MISILES_POR_RONDA + " misiles por ronda.");
-        System.out.println("3. En la primera ronda solo se puede atacar.");
-        System.out.println("4. El daño se aplica al final de la ronda, después de que todos jueguen.");
-        System.out.println("5. A partir de la ronda 2 puedes atacar o defenderte.");
-        System.out.println("6. El último equipo en pie gana la partida.\n");
-    }
-
-    public static void mostrarInformacion() {
-        System.out.println("\n--- INFORMACIÓN ---");
-        System.out.println("Versión: 1.0");
-        System.out.println("Contacto: losdelfondo@gmail.com");
-        System.out.println("Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n");
-    }
-
-    public static void infoPersonajes() {
-        int personaje;
-
-        do {
-            mostrarPersonajes();
-            System.out.println("0- Salir");
-            personaje = leerEnteroRango(0, PERSONAJES.length, "Escoge el número del personaje: ");
-
-            if (personaje >= 1 && personaje <= PERSONAJES.length) {
-                System.out.println(PERSONAJES[personaje - 1]);
-            }
-
-        } while (personaje != 0);
-    }
-
-    public static void mostrarPersonajes() {
-        System.out.println("\n---- PERSONAJES ----");
-        for (int i = 0; i < PERSONAJES.length; i++) {
-            System.out.println((i + 1) + "- " + PERSONAJES[i]);
         }
     }
 }
