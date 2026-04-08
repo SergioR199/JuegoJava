@@ -1,34 +1,35 @@
 public class Planeta {
 
-    // Atributos
-    private int vidas;
     private String nombre;
+    private int vidas;
     private int misiles_ronda;
 
-    // Constructor
     public Planeta(String nombre, int vidas, int misiles_ronda) {
         this.nombre = nombre;
         this.vidas = vidas;
         this.misiles_ronda = misiles_ronda;
     }
 
-    // Metodo combate
-    public void combate(int misiles, Planeta atacante) {
-        this.vidas -= misiles;
+    public boolean estaVivo() {
+        return vidas > 0;
+    }
 
-        if (this.vidas <= 0) {
+    public void recibirDanio(int cantidad) {
+        this.vidas -= cantidad;
+        if (this.vidas < 0) {
             this.vidas = 0;
-            System.out.println("\n" + this.nombre + " ha sido destruido.");
         }
     }
 
-    // Getters y Setters
-    public int getVidas() {
-        return vidas;
+    public void usarMisiles(int cantidad) {
+        this.misiles_ronda -= cantidad;
+        if (this.misiles_ronda < 0) {
+            this.misiles_ronda = 0;
+        }
     }
 
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
+    public void recargarMisiles(int cantidad) {
+        this.misiles_ronda = cantidad;
     }
 
     public String getNombre() {
@@ -37,6 +38,17 @@ public class Planeta {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+        if (this.vidas < 0) {
+            this.vidas = 0;
+        }
     }
 
     public int getMisiles_ronda() {
