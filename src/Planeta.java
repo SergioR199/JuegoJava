@@ -1,61 +1,61 @@
 public class Planeta {
-	
 
-	    private int vidas;
-	    private String nombre;
-	    private int misiles_ronda;
-	    private static int numeroEquipos = 0;
+    private String nombre;
+    private int vidas;
+    private int misiles_ronda;
 
-	    // Constructor
-	    public Planeta(String nombre, int vidas, int misiles_ronda) {
-	        this.nombre = nombre;
-	        this.vidas = vidas;
-	        this.misiles_ronda = misiles_ronda;
-	        numeroEquipos++;
-	    }
+    public Planeta(String nombre, int vidas, int misiles_ronda) {
+        this.nombre = nombre;
+        this.vidas = vidas;
+        this.misiles_ronda = misiles_ronda;
+    }
 
-	    // Metodo combate
-	    public void combate(int misiles, Planeta atacante) {
-	        System.out.println(atacante.getNombre() + " ataca a " + this.nombre);
+    public boolean estaVivo() {
+        return vidas > 0;
+    }
 
-	        this.vidas -= misiles;
+    public void recibirDanio(int cantidad) {
+        this.vidas -= cantidad;
+        if (this.vidas < 0) {
+            this.vidas = 0;
+        }
+    }
 
-	        if (this.vidas <= 0) {
-	            this.vidas = 0;
-	            System.out.println(this.nombre + " ha sido destruido.");
-	        } else {
-	            System.out.println(this.nombre + " ahora tiene " + this.vidas + " vidas.");
-	        }
-	    }
+    public void usarMisiles(int cantidad) {
+        this.misiles_ronda -= cantidad;
+        if (this.misiles_ronda < 0) {
+            this.misiles_ronda = 0;
+        }
+    }
 
-	    // Getters y Setters
-	    public int getVidas() {
-	        return vidas;
-	    }
+    public void recargarMisiles(int cantidad) {
+        this.misiles_ronda = cantidad;
+    }
 
-	    public void setVidas(int vidas) {
-	        this.vidas = vidas;
-	    }
+    public String getNombre() {
+        return nombre;
+    }
 
-	    public String getNombre() {
-	        return nombre;
-	    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	    public void setNombre(String nombre) {
-	        this.nombre = nombre;
-	    }
+    public int getVidas() {
+        return vidas;
+    }
 
-	    public int getMisiles_ronda() {
-	        return misiles_ronda;
-	    }
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+        if (this.vidas < 0) {
+            this.vidas = 0;
+        }
+    }
 
-	    public void setMisiles_ronda(int misiles_ronda) {
-	        this.misiles_ronda = misiles_ronda;
-	    }
+    public int getMisiles_ronda() {
+        return misiles_ronda;
+    }
 
-	    public static int getNumeroEquipos() {
-	        return numeroEquipos;
-	    }
-	}
+    public void setMisiles_ronda(int misiles_ronda) {
+        this.misiles_ronda = misiles_ronda;
+    }
 }
-
