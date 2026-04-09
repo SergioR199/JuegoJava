@@ -1,4 +1,3 @@
-
 public class Planeta {
 	
 
@@ -15,7 +14,7 @@ public class Planeta {
 	        numeroEquipos++;
 	    }
 
-	    // Método combate
+	    // Metodo combate
 	    public void combate(int misiles, Planeta atacante) {
 	        System.out.println(atacante.getNombre() + " ataca a " + this.nombre);
 
@@ -59,4 +58,4 @@ public class Planeta {
 	    }
 	}
 }
-}
+
