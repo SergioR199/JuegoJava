@@ -1,6 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *
+ * */
 public class Main {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -10,6 +13,9 @@ public class Main {
     private static final int MIN_EQUIPOS = 3;
     private static final int MAX_EQUIPOS = 5;
 
+    /**
+     *
+     * */
     public static void main(String[] args) {
 
         int opcion;
@@ -45,6 +51,9 @@ public class Main {
         sc.close();
     }
 
+    /**
+     *
+     * */
     public static int mostrarMenu() {
         while (true) {
             try {
@@ -72,6 +81,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static int pedirNumeroEquipos() {
         return leerEnteroRango(
                 MIN_EQUIPOS,
@@ -80,6 +92,9 @@ public class Main {
         );
     }
 
+    /**
+     *
+     * */
     public static void crearEquipos(Planeta[] equipos) {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
@@ -88,6 +103,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static String pedirPersonaje() {
         while (true) {
             try {
@@ -129,6 +147,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static void jugar(Planeta[] equipos) {
         int ronda = 1;
 
@@ -172,6 +193,9 @@ public class Main {
         anunciarGanador(equipos);
     }
 
+    /**
+     *
+     * */
     public static int[] guardarVidasInicio(Planeta[] equipos) {
         int[] vidasInicio = new int[equipos.length];
         for (int i = 0; i < equipos.length; i++) {
@@ -180,6 +204,9 @@ public class Main {
         return vidasInicio;
     }
 
+    /**
+     *
+     * */
     public static int turnoEquipo(Planeta[] equipos,
                                   int indiceAtacante,
                                   int ronda,
@@ -217,6 +244,9 @@ public class Main {
         return numAcciones;
     }
 
+    /**
+     *
+     * */
     public static int procesarAtaque(Planeta[] equipos,
                                      int indiceAtacante,
                                      int[] danoPendiente,
@@ -255,6 +285,9 @@ public class Main {
         return numAcciones;
     }
 
+    /**
+     *
+     * */
     public static int procesarDefensa(Planeta[] equipos,
                                       int indiceAtacante,
                                       int[] defensaPendiente,
@@ -289,6 +322,9 @@ public class Main {
         return numAcciones;
     }
 
+    /**
+     *
+     * */
     public static int elegirObjetivo(Planeta[] equipos, int indiceAtacante) {
         System.out.println("Objetivos disponibles:");
 
@@ -318,6 +354,9 @@ public class Main {
         return indicesReales[opcion - 1];
     }
 
+    /**
+     *
+     * */
     public static void aplicarResultadosRonda(Planeta[] equipos,
                                               int[] danoPendiente,
                                               int[] defensaPendiente) {
@@ -336,6 +375,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static void mostrarResumenRonda(Planeta[] equipos,
                                            int[] vidasInicio,
                                            int[] danoPendiente,
@@ -360,6 +402,9 @@ public class Main {
         System.out.println("------------------------------");
     }
 
+    /**
+     *
+     * */
     public static int equiposVivos(Planeta[] equipos) {
         int vivos = 0;
         for (Planeta equipo : equipos) {
@@ -370,6 +415,9 @@ public class Main {
         return vivos;
     }
 
+    /**
+     *
+     * */
     public static void mostrarEstadoRonda(Planeta[] equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -378,6 +426,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static void anunciarGanador(Planeta[] equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -387,6 +438,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static int leerEnteroRango(int min, int max, String mensaje) {
         while (true) {
             try {

@@ -1,14 +1,23 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *
+ * */
 public class InformacionJuego {
 
+    /**
+     *
+     * */
     private static final String[] PERSONAJES = {
             "Jinx", "Jhin", "Gangplank", "Rumble",
             "Heimerdinger", "Kog'Maw", "Aurelion Sol",
             "Sylas", "Tristana", "Xerath", "Ziggs", "Corki"
     };
 
+    /**
+     *
+     * */
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---");
         System.out.println("1. La partida se juega con entre 3 y 5 equipos.");
@@ -21,6 +30,9 @@ public class InformacionJuego {
         System.out.println("8. El último equipo en pie gana la partida.\n");
     }
 
+    /**
+     *
+     * */
     public static void mostrarInformacionGeneral() {
         System.out.println("\n--- INFORMACIÓN GENERAL ---");
         System.out.println("Versión: 1.0");
@@ -28,6 +40,9 @@ public class InformacionJuego {
         System.out.println("Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n");
     }
 
+    /**
+     *
+     * */
     public static void mostrarPersonajes() {
         System.out.println("\n---- PERSONAJES ----");
         for (int i = 0; i < PERSONAJES.length; i++) {
@@ -35,6 +50,9 @@ public class InformacionJuego {
         }
     }
 
+    /**
+     *
+     * */
     public static void mostrarInfoPersonajes(Scanner sc) {
         int personaje;
 
@@ -89,13 +107,24 @@ public class InformacionJuego {
 
         } while (personaje != 0);
     }
+
+    /**
+     *
+     * */
     public static String getPersonaje(int indice) {
         return PERSONAJES[indice];
     }
 
+    /**
+     *
+     * */
     public static int getTotalPersonajes() {
         return PERSONAJES.length;
     }
+
+    /**
+     *
+     * */
     private static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
         while (true) {
             try {
