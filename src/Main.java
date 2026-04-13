@@ -57,7 +57,7 @@ public class Main {
                         new FileWriter("ganadores.txt").close();
                     }catch(IOException e){}
 
-                    System.out.println("Saliendo del juego...");
+                    System.out.println("\nSaliendo del juego...");
                     break;
             }
 
@@ -69,33 +69,11 @@ public class Main {
      * */
     public static int mostrarMenu() {
 
-        System.out.println("\n---- MENU ----");
-        System.out.println("1º JUGAR");
-        System.out.println("2º REGLAS DEL JUEGO");
-        System.out.println("3º INFORMACIÓN GENERAL");
-        System.out.println("4º INFORMACIÓN DE PERSONAJES");
-        System.out.println("0º SALIR");
+        System.out.println("\n---- MENU ----\n1º JUGAR\n2º REGLAS DEL JUEGO\n3º INFORMACIÓN GENERAL\n4º INFORMACIÓN DE PERSONAJES\n0º SALIR");
 
-        while (true) {
+        int opcion;
 
-            System.out.print("Elige opción: ");
-
-            try {
-
-                int opcion = sc.nextInt();
-                sc.nextLine();
-
-                if (opcion < 0 || opcion > 4) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
-                } else {
-                    return opcion;
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
-                sc.nextLine();
-            }
-        }
+        return opcion = leerEnteroRango(0, 4, "\nElige una opción: ");
     }
 
     /**
@@ -128,8 +106,7 @@ public class Main {
     public static String pedirPersonaje() {
         while (true) {
             InformacionJuego.mostrarPersonajes();
-            System.out.println("13- Otro nombre");
-            System.out.println("14- Aleatorio");
+            System.out.println("13- Otro nombre\n14- Aleatorio");
 
             while (true) {
 
@@ -241,8 +218,7 @@ public class Main {
         if (ronda == 1) {
             System.out.println("En la primera ronda solo se puede atacar.");
         } else {
-            System.out.println("1. Atacar");
-            System.out.println("2. Defenderse");
+            System.out.println("1. Atacar\n2. Defenderse");
             accion = leerEnteroRango(1, 2, "¿Qué quieres hacer? (1-2): ");
         }
 
