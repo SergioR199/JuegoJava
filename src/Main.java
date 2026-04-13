@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 /**
  *
@@ -19,51 +24,63 @@ public class Main {
      * */
     public static void main(String[] args) {
 
+        int partida = 1;
         int opcion;
         ArrayList<Planeta> equipos = new ArrayList<>();
+        do{
+            opcion = mostrarMenu();
 
-        opcion = mostrarMenu();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Creando equipos...");
+                    crearEquipos(equipos, pedirNumeroEquipos());
+                    jugar(equipos, partida);
+                    partida += 1;
+                    break;
 
-        switch (opcion) {
-            case 1:
-                System.out.println("Creando equipos...");
-                crearEquipos(equipos, pedirNumeroEquipos());
-                jugar(equipos);
-                break;
+                case 2:
+                    InformacionJuego.mostrarReglas();
+                    break;
 
-            case 2:
-                InformacionJuego.mostrarReglas();
-                break;
+                case 3:
+                    InformacionJuego.mostrarInformacionGeneral();
+                    break;
 
-            case 3:
-                InformacionJuego.mostrarInformacionGeneral();
-                break;
+                case 4:
+                    InformacionJuego.mostrarInfoPersonajes(sc);
+                    break;
 
-            case 4:
-                InformacionJuego.mostrarInfoPersonajes(sc);
-                break;
+                case 0:
+                    
+                    try{
 
-            case 0:
-                System.out.println("Saliendo del juego...");
-                break;
-        }
+                        new FileWriter("ganadores.txt").close();
+                    }catch(IOException e){}
 
-        sc.close();
+                    System.out.println("Saliendo del juego...");
+                    break;
+            }
+
+        }while(opcion !=0 );
     }
 
     /**
      *
      * */
     public static int mostrarMenu() {
+
+        System.out.println("\n---- MENU ----");
+        System.out.println("1º JUGAR");
+        System.out.println("2º REGLAS DEL JUEGO");
+        System.out.println("3º INFORMACIÓN GENERAL");
+        System.out.println("4º INFORMACIÓN DE PERSONAJES");
+        System.out.println("0º SALIR");
+
         while (true) {
+
+            System.out.print("Elige opción: ");
+
             try {
-                System.out.println("\n---- MENU ----");
-                System.out.println("1º JUGAR");
-                System.out.println("2º REGLAS DEL JUEGO");
-                System.out.println("3º INFORMACIÓN GENERAL");
-                System.out.println("4º INFORMACIÓN DE PERSONAJES");
-                System.out.println("0º SALIR");
-                System.out.print("Elige opción: ");
 
                 int opcion = sc.nextInt();
                 sc.nextLine();
@@ -108,41 +125,41 @@ public class Main {
      * */
     public static String pedirPersonaje() {
         while (true) {
-            try {
-                InformacionJuego.mostrarPersonajes();
-                System.out.println("13- Otro nombre");
-                System.out.println("14- Aleatorio");
-                System.out.println("0- Salir");
+            InformacionJuego.mostrarPersonajes();
+            System.out.println("13- Otro nombre");
+            System.out.println("14- Aleatorio");
+
+            while (true) {
+                
                 System.out.print("Escoge el número del personaje: ");
 
-                int personaje = sc.nextInt();
-                sc.nextLine();
+                try {
 
-                if (personaje == 0) {
-                    return "SinNombre";
+                    int personaje = sc.nextInt();
+                    sc.nextLine();
+
+                    if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
+                        return InformacionJuego.getPersonaje(personaje - 1);
+                    }
+
+                    if (personaje == 13) {
+                        System.out.print("Escribe el nombre que quieras: ");
+                        return sc.nextLine();
+                    }
+
+                    if (personaje == 14) {
+                        int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
+                        String nombre = InformacionJuego.getPersonaje(aleatorio);
+                        System.out.println("¡Te ha tocado " + nombre + "!");
+                        return nombre;
+                    }
+
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-14).");
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-14).");
+                    sc.nextLine();
                 }
-
-                if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
-                    return InformacionJuego.getPersonaje(personaje - 1);
-                }
-
-                if (personaje == 13) {
-                    System.out.print("Escribe el nombre que quieras: ");
-                    return sc.nextLine();
-                }
-
-                if (personaje == 14) {
-                    int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
-                    String nombre = InformacionJuego.getPersonaje(aleatorio);
-                    System.out.println("¡Te ha tocado " + nombre + "!");
-                    return nombre;
-                }
-
-                System.out.println("Has introducido una opción no existente. Elige otra opción (0-14).");
-
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-14).");
-                sc.nextLine();
             }
         }
     }
@@ -150,7 +167,8 @@ public class Main {
     /**
      *
      * */
-    public static void jugar(ArrayList<Planeta> equipos) {
+    public static void jugar(ArrayList<Planeta> equipos, int partida) {
+        
         int ronda = 1;
 
         while (equiposVivos(equipos) > 1) {
@@ -189,7 +207,9 @@ public class Main {
             ronda++;
         }
 
-        anunciarGanador(equipos);
+        anunciarGanador(equipos, partida);
+
+        equipos.clear();
     }
 
     /**
@@ -424,12 +444,79 @@ public class Main {
     /**
      *
      * */
-    public static void anunciarGanador(ArrayList<Planeta> equipos) {
+    public static void anunciarGanador(ArrayList<Planeta> equipos, int partida) {
+
+        boolean empate = true;
+
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
-                System.out.println("\n¡" + equipo.getNombre() + " GANA LA PARTIDA!\n");
+                
+                empate = false;
+
+                try{
+
+                    BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
+
+                    guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                    guardarGanadores.newLine();
+                    guardarGanadores.write(equipo.getNombre());
+                    guardarGanadores.newLine();
+                    guardarGanadores.newLine();
+
+                    guardarGanadores.close();
+
+                }catch(IOException e){
+
+                    System.out.println("ERROR DE ESRITURA");
+                }
+
+                lecturaArchivo();
+
                 return;
             }
+        }
+
+        if(empate){
+
+            try{
+
+                BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
+
+                guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                guardarGanadores.newLine();
+                guardarGanadores.write("EMPATE");
+                guardarGanadores.newLine();
+                guardarGanadores.newLine();
+
+                guardarGanadores.close();
+
+            }catch(IOException e){
+
+                System.out.println("ERROR DE ESRITURA");
+            }
+
+            lecturaArchivo();
+        }
+    }
+
+    public static void lecturaArchivo(){
+
+        String linea = "";
+
+        try{
+
+            BufferedReader lecturaGanadores = new BufferedReader(new FileReader("ganadores.txt"));
+
+            while ((linea = lecturaGanadores.readLine()) != null) {
+
+                System.out.println(linea);
+            }
+
+            lecturaGanadores.close();
+
+        }catch(IOException e){
+
+            System.out.println("ERROR DE LECTURA");
         }
     }
 
