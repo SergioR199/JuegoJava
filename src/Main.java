@@ -2,7 +2,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
+ * Clase principal del juego, gestion del menu,
+ * creación de equipos y desarrollo de rondas.
  * */
 public class Main {
 
