@@ -1,7 +1,7 @@
 public class Planeta {
 
-    private int vidas;
     private String nombre;
+    private int vidas;
     private int misiles_ronda;
     private TipoPlaneta tipo;
     private int vidaMaxima;
@@ -22,8 +22,11 @@ public class Planeta {
         }
     }
 
-    public int combate(int misiles, Planeta atacante) {
+    public boolean estaVivo() {
+        return vidas > 0;
+    }
 
+    public int combate(int misiles, Planeta atacante) {
         if (this.tipo == TipoPlaneta.LADRON && Math.random() < 0.5) {
             System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
             return 0;
@@ -35,23 +38,18 @@ public class Planeta {
             case ASESINO:
                 danioFinal = misiles * 2;
                 break;
-
             case TIRADOR:
                 danioFinal = (int) (misiles * 1.5);
                 break;
-
             case MAGO:
                 danioFinal = misiles;
                 break;
-
             case CABALLERO:
                 danioFinal = misiles;
                 break;
-
             case TANQUE:
                 danioFinal = misiles;
                 break;
-
             case LADRON:
                 danioFinal = misiles;
                 break;
@@ -63,12 +61,19 @@ public class Planeta {
 
         this.vidas -= danioFinal;
 
-        if (this.vidas <= 0) {
+        if (this.vidas < 0) {
             this.vidas = 0;
-            System.out.println("\n" + this.nombre + " ha sido destruido.");
         }
 
         return danioFinal;
+    }
+
+    public void recibirDanio(int cantidad) {
+        this.vidas -= cantidad;
+        if (this.vidas < 0) {
+            this.vidas = 0;
+            System.out.println("\n" + this.nombre + " ha sido destruido.");
+        }
     }
 
     public int defender(int misilesDefensa) {
@@ -87,16 +92,15 @@ public class Planeta {
         return defensaTotal;
     }
 
-    public void reiniciarMisilesRonda() {
-        this.misiles_ronda = 50;
+    public void usarMisiles(int cantidad) {
+        this.misiles_ronda -= cantidad;
+        if (this.misiles_ronda < 0) {
+            this.misiles_ronda = 0;
+        }
     }
 
-    public int getVidas() {
-        return vidas;
-    }
-
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
+    public void recargarMisiles(int cantidad) {
+        this.misiles_ronda = cantidad;
     }
 
     public String getNombre() {
@@ -105,6 +109,17 @@ public class Planeta {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+        if (this.vidas < 0) {
+            this.vidas = 0;
+        }
     }
 
     public int getMisiles_ronda() {
