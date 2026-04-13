@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,15 +20,14 @@ public class Main {
     public static void main(String[] args) {
 
         int opcion;
-        Planeta[] equipos;
+        ArrayList<Planeta> equipos = new ArrayList<>();
 
         opcion = mostrarMenu();
 
         switch (opcion) {
             case 1:
                 System.out.println("Creando equipos...");
-                equipos = new Planeta[pedirNumeroEquipos()];
-                crearEquipos(equipos);
+                crearEquipos(equipos, pedirNumeroEquipos());
                 jugar(equipos);
                 break;
 
@@ -95,11 +95,11 @@ public class Main {
     /**
      *
      * */
-    public static void crearEquipos(Planeta[] equipos) {
-        for (int i = 0; i < equipos.length; i++) {
+    public static void crearEquipos(ArrayList<Planeta> equipos, int numEquipos) {
+        for (int i = 0; i < numEquipos; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             String nombre = pedirPersonaje();
-            equipos[i] = new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA);
+            equipos.add(new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA));
         }
     }
 
@@ -150,7 +150,7 @@ public class Main {
     /**
      *
      * */
-    public static void jugar(Planeta[] equipos) {
+    public static void jugar(ArrayList<Planeta> equipos) {
         int ronda = 1;
 
         while (equiposVivos(equipos) > 1) {
@@ -159,30 +159,29 @@ public class Main {
             mostrarEstadoRonda(equipos);
 
             int[] vidasInicio = guardarVidasInicio(equipos);
-            int[] danoPendiente = new int[equipos.length];
-            int[] defensaPendiente = new int[equipos.length];
+            int[] danoPendiente = new int[equipos.size()];
+            int[] defensaPendiente = new int[equipos.size()];
 
-            String[] listaAcciones = new String[200];
-            int numAcciones = 0;
+            ArrayList<String> listaAcciones = new ArrayList<>();
 
-            for (int i = 0; i < equipos.length; i++) {
+            for (int i = 0; i < equipos.size(); i++) {
                 if (vidasInicio[i] > 0 && equiposVivos(equipos) > 1) {
-                    numAcciones = turnoEquipo(
+                    turnoEquipo(
                             equipos,
                             i,
                             ronda,
                             danoPendiente,
                             defensaPendiente,
-                            listaAcciones,
-                            numAcciones
+                            listaAcciones
                     );
                 }
             }
 
             System.out.println("\n---- ACCIONES DE LA RONDA ----");
-            for (int i = 0; i < numAcciones; i++) {
-                System.out.println(listaAcciones[i]);
+            for (String accion : listaAcciones) {
+                System.out.println(accion);
             }
+
 
             aplicarResultadosRonda(equipos, danoPendiente, defensaPendiente);
             mostrarResumenRonda(equipos, vidasInicio, danoPendiente, defensaPendiente);
@@ -196,10 +195,10 @@ public class Main {
     /**
      *
      * */
-    public static int[] guardarVidasInicio(Planeta[] equipos) {
-        int[] vidasInicio = new int[equipos.length];
-        for (int i = 0; i < equipos.length; i++) {
-            vidasInicio[i] = equipos[i].getVidas();
+    public static int[] guardarVidasInicio(ArrayList<Planeta> equipos) {
+        int[] vidasInicio = new int[equipos.size()];
+        for (int i = 0; i < equipos.size(); i++) {
+            vidasInicio[i] = equipos.get(i).getVidas();
         }
         return vidasInicio;
     }
@@ -207,18 +206,17 @@ public class Main {
     /**
      *
      * */
-    public static int turnoEquipo(Planeta[] equipos,
+    public static void turnoEquipo(ArrayList<Planeta> equipos,
                                   int indiceAtacante,
                                   int ronda,
                                   int[] danoPendiente,
                                   int[] defensaPendiente,
-                                  String[] listaAcciones,
-                                  int numAcciones) {
+                                  ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         if (!atacante.estaVivo()) {
-            return numAcciones;
+            return;
         }
 
         System.out.println("\nTurno de: " + atacante.getNombre());
@@ -235,25 +233,23 @@ public class Main {
         }
 
         if (accion == 1) {
-            numAcciones = procesarAtaque(equipos, indiceAtacante, danoPendiente, listaAcciones, numAcciones);
+            procesarAtaque(equipos, indiceAtacante, danoPendiente, listaAcciones);
         } else {
-            numAcciones = procesarDefensa(equipos, indiceAtacante, defensaPendiente, listaAcciones, numAcciones);
+            procesarDefensa(equipos, indiceAtacante, defensaPendiente, listaAcciones);
         }
 
         atacante.recargarMisiles(MISILES_POR_RONDA);
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int procesarAtaque(Planeta[] equipos,
+    public static void procesarAtaque(ArrayList<Planeta> equipos,
                                      int indiceAtacante,
                                      int[] danoPendiente,
-                                     String[] listaAcciones,
-                                     int numAcciones) {
+                                     ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         while (atacante.getMisiles_ronda() > 0 && equiposVivos(equipos) > 1) {
 
@@ -267,7 +263,7 @@ public class Main {
             int misiles = leerEnteroRango(
                     0,
                     atacante.getMisiles_ronda(),
-                    "¿Cuántos misiles quieres usar contra " + equipos[objetivo].getNombre() + "? "
+                    "¿Cuántos misiles quieres usar contra " + equipos.get(objetivo).getNombre() + "? "
             );
 
             if (misiles == 0) {
@@ -277,24 +273,23 @@ public class Main {
             atacante.usarMisiles(misiles);
             danoPendiente[objetivo] += misiles;
 
-            listaAcciones[numAcciones++] = atacante.getNombre()
-                    + " ataca a " + equipos[objetivo].getNombre()
-                    + " con " + misiles + " misiles.";
+            listaAcciones.add(
+                    atacante.getNombre()
+                            + " ataca a " + equipos.get(objetivo).getNombre()
+                            + " con " + misiles + " misiles."
+            );
         }
-
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int procesarDefensa(Planeta[] equipos,
+    public static void procesarDefensa(ArrayList<Planeta> equipos,
                                       int indiceAtacante,
                                       int[] defensaPendiente,
-                                      String[] listaAcciones,
-                                      int numAcciones) {
+                                       ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         while (atacante.getMisiles_ronda() > 0) {
 
@@ -314,27 +309,27 @@ public class Main {
             int defensaTotal = misilesDefensa / 2;
             defensaPendiente[indiceAtacante] += defensaTotal;
 
-            listaAcciones[numAcciones++] = atacante.getNombre()
-                    + " se defiende usando " + misilesDefensa
-                    + " misiles (" + defensaTotal + " de defensa).";
+            listaAcciones.add(
+                    atacante.getNombre()
+                            + " se defiende usando " + misilesDefensa
+                            + " misiles (" + defensaTotal + " de defensa)."
+            );
         }
-
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int elegirObjetivo(Planeta[] equipos, int indiceAtacante) {
+    public static int elegirObjetivo(ArrayList<Planeta> equipos, int indiceAtacante) {
         System.out.println("Objetivos disponibles:");
 
-        int[] indicesReales = new int[equipos.length];
+        int[] indicesReales = new int[equipos.size()];
         int contador = 0;
 
-        for (int i = 0; i < equipos.length; i++) {
-            if (i != indiceAtacante && equipos[i].estaVivo()) {
-                System.out.println((contador + 1) + ". " + equipos[i].getNombre()
-                        + " (" + equipos[i].getVidas() + " vidas)");
+        for (int i = 0; i < equipos.size(); i++) {
+            if (i != indiceAtacante && equipos.get(i).estaVivo()) {
+                System.out.println((contador + 1) + ". " + equipos.get(i).getNombre()
+                        + " (" + equipos.get(i).getVidas() + " vidas)");
                 indicesReales[contador] = i;
                 contador++;
             }
@@ -357,12 +352,12 @@ public class Main {
     /**
      *
      * */
-    public static void aplicarResultadosRonda(Planeta[] equipos,
+    public static void aplicarResultadosRonda(ArrayList<Planeta> equipos,
                                               int[] danoPendiente,
                                               int[] defensaPendiente) {
 
-        for (int i = 0; i < equipos.length; i++) {
-            if (!equipos[i].estaVivo()) {
+        for (int i = 0; i < equipos.size(); i++) {
+            if (!equipos.get(i).estaVivo()) {
                 continue;
             }
 
@@ -371,32 +366,32 @@ public class Main {
                 danoFinal = 0;
             }
 
-            equipos[i].recibirDanio(danoFinal);
+            equipos.get(i).recibirDanio(danoFinal);
         }
     }
 
     /**
      *
      * */
-    public static void mostrarResumenRonda(Planeta[] equipos,
+    public static void mostrarResumenRonda(ArrayList<Planeta> equipos,
                                            int[] vidasInicio,
                                            int[] danoPendiente,
                                            int[] defensaPendiente) {
 
         System.out.println("\n---- RESUMEN DE LA RONDA ----");
 
-        for (int i = 0; i < equipos.length; i++) {
+        for (int i = 0; i < equipos.size(); i++) {
             int danoFinal = danoPendiente[i] - defensaPendiente[i];
             if (danoFinal < 0) {
                 danoFinal = 0;
             }
 
-            System.out.println(equipos[i].getNombre()
+            System.out.println(equipos.get(i).getNombre()
                     + " | Inicio: " + vidasInicio[i]
                     + " | Daño recibido: " + danoPendiente[i]
                     + " | Defensa: " + defensaPendiente[i]
                     + " | Daño final: " + danoFinal
-                    + " | Fin: " + equipos[i].getVidas());
+                    + " | Fin: " + equipos.get(i).getVidas());
         }
 
         System.out.println("------------------------------");
@@ -405,7 +400,7 @@ public class Main {
     /**
      *
      * */
-    public static int equiposVivos(Planeta[] equipos) {
+    public static int equiposVivos(ArrayList<Planeta> equipos) {
         int vivos = 0;
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -418,7 +413,7 @@ public class Main {
     /**
      *
      * */
-    public static void mostrarEstadoRonda(Planeta[] equipos) {
+    public static void mostrarEstadoRonda(ArrayList<Planeta> equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
                 System.out.println(equipo.getNombre() + " > " + equipo.getVidas() + " vidas");
@@ -429,7 +424,7 @@ public class Main {
     /**
      *
      * */
-    public static void anunciarGanador(Planeta[] equipos) {
+    public static void anunciarGanador(ArrayList<Planeta> equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
                 System.out.println("\n¡" + equipo.getNombre() + " GANA LA PARTIDA!\n");
