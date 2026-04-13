@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
- * */
 public class Main {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -14,9 +11,6 @@ public class Main {
     private static final int MIN_EQUIPOS = 3;
     private static final int MAX_EQUIPOS = 5;
 
-    /**
-     *
-     * */
     public static void main(String[] args) {
 
         int opcion;
@@ -51,9 +45,6 @@ public class Main {
         sc.close();
     }
 
-    /**
-     *
-     * */
     public static int mostrarMenu() {
         while (true) {
             try {
@@ -81,9 +72,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static int pedirNumeroEquipos() {
         return leerEnteroRango(
                 MIN_EQUIPOS,
@@ -92,20 +80,16 @@ public class Main {
         );
     }
 
-    /**
-     *
-     * */
     public static void crearEquipos(ArrayList<Planeta> equipos, int numEquipos) {
         for (int i = 0; i < numEquipos; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             String nombre = pedirPersonaje();
-            equipos.add(new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA));
+            TipoPlaneta tipo = TipoPlaneta.values()[(int) (Math.random() * TipoPlaneta.values().length)];
+            System.out.println("Tipo asignado: " + tipo);
+            equipos.add(new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA, tipo));
         }
     }
 
-    /**
-     *
-     * */
     public static String pedirPersonaje() {
         while (true) {
             try {
@@ -147,9 +131,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static void jugar(ArrayList<Planeta> equipos) {
         int ronda = 1;
 
@@ -166,14 +147,7 @@ public class Main {
 
             for (int i = 0; i < equipos.size(); i++) {
                 if (vidasInicio[i] > 0 && equiposVivos(equipos) > 1) {
-                    turnoEquipo(
-                            equipos,
-                            i,
-                            ronda,
-                            danoPendiente,
-                            defensaPendiente,
-                            listaAcciones
-                    );
+                    turnoEquipo(equipos, i, ronda, danoPendiente, defensaPendiente, listaAcciones);
                 }
             }
 
@@ -181,7 +155,6 @@ public class Main {
             for (String accion : listaAcciones) {
                 System.out.println(accion);
             }
-
 
             aplicarResultadosRonda(equipos, danoPendiente, defensaPendiente);
             mostrarResumenRonda(equipos, vidasInicio, danoPendiente, defensaPendiente);
@@ -192,9 +165,6 @@ public class Main {
         anunciarGanador(equipos);
     }
 
-    /**
-     *
-     * */
     public static int[] guardarVidasInicio(ArrayList<Planeta> equipos) {
         int[] vidasInicio = new int[equipos.size()];
         for (int i = 0; i < equipos.size(); i++) {
@@ -203,15 +173,12 @@ public class Main {
         return vidasInicio;
     }
 
-    /**
-     *
-     * */
     public static void turnoEquipo(ArrayList<Planeta> equipos,
-                                  int indiceAtacante,
-                                  int ronda,
-                                  int[] danoPendiente,
-                                  int[] defensaPendiente,
-                                  ArrayList<String> listaAcciones) {
+                                   int indiceAtacante,
+                                   int ronda,
+                                   int[] danoPendiente,
+                                   int[] defensaPendiente,
+                                   ArrayList<String> listaAcciones) {
 
         Planeta atacante = equipos.get(indiceAtacante);
 
@@ -241,13 +208,10 @@ public class Main {
         atacante.recargarMisiles(MISILES_POR_RONDA);
     }
 
-    /**
-     *
-     * */
     public static void procesarAtaque(ArrayList<Planeta> equipos,
-                                     int indiceAtacante,
-                                     int[] danoPendiente,
-                                     ArrayList<String> listaAcciones) {
+                                      int indiceAtacante,
+                                      int[] danoPendiente,
+                                      ArrayList<String> listaAcciones) {
 
         Planeta atacante = equipos.get(indiceAtacante);
 
@@ -281,12 +245,9 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static void procesarDefensa(ArrayList<Planeta> equipos,
-                                      int indiceAtacante,
-                                      int[] defensaPendiente,
+                                       int indiceAtacante,
+                                       int[] defensaPendiente,
                                        ArrayList<String> listaAcciones) {
 
         Planeta atacante = equipos.get(indiceAtacante);
@@ -317,9 +278,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static int elegirObjetivo(ArrayList<Planeta> equipos, int indiceAtacante) {
         System.out.println("Objetivos disponibles:");
 
@@ -340,18 +298,10 @@ public class Main {
             return -1;
         }
 
-        int opcion = leerEnteroRango(
-                1,
-                contador,
-                "¿A quién quieres atacar? Introduce el número: "
-        );
-
+        int opcion = leerEnteroRango(1, contador, "¿A quién quieres atacar? Introduce el número: ");
         return indicesReales[opcion - 1];
     }
 
-    /**
-     *
-     * */
     public static void aplicarResultadosRonda(ArrayList<Planeta> equipos,
                                               int[] danoPendiente,
                                               int[] defensaPendiente) {
@@ -370,9 +320,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static void mostrarResumenRonda(ArrayList<Planeta> equipos,
                                            int[] vidasInicio,
                                            int[] danoPendiente,
@@ -397,9 +344,6 @@ public class Main {
         System.out.println("------------------------------");
     }
 
-    /**
-     *
-     * */
     public static int equiposVivos(ArrayList<Planeta> equipos) {
         int vivos = 0;
         for (Planeta equipo : equipos) {
@@ -410,9 +354,6 @@ public class Main {
         return vivos;
     }
 
-    /**
-     *
-     * */
     public static void mostrarEstadoRonda(ArrayList<Planeta> equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -421,9 +362,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static void anunciarGanador(ArrayList<Planeta> equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -433,9 +371,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static int leerEnteroRango(int min, int max, String mensaje) {
         while (true) {
             try {
