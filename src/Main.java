@@ -6,7 +6,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
 
-        Planeta[] equipos = null;
+        Personaje[] equipos = null;
 
         do {
             try {
@@ -36,7 +36,7 @@ public class Main {
 
                 case 1:
                     System.out.println("Creando equipos...");
-                    equipos = new Planeta[pedirNumeroEquipos(sc)];
+                    equipos = new Personaje[pedirNumeroEquipos(sc)];
                     crearEquipos(equipos, sc);
                     jugar(equipos, sc);
                     break;
@@ -82,62 +82,46 @@ public class Main {
         return numEquipos;
     }
 
-    public static void crearEquipos(Planeta[] equipos, Scanner sc) {
+    public static void crearEquipos(Personaje[] equipos, Scanner sc) {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             String nombre = pedirPersonaje(sc);
-            TipoPlaneta tipo = pedirTipoPlaneta(sc);
-            equipos[i] = new Planeta(nombre, 200, 50, tipo);
+            Tipo tipo = obtenerTipoPorNombre(nombre);
+            equipos[i] = new Personaje(nombre, 200, 50, tipo);
 
             System.out.println("Equipo creado: " + equipos[i].getNombre()
                     + " | Tipo: " + equipos[i].getTipo()
                     + " | Vidas: " + equipos[i].getVidas()
-                    + " | Misiles/ronda: " + equipos[i].getMisiles_ronda());
+                    + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
         }
     }
 
-    public static TipoPlaneta pedirTipoPlaneta(Scanner sc) {
-        int opcion = 0;
-
-        do {
-            try {
-                System.out.println("\n---- TIPOS DE PLANETA ----");
-                System.out.println("1- CABALLERO");
-                System.out.println("2- ASESINO");
-                System.out.println("3- TANQUE");
-                System.out.println("4- MAGO");
-                System.out.println("5- TIRADOR");
-                System.out.println("6- LADRON");
-                System.out.print("Elige el tipo de planeta: ");
-                opcion = sc.nextInt();
-                sc.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido.");
-                sc.nextLine();
-                continue;
-            }
-
-            if (opcion < 1 || opcion > 6) {
-                System.out.println("Opción no válida. Elige entre 1 y 6.");
-            }
-        } while (opcion < 1 || opcion > 6);
-
-        switch (opcion) {
-            case 1:
-                return TipoPlaneta.CABALLERO;
-            case 2:
-                return TipoPlaneta.ASESINO;
-            case 3:
-                return TipoPlaneta.TANQUE;
-            case 4:
-                return TipoPlaneta.MAGO;
-            case 5:
-                return TipoPlaneta.TIRADOR;
-            case 6:
-                return TipoPlaneta.LADRON;
-            default:
-                return TipoPlaneta.CABALLERO;
+    public static Tipo obtenerTipoPorNombre(String nombre) {
+        if (nombre.equalsIgnoreCase("Corki")
+                || nombre.equalsIgnoreCase("Rumble")
+                || nombre.equalsIgnoreCase("Heimer")
+                || nombre.equalsIgnoreCase("Heimerdinger")
+                || nombre.equalsIgnoreCase("Tristana")
+                || nombre.equalsIgnoreCase("Ziggs")) {
+            return Tipo.YORDLE;
         }
+
+        if (nombre.equalsIgnoreCase("Jinx")
+                || nombre.equalsIgnoreCase("Jhin")
+                || nombre.equalsIgnoreCase("Gangplank")
+                || nombre.equalsIgnoreCase("Sylas")) {
+            return Tipo.HUMANO;
+        }
+
+        if (nombre.equalsIgnoreCase("Aurelion")
+                || nombre.equalsIgnoreCase("Aurelion Sol")
+                || nombre.equalsIgnoreCase("Xerath")
+                || nombre.equalsIgnoreCase("Kog'Maw")
+                || nombre.equalsIgnoreCase("Kogmaw")) {
+            return Tipo.SER_MAGICO;
+        }
+
+        return Tipo.HUMANO;
     }
 
     public static String pedirPersonaje(Scanner sc) {
@@ -150,7 +134,6 @@ public class Main {
                 mostrarPersonajes();
                 System.out.println("13- Otro nombre");
                 System.out.println("14- Aleatorio");
-                System.out.println("0-  Salir");
                 System.out.print("Escoge el número del personaje: ");
                 personaje = sc.nextInt();
                 sc.nextLine();
@@ -249,7 +232,7 @@ public class Main {
 
                 valido = true;
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-14)");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (1-14)");
                 sc.nextLine();
             }
         }
@@ -257,7 +240,7 @@ public class Main {
         return nombre;
     }
 
-    public static void jugar(Planeta[] equipos, Scanner sc) {
+    public static void jugar(Personaje[] equipos, Scanner sc) {
         int ronda = 1;
 
         while (equiposVivos(equipos) > 1) {
@@ -273,12 +256,12 @@ public class Main {
                 }
             }
 
-            System.out.println("\n---- ATAQUES DE LA RONDA ----");
+            System.out.println("\n---- ACCIONES DE LA RONDA ----");
             for (int i = 0; i < numAtaques; i++) {
                 System.out.println(listaAtaques[i]);
             }
 
-            for (Planeta e : equipos) {
+            for (Personaje e : equipos) {
                 if (e.getVidas() > 0) {
                     e.reiniciarMisilesRonda();
                 }
@@ -286,11 +269,11 @@ public class Main {
 
             System.out.println("\n---- ESTADO FINAL DE LA RONDA ----");
             System.out.println("Equipos vivos: " + equiposVivos(equipos));
-            for (Planeta e : equipos) {
+            for (Personaje e : equipos) {
                 if (e.getVidas() > 0) {
                     System.out.println(e.getNombre() + ": " + e.getVidas()
                             + " vidas | Tipo: " + e.getTipo()
-                            + " | Misiles próxima ronda: " + e.getMisiles_ronda());
+                            + " | Misiles próxima ronda: " + e.getMisilesRonda());
                 }
             }
             System.out.println();
@@ -299,9 +282,9 @@ public class Main {
         anunciarGanador(equipos);
     }
 
-    public static int equiposVivos(Planeta[] equipos) {
+    public static int equiposVivos(Personaje[] equipos) {
         int vivos = 0;
-        for (Planeta e : equipos) {
+        for (Personaje e : equipos) {
             if (e.getVidas() > 0) {
                 vivos++;
             }
@@ -309,19 +292,19 @@ public class Main {
         return vivos;
     }
 
-    public static void mostrarEstadoRonda(Planeta[] equipos) {
-        for (Planeta equipo : equipos) {
+    public static void mostrarEstadoRonda(Personaje[] equipos) {
+        for (Personaje equipo : equipos) {
             if (equipo.getVidas() > 0) {
                 System.out.println(equipo.getNombre() + " > " + equipo.getVidas()
                         + " vidas | Tipo: " + equipo.getTipo()
-                        + " | Misiles: " + equipo.getMisiles_ronda());
+                        + " | Misiles: " + equipo.getMisilesRonda());
             }
         }
     }
 
-    public static int turnoEquipo(Planeta[] equipos, int indiceAtacante, Scanner sc, String[] listaAtaques,
+    public static int turnoEquipo(Personaje[] equipos, int indiceAtacante, Scanner sc, String[] listaAtaques,
                                   int numAtaques) {
-        Planeta atacante = equipos[indiceAtacante];
+        Personaje atacante = equipos[indiceAtacante];
         System.out.println("\nTurno de ataque de: " + atacante.getNombre());
         System.out.println("1. Atacar");
         System.out.println("2. Defenderse");
@@ -345,31 +328,31 @@ public class Main {
         } while (accion < 1 || accion > 2);
 
         if (accion == 2) {
-            while (atacante.getMisiles_ronda() > 0) {
+            while (atacante.getMisilesRonda() > 0) {
                 int misilesDefensa = 0;
 
                 do {
                     try {
-                        System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
+                        System.out.println("Misiles disponibles: " + atacante.getMisilesRonda());
                         System.out.print("¿Cuántos misiles quieres usar para defenderte? ");
                         misilesDefensa = sc.nextInt();
                         sc.nextLine();
                     } catch (InputMismatchException e) {
-                        System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisiles_ronda() + ")");
+                        System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisilesRonda() + ")");
                         sc.nextLine();
                         continue;
                     }
 
-                    if (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda()) {
-                        System.out.println("Usa entre 0 y " + atacante.getMisiles_ronda() + " misiles");
+                    if (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda()) {
+                        System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles");
                     }
-                } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisiles_ronda());
+                } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda());
 
                 if (misilesDefensa == 0) {
                     break;
                 }
 
-                atacante.setMisiles_ronda(atacante.getMisiles_ronda() - misilesDefensa);
+                atacante.setMisilesRonda(atacante.getMisilesRonda() - misilesDefensa);
                 int defensaTotal = atacante.defender(misilesDefensa);
 
                 String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa +
@@ -388,25 +371,25 @@ public class Main {
             }
         }
 
-        while (atacante.getMisiles_ronda() > 0 && equiposVivos(equipos) > 1) {
+        while (atacante.getMisilesRonda() > 0 && equiposVivos(equipos) > 1) {
             int misiles = 0;
 
             do {
                 try {
-                    System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
+                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda());
                     System.out.print("¿Cuántos misiles quieres usar? ");
                     misiles = sc.nextInt();
                     sc.nextLine();
                 } catch (InputMismatchException e) {
-                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisiles_ronda() + ").");
+                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-" + atacante.getMisilesRonda() + ").");
                     sc.nextLine();
                     continue;
                 }
 
-                if (misiles < 0 || misiles > atacante.getMisiles_ronda()) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-" + atacante.getMisiles_ronda() + ").");
+                if (misiles < 0 || misiles > atacante.getMisilesRonda()) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-" + atacante.getMisilesRonda() + ").");
                 }
-            } while (misiles < 0 || misiles > atacante.getMisiles_ronda());
+            } while (misiles < 0 || misiles > atacante.getMisilesRonda());
 
             if (misiles == 0) {
                 break;
@@ -429,7 +412,7 @@ public class Main {
                     || equipos[objetivo].getVidas() <= 0);
 
             int danioHecho = equipos[objetivo].combate(misiles, atacante);
-            atacante.setMisiles_ronda(atacante.getMisiles_ronda() - misiles);
+            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
 
             String mensaje = atacante.getNombre() + " (" + atacante.getTipo() + ") ataca a "
                     + equipos[objetivo].getNombre() + " (" + equipos[objetivo].getTipo() + ") con "
@@ -441,8 +424,8 @@ public class Main {
         return numAtaques;
     }
 
-    public static void anunciarGanador(Planeta[] equipos) {
-        for (Planeta e : equipos) {
+    public static void anunciarGanador(Personaje[] equipos) {
+        for (Personaje e : equipos) {
             if (e.getVidas() > 0) {
                 System.out.println("\n¡" + e.getNombre() + " GANA LA PARTIDA!\n");
                 return;
@@ -453,19 +436,19 @@ public class Main {
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---");
         System.out.println("1. Cada equipo comienza con 200 vidas y 50 misiles por ronda.");
-        System.out.println("2. Cada equipo elige un tipo de planeta.");
-        System.out.println("3. CABALLERO: al defenderse recupera el doble.");
-        System.out.println("4. ASESINO: al atacar hace el doble de daño.");
-        System.out.println("5. TANQUE: tiene el doble de vida y recibe la mitad de daño.");
-        System.out.println("6. MAGO: ignora la reducción de daño del tanque.");
-        System.out.println("7. TIRADOR: hace 1.5x de daño.");
-        System.out.println("8. LADRON: tiene la mitad de vida y 50% de probabilidad de esquivar.");
+        System.out.println("2. El tipo se asigna automáticamente según el personaje.");
+        System.out.println("3. YORDLES: Corki, Rumble, Heimerdinger, Tristana y Ziggs.");
+        System.out.println("4. HUMANOS: Jinx, Jhin, Gangplank y Sylas.");
+        System.out.println("5. SERES MAGICOS: Aurelion Sol, Xerath y Kog'Maw.");
+        System.out.println("6. Los YORDLES tienen un 25% de probabilidad de esquivar.");
+        System.out.println("7. Los HUMANOS hacen 1,25x de daño a los YORDLES.");
+        System.out.println("8. Los SERES MAGICOS hacen 1,75x a HUMANOS y 0,75x a YORDLES.");
         System.out.println("9. El último equipo en pie gana la partida.\n");
     }
 
     public static void mostrarInformacion() {
         System.out.println("\n--- INFORMACIÓN ---");
-        System.out.println("Versión: 1.2b");
+        System.out.println("Versión: 1.0");
         System.out.println("Contacto: losdelfondo@gmail.com");
         System.out.println("Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n");
     }
@@ -492,40 +475,40 @@ public class Main {
 
             switch (personaje) {
                 case 1:
-                    System.out.println("Jinx - Explosiva y caótica tiradora de apoyo a distancia.");
+                    System.out.println("Jinx - HUMANO");
                     break;
                 case 2:
-                    System.out.println("Jhin - Artista asesino con cuatro disparos explosivos.");
+                    System.out.println("Jhin - HUMANO");
                     break;
                 case 3:
-                    System.out.println("Gangplank - Pirata francotirador con mucho poder de área.");
+                    System.out.println("Gangplank - HUMANO");
                     break;
                 case 4:
-                    System.out.println("Rumble - Yordle mecánico con un dron de combate eléctrico.");
+                    System.out.println("Rumble - YORDLE");
                     break;
                 case 5:
-                    System.out.println("Heimerdinger - Yordle científico prototipo que usa campos y torretas.");
+                    System.out.println("Heimerdinger - YORDLE");
                     break;
                 case 6:
-                    System.out.println("Kog'Maw - Devorador de estrellas con gran alcance.");
+                    System.out.println("Kog'Maw - SER_MAGICO");
                     break;
                 case 7:
-                    System.out.println("Aurelion Sol - Dragón cósmico que controla el espacio.");
+                    System.out.println("Aurelion Sol - SER_MAGICO");
                     break;
                 case 8:
-                    System.out.println("Sylas - Mago rebelde que roba habilidades enemigas.");
+                    System.out.println("Sylas - HUMANO");
                     break;
                 case 9:
-                    System.out.println("Tristana - Yordle artillera con salto y explosión.");
+                    System.out.println("Tristana - YORDLE");
                     break;
                 case 10:
-                    System.out.println("Xerath - Mago de largo alcance con poder masivo.");
+                    System.out.println("Xerath - SER_MAGICO");
                     break;
                 case 11:
-                    System.out.println("Ziggs - Yordle ingeniero explosivo especializado en zonas.");
+                    System.out.println("Ziggs - YORDLE");
                     break;
                 case 12:
-                    System.out.println("Corki - Piloto de combate con misiles y bombas.");
+                    System.out.println("Corki - YORDLE");
                     break;
             }
         } while (personaje != 0);
