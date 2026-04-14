@@ -1,5 +1,11 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 /**
  * Clase principal del juego, gestion del menu,
@@ -19,67 +25,56 @@ public class Main {
      * */
     public static void main(String[] args) {
 
+        int partida = 1;
         int opcion;
-        Planeta[] equipos;
+        ArrayList<Planeta> equipos = new ArrayList<>();
+        do{
+            opcion = mostrarMenu();
 
-        opcion = mostrarMenu();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Creando equipos...");
+                    crearEquipos(equipos, pedirNumeroEquipos());
+                    jugar(equipos, partida);
+                    partida += 1;
+                    break;
 
-        switch (opcion) {
-            case 1:
-                System.out.println("Creando equipos...");
-                equipos = new Planeta[pedirNumeroEquipos()];
-                crearEquipos(equipos);
-                jugar(equipos);
-                break;
+                case 2:
+                    InformacionJuego.mostrarReglas();
+                    break;
 
-            case 2:
-                InformacionJuego.mostrarReglas();
-                break;
+                case 3:
+                    InformacionJuego.mostrarInformacionGeneral();
+                    break;
 
-            case 3:
-                InformacionJuego.mostrarInformacionGeneral();
-                break;
+                case 4:
+                    InformacionJuego.mostrarInfoPersonajes(sc);
+                    break;
 
-            case 4:
-                InformacionJuego.mostrarInfoPersonajes(sc);
-                break;
+                case 0:
 
-            case 0:
-                System.out.println("Saliendo del juego...");
-                break;
-        }
+                    try{
 
-        sc.close();
+                        new FileWriter("ganadores.txt").close();
+                    }catch(IOException e){}
+
+                    System.out.println("\nSaliendo del juego...");
+                    break;
+            }
+
+        }while(opcion !=0 );
     }
 
     /**
      *
      * */
     public static int mostrarMenu() {
-        while (true) {
-            try {
-                System.out.println("\n---- MENU ----");
-                System.out.println("1º JUGAR");
-                System.out.println("2º REGLAS DEL JUEGO");
-                System.out.println("3º INFORMACIÓN GENERAL");
-                System.out.println("4º INFORMACIÓN DE PERSONAJES");
-                System.out.println("0º SALIR");
-                System.out.print("Elige opción: ");
 
-                int opcion = sc.nextInt();
-                sc.nextLine();
+        System.out.println("\n---- MENU ----\n1º JUGAR\n2º REGLAS DEL JUEGO\n3º INFORMACIÓN GENERAL\n4º INFORMACIÓN DE PERSONAJES\n0º SALIR");
 
-                if (opcion < 0 || opcion > 4) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
-                } else {
-                    return opcion;
-                }
+        int opcion;
 
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
-                sc.nextLine();
-            }
-        }
+        return opcion = leerEnteroRango(0, 4, "\nElige una opción: ");
     }
 
     /**
@@ -96,11 +91,13 @@ public class Main {
     /**
      *
      * */
-    public static void crearEquipos(Planeta[] equipos) {
-        for (int i = 0; i < equipos.length; i++) {
+    public static void crearEquipos(ArrayList<Planeta> equipos, int numEquipos) {
+        for (int i = 0; i < numEquipos; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             String nombre = pedirPersonaje();
-            equipos[i] = new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA);
+            TipoPlaneta tipo = TipoPlaneta.values()[(int) (Math.random() * TipoPlaneta.values().length)];
+            System.out.println("Tipo asignado: " + tipo);
+            equipos.add(new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA, tipo));
         }
     }
 
@@ -109,41 +106,40 @@ public class Main {
      * */
     public static String pedirPersonaje() {
         while (true) {
-            try {
-                InformacionJuego.mostrarPersonajes();
-                System.out.println("13- Otro nombre");
-                System.out.println("14- Aleatorio");
-                System.out.println("0- Salir");
+            InformacionJuego.mostrarPersonajes();
+            System.out.println("13- Otro nombre\n14- Aleatorio");
+
+            while (true) {
+
                 System.out.print("Escoge el número del personaje: ");
 
-                int personaje = sc.nextInt();
-                sc.nextLine();
+                try {
 
-                if (personaje == 0) {
-                    return "SinNombre";
+                    int personaje = sc.nextInt();
+                    sc.nextLine();
+
+                    if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
+                        return InformacionJuego.getPersonaje(personaje - 1);
+                    }
+
+                    if (personaje == 13) {
+                        System.out.print("Escribe el nombre que quieras: ");
+                        return sc.nextLine();
+                    }
+
+                    if (personaje == 14) {
+                        int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
+                        String nombre = InformacionJuego.getPersonaje(aleatorio);
+                        System.out.println("¡Te ha tocado " + nombre + "!");
+                        return nombre;
+                    }
+
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-14).");
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-14).");
+                    sc.nextLine();
                 }
-
-                if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
-                    return InformacionJuego.getPersonaje(personaje - 1);
-                }
-
-                if (personaje == 13) {
-                    System.out.print("Escribe el nombre que quieras: ");
-                    return sc.nextLine();
-                }
-
-                if (personaje == 14) {
-                    int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
-                    String nombre = InformacionJuego.getPersonaje(aleatorio);
-                    System.out.println("¡Te ha tocado " + nombre + "!");
-                    return nombre;
-                }
-
-                System.out.println("Has introducido una opción no existente. Elige otra opción (0-14).");
-
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-14).");
-                sc.nextLine();
             }
         }
     }
@@ -151,7 +147,8 @@ public class Main {
     /**
      *
      * */
-    public static void jugar(Planeta[] equipos) {
+    public static void jugar(ArrayList<Planeta> equipos, int partida) {
+
         int ronda = 1;
 
         while (equiposVivos(equipos) > 1) {
@@ -160,29 +157,20 @@ public class Main {
             mostrarEstadoRonda(equipos);
 
             int[] vidasInicio = guardarVidasInicio(equipos);
-            int[] danoPendiente = new int[equipos.length];
-            int[] defensaPendiente = new int[equipos.length];
+            int[] danoPendiente = new int[equipos.size()];
+            int[] defensaPendiente = new int[equipos.size()];
 
-            String[] listaAcciones = new String[200];
-            int numAcciones = 0;
+            ArrayList<String> listaAcciones = new ArrayList<>();
 
-            for (int i = 0; i < equipos.length; i++) {
+            for (int i = 0; i < equipos.size(); i++) {
                 if (vidasInicio[i] > 0 && equiposVivos(equipos) > 1) {
-                    numAcciones = turnoEquipo(
-                            equipos,
-                            i,
-                            ronda,
-                            danoPendiente,
-                            defensaPendiente,
-                            listaAcciones,
-                            numAcciones
-                    );
+                    turnoEquipo(equipos, i, ronda, danoPendiente, defensaPendiente, listaAcciones);
                 }
             }
 
             System.out.println("\n---- ACCIONES DE LA RONDA ----");
-            for (int i = 0; i < numAcciones; i++) {
-                System.out.println(listaAcciones[i]);
+            for (String accion : listaAcciones) {
+                System.out.println(accion);
             }
 
             aplicarResultadosRonda(equipos, danoPendiente, defensaPendiente);
@@ -191,16 +179,18 @@ public class Main {
             ronda++;
         }
 
-        anunciarGanador(equipos);
+        anunciarGanador(equipos, partida);
+
+        equipos.clear();
     }
 
     /**
      *
      * */
-    public static int[] guardarVidasInicio(Planeta[] equipos) {
-        int[] vidasInicio = new int[equipos.length];
-        for (int i = 0; i < equipos.length; i++) {
-            vidasInicio[i] = equipos[i].getVidas();
+    public static int[] guardarVidasInicio(ArrayList<Planeta> equipos) {
+        int[] vidasInicio = new int[equipos.size()];
+        for (int i = 0; i < equipos.size(); i++) {
+            vidasInicio[i] = equipos.get(i).getVidas();
         }
         return vidasInicio;
     }
@@ -208,18 +198,17 @@ public class Main {
     /**
      *
      * */
-    public static int turnoEquipo(Planeta[] equipos,
-                                  int indiceAtacante,
-                                  int ronda,
-                                  int[] danoPendiente,
-                                  int[] defensaPendiente,
-                                  String[] listaAcciones,
-                                  int numAcciones) {
+    public static void turnoEquipo(ArrayList<Planeta> equipos,
+                                   int indiceAtacante,
+                                   int ronda,
+                                   int[] danoPendiente,
+                                   int[] defensaPendiente,
+                                   ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         if (!atacante.estaVivo()) {
-            return numAcciones;
+            return;
         }
 
         System.out.println("\nTurno de: " + atacante.getNombre());
@@ -230,31 +219,28 @@ public class Main {
         if (ronda == 1) {
             System.out.println("En la primera ronda solo se puede atacar.");
         } else {
-            System.out.println("1. Atacar");
-            System.out.println("2. Defenderse");
+            System.out.println("1. Atacar\n2. Defenderse");
             accion = leerEnteroRango(1, 2, "¿Qué quieres hacer? (1-2): ");
         }
 
         if (accion == 1) {
-            numAcciones = procesarAtaque(equipos, indiceAtacante, danoPendiente, listaAcciones, numAcciones);
+            procesarAtaque(equipos, indiceAtacante, danoPendiente, listaAcciones);
         } else {
-            numAcciones = procesarDefensa(equipos, indiceAtacante, defensaPendiente, listaAcciones, numAcciones);
+            procesarDefensa(equipos, indiceAtacante, defensaPendiente, listaAcciones);
         }
 
         atacante.recargarMisiles(MISILES_POR_RONDA);
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int procesarAtaque(Planeta[] equipos,
-                                     int indiceAtacante,
-                                     int[] danoPendiente,
-                                     String[] listaAcciones,
-                                     int numAcciones) {
+    public static void procesarAtaque(ArrayList<Planeta> equipos,
+                                      int indiceAtacante,
+                                      int[] danoPendiente,
+                                      ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         while (atacante.getMisiles_ronda() > 0 && equiposVivos(equipos) > 1) {
 
@@ -268,7 +254,7 @@ public class Main {
             int misiles = leerEnteroRango(
                     0,
                     atacante.getMisiles_ronda(),
-                    "¿Cuántos misiles quieres usar contra " + equipos[objetivo].getNombre() + "? "
+                    "¿Cuántos misiles quieres usar contra " + equipos.get(objetivo).getNombre() + "? "
             );
 
             if (misiles == 0) {
@@ -278,24 +264,23 @@ public class Main {
             atacante.usarMisiles(misiles);
             danoPendiente[objetivo] += misiles;
 
-            listaAcciones[numAcciones++] = atacante.getNombre()
-                    + " ataca a " + equipos[objetivo].getNombre()
-                    + " con " + misiles + " misiles.";
+            listaAcciones.add(
+                    atacante.getNombre()
+                            + " ataca a " + equipos.get(objetivo).getNombre()
+                            + " con " + misiles + " misiles."
+            );
         }
-
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int procesarDefensa(Planeta[] equipos,
-                                      int indiceAtacante,
-                                      int[] defensaPendiente,
-                                      String[] listaAcciones,
-                                      int numAcciones) {
+    public static void procesarDefensa(ArrayList<Planeta> equipos,
+                                       int indiceAtacante,
+                                       int[] defensaPendiente,
+                                       ArrayList<String> listaAcciones) {
 
-        Planeta atacante = equipos[indiceAtacante];
+        Planeta atacante = equipos.get(indiceAtacante);
 
         while (atacante.getMisiles_ronda() > 0) {
 
@@ -315,27 +300,27 @@ public class Main {
             int defensaTotal = misilesDefensa / 2;
             defensaPendiente[indiceAtacante] += defensaTotal;
 
-            listaAcciones[numAcciones++] = atacante.getNombre()
-                    + " se defiende usando " + misilesDefensa
-                    + " misiles (" + defensaTotal + " de defensa).";
+            listaAcciones.add(
+                    atacante.getNombre()
+                            + " se defiende usando " + misilesDefensa
+                            + " misiles (" + defensaTotal + " de defensa)."
+            );
         }
-
-        return numAcciones;
     }
 
     /**
      *
      * */
-    public static int elegirObjetivo(Planeta[] equipos, int indiceAtacante) {
+    public static int elegirObjetivo(ArrayList<Planeta> equipos, int indiceAtacante) {
         System.out.println("Objetivos disponibles:");
 
-        int[] indicesReales = new int[equipos.length];
+        int[] indicesReales = new int[equipos.size()];
         int contador = 0;
 
-        for (int i = 0; i < equipos.length; i++) {
-            if (i != indiceAtacante && equipos[i].estaVivo()) {
-                System.out.println((contador + 1) + ". " + equipos[i].getNombre()
-                        + " (" + equipos[i].getVidas() + " vidas)");
+        for (int i = 0; i < equipos.size(); i++) {
+            if (i != indiceAtacante && equipos.get(i).estaVivo()) {
+                System.out.println((contador + 1) + ". " + equipos.get(i).getNombre()
+                        + " (" + equipos.get(i).getVidas() + " vidas)");
                 indicesReales[contador] = i;
                 contador++;
             }
@@ -346,24 +331,19 @@ public class Main {
             return -1;
         }
 
-        int opcion = leerEnteroRango(
-                1,
-                contador,
-                "¿A quién quieres atacar? Introduce el número: "
-        );
-
+        int opcion = leerEnteroRango(1, contador, "¿A quién quieres atacar? Introduce el número: ");
         return indicesReales[opcion - 1];
     }
 
     /**
      *
      * */
-    public static void aplicarResultadosRonda(Planeta[] equipos,
+    public static void aplicarResultadosRonda(ArrayList<Planeta> equipos,
                                               int[] danoPendiente,
                                               int[] defensaPendiente) {
 
-        for (int i = 0; i < equipos.length; i++) {
-            if (!equipos[i].estaVivo()) {
+        for (int i = 0; i < equipos.size(); i++) {
+            if (!equipos.get(i).estaVivo()) {
                 continue;
             }
 
@@ -372,32 +352,32 @@ public class Main {
                 danoFinal = 0;
             }
 
-            equipos[i].recibirDanio(danoFinal);
+            equipos.get(i).recibirDanio(danoFinal);
         }
     }
 
     /**
      *
      * */
-    public static void mostrarResumenRonda(Planeta[] equipos,
+    public static void mostrarResumenRonda(ArrayList<Planeta> equipos,
                                            int[] vidasInicio,
                                            int[] danoPendiente,
                                            int[] defensaPendiente) {
 
         System.out.println("\n---- RESUMEN DE LA RONDA ----");
 
-        for (int i = 0; i < equipos.length; i++) {
+        for (int i = 0; i < equipos.size(); i++) {
             int danoFinal = danoPendiente[i] - defensaPendiente[i];
             if (danoFinal < 0) {
                 danoFinal = 0;
             }
 
-            System.out.println(equipos[i].getNombre()
+            System.out.println(equipos.get(i).getNombre()
                     + " | Inicio: " + vidasInicio[i]
                     + " | Daño recibido: " + danoPendiente[i]
                     + " | Defensa: " + defensaPendiente[i]
                     + " | Daño final: " + danoFinal
-                    + " | Fin: " + equipos[i].getVidas());
+                    + " | Fin: " + equipos.get(i).getVidas());
         }
 
         System.out.println("------------------------------");
@@ -406,7 +386,7 @@ public class Main {
     /**
      *
      * */
-    public static int equiposVivos(Planeta[] equipos) {
+    public static int equiposVivos(ArrayList<Planeta> equipos) {
         int vivos = 0;
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
@@ -419,7 +399,7 @@ public class Main {
     /**
      *
      * */
-    public static void mostrarEstadoRonda(Planeta[] equipos) {
+    public static void mostrarEstadoRonda(ArrayList<Planeta> equipos) {
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
                 System.out.println(equipo.getNombre() + " > " + equipo.getVidas() + " vidas");
@@ -430,12 +410,79 @@ public class Main {
     /**
      *
      * */
-    public static void anunciarGanador(Planeta[] equipos) {
+    public static void anunciarGanador(ArrayList<Planeta> equipos, int partida) {
+
+        boolean empate = true;
+
         for (Planeta equipo : equipos) {
             if (equipo.estaVivo()) {
-                System.out.println("\n¡" + equipo.getNombre() + " GANA LA PARTIDA!\n");
+
+                empate = false;
+
+                try{
+
+                    BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
+
+                    guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                    guardarGanadores.newLine();
+                    guardarGanadores.write(equipo.getNombre());
+                    guardarGanadores.newLine();
+                    guardarGanadores.newLine();
+
+                    guardarGanadores.close();
+
+                }catch(IOException e){
+
+                    System.out.println("ERROR DE ESRITURA");
+                }
+
+                lecturaArchivo();
+
                 return;
             }
+        }
+
+        if(empate){
+
+            try{
+
+                BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
+
+                guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                guardarGanadores.newLine();
+                guardarGanadores.write("EMPATE");
+                guardarGanadores.newLine();
+                guardarGanadores.newLine();
+
+                guardarGanadores.close();
+
+            }catch(IOException e){
+
+                System.out.println("ERROR DE ESRITURA");
+            }
+
+            lecturaArchivo();
+        }
+    }
+
+    public static void lecturaArchivo(){
+
+        String linea = "";
+
+        try{
+
+            BufferedReader lecturaGanadores = new BufferedReader(new FileReader("ganadores.txt"));
+
+            while ((linea = lecturaGanadores.readLine()) != null) {
+
+                System.out.println(linea);
+            }
+
+            lecturaGanadores.close();
+
+        }catch(IOException e){
+
+            System.out.println("ERROR DE LECTURA");
         }
     }
 
