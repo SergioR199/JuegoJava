@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="commit">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InformacionJuego.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,23 +27,23 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
-    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SergioR199/testJuego.git",
+    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;SergioR199&quot;,
-    &quot;repository&quot;: &quot;testJuego&quot;
+    "owner": "SergioR199",
+    "repository": "testJuego"
   },
-  &quot;editorReviewEnabled&quot;: false
-}</component>
+  "editorReviewEnabled": false
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -101,6 +101,7 @@
       <workItem from="1773664084170" duration="26000" />
       <workItem from="1775642650343" duration="724000" />
       <workItem from="1775727303290" duration="1487000" />
+      <workItem from="1776061974993" duration="4981000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -142,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775727314577</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".">
+      <option name="closed" value="true" />
+      <created>1776062117871</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776062117871</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +171,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="," />
-    <option name="LAST_COMMIT_MESSAGE" value="," />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
