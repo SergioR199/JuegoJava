@@ -145,4 +145,79 @@ public class Planeta {
     public void setVidaMaxima(int vidaMaxima) {
         this.vidaMaxima = vidaMaxima;
     }
+    public class Jinx extends humano {
+
+        public Jinx(String nombre) {
+            super(nombre, , 15);
+        }
+    }
+    public class Jhin extends HUMANO {
+
+        public Jhin(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+
+    public class Gangplank extends HUMANO {
+
+        public Gangplank(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class Sylas extends HUMANO {
+
+        public Sylas(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class Rumble extends yordle {
+
+        public Rumble(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class Heimerdinger extends yordle {
+
+        public Heimerdinger(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class Tristana extends yordle {
+
+        public Tristana(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class Corki extends yordle {
+
+        public Corki(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+
+    public class Ziggs extends yordle {
+
+        public Corcki(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+
+    public class Xerath extends serMagico {
+
+        public Corcki(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class KogMaw extends serMagico {
+
+        public Corcki(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
+    public class AurelioSol extends serMagico {
+
+        public Corcki(String nombre) {
+            super(nombre, 100, 15);
+        }
+    }
 }
