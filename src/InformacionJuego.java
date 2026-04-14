@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class InformacionJuego {
 
     private static final String[] PERSONAJES = {
-            "Jinx", "Jhin", "Gangplank", "Rumble",
-            "Heimerdinger", "Kog'Maw", "Aurelion Sol",
-            "Sylas", "Tristana", "Xerath", "Ziggs", "Corki"
+            "Jinx", "Jhin", "Gangplank", "Sylas",
+            "Rumble", "Heimerdinger", "Tristana",
+            "Corki", "Ziggs", "Xerath", "Kog'Maw", "Aurelion Sol"
     };
 
     public static void mostrarReglas() {
@@ -54,31 +54,31 @@ public class InformacionJuego {
                     System.out.println("Gangplank - Pirata francotirador con mucho poder de área.");
                     break;
                 case 4:
-                    System.out.println("Rumble - Yordle mecánico con un dron de combate eléctrico.");
-                    break;
-                case 5:
-                    System.out.println("Heimerdinger - Yordle científico prototipo que usa campos y torretas.");
-                    break;
-                case 6:
-                    System.out.println("Kog'Maw - Devorador de estrellas con gran alcance.");
-                    break;
-                case 7:
-                    System.out.println("Aurelion Sol - Dragón cósmico que controla el espacio.");
-                    break;
-                case 8:
                     System.out.println("Sylas - Mago rebelde que roba habilidades enemigas.");
                     break;
-                case 9:
+                case 5:
+                    System.out.println("Rumble - Yordle mecánico con un dron de combate eléctrico.");
+                    break;
+                case 6:
+                    System.out.println("Heimerdinger - Yordle científico prototipo que usa campos y torretas.");
+                    break;
+                case 7:
                     System.out.println("Tristana - Yordle artillera con salto y explosión.");
+                    break;
+                case 8:
+                    System.out.println("Corki - Piloto de combate con misiles y bombas.");
+                    break;
+                case 9:
+                    System.out.println("Ziggs - Yordle ingeniero explosivo especializado en zonas.");
                     break;
                 case 10:
                     System.out.println("Xerath - Mago de largo alcance con poder masivo.");
                     break;
                 case 11:
-                    System.out.println("Ziggs - Yordle ingeniero explosivo especializado en zonas.");
+                    System.out.println("Kog'Maw - Devorador de estrellas con gran alcance.");
                     break;
                 case 12:
-                    System.out.println("Corki - Piloto de combate con misiles y bombas.");
+                    System.out.println("Aurelion Sol - Dragón cósmico que controla el espacio.");
                     break;
                 case 0:
                     System.out.println("Saliendo de información de personajes...");
