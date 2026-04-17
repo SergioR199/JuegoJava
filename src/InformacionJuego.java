@@ -45,7 +45,8 @@ public class InformacionJuego {
 
             switch (personaje) {
                 case 1:
-                    System.out.println("Jinx - Explosiva y caótica tiradora de apoyo a distancia.");
+                    System.out.println("Jinx - Explosiva y caótica tiradora de apoyo a distancia. \n");
+                    System.out.println("")
                     break;
                 case 2:
                     System.out.println("Jhin - Artista asesino con cuatro disparos explosivos.");
