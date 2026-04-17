@@ -69,20 +69,20 @@ public class Main {
         int numEquipos = 0;
 
         do {
-            System.out.print("¿Cuántos equipos quieres crear? (2-5): ");
+            System.out.print("¿Cuántos equipos quieres crear? (mínimo 3): ");
             try {
                 numEquipos = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (2-5).");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
                 sc.nextLine();
                 continue;
             }
 
-            if (numEquipos < 2 || numEquipos > 5) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (2-5).");
+            if (numEquipos < 3) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
             }
-        } while (numEquipos < 2 || numEquipos > 5);
+        } while (numEquipos < 3);
 
         return numEquipos;
     }
