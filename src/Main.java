@@ -1,8 +1,19 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *
+ * */
 public class Main {
+
+    /**
+     *
+     * */
     public static Personajes[] equipos;
+
+    /**
+     *
+     * */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
@@ -56,6 +67,9 @@ public class Main {
         sc.close();
     }
 
+    /**
+     *
+     * */
     public static int pedirNumeroEquipos(Scanner sc) {
         int numEquipos = 0;
 
@@ -78,6 +92,9 @@ public class Main {
         return numEquipos;
     }
 
+    /**
+     *
+     * */
     public static void crearEquipos(Personajes[] equipos, Scanner sc) {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
@@ -91,6 +108,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static Personajes crearPersonaje(int opcion, Scanner sc) {
         switch (opcion) {
             case 1:
@@ -127,6 +147,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static Personajes crearPersonalizado(Scanner sc) {
         String nombre;
         int tipo;
@@ -167,6 +190,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static int pedirPersonaje(Scanner sc) {
         int personaje = 0;
         boolean valido = false;
@@ -195,6 +221,9 @@ public class Main {
         return personaje;
     }
 
+    /**
+     *
+     * */
     public static void jugar(Personajes[] equipos, Scanner sc) {
         int ronda = 1;
         int turnoGlobal = 0;
@@ -243,6 +272,9 @@ public class Main {
         anunciarGanador(equipos);
     }
 
+    /**
+     *
+     * */
     public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
         for (Personajes e : equipos) {
@@ -253,6 +285,9 @@ public class Main {
         return vivos;
     }
 
+    /**
+     *
+     * */
     public static void mostrarEstadoRonda(Personajes[] equipos) {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
@@ -263,6 +298,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,
                                   int numAcciones) {
         Personajes atacante = equipos[indiceAtacante];
@@ -390,6 +428,9 @@ public class Main {
         return numAcciones;
     }
 
+    /**
+     *
+     * */
     public static void anunciarGanador(Personajes[] equipos) {
         for (Personajes e : equipos) {
             if (e.getVidas() > 0) {
@@ -399,6 +440,9 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * */
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---");
         System.out.println("1. Cada personaje tiene estadísticas base propias.");
@@ -409,6 +453,9 @@ public class Main {
         System.out.println("6. El último equipo en pie gana la partida.\n");
     }
 
+    /**
+     *
+     * */
     public static void mostrarInformacion() {
         System.out.println("\n--- INFORMACIÓN ---");
         System.out.println("Versión: 2.1");
@@ -416,6 +463,9 @@ public class Main {
         System.out.println("Sistema de daño y estadísticas base personalizadas.\n");
     }
 
+    /**
+     *
+     * */
     public static void infoPersonajes(Scanner sc) {
         int personaje = 0;
 
@@ -490,6 +540,9 @@ public class Main {
         } while (personaje != 0);
     }
 
+    /**
+     *
+     * */
     public static void mostrarPersonajes() {
         System.out.println("\n---- PERSONAJES ----");
         System.out.println("1-  Jinx");
