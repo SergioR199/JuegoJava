@@ -201,7 +201,7 @@ class Sylas extends Humano {
         super("Sylas", 190, 50);
     }
 
-    // 👇 elegir objetivo al principio (lo haces desde Main si quieres mejorar esto)
+
     public void robarPasiva(Personajes objetivo) {
         this.habilidadRobada = objetivo;
         System.out.println(nombre + " ha robado la pasiva de " + objetivo.getNombre());
@@ -219,7 +219,7 @@ class Sylas extends Humano {
 
             System.out.println(nombre + " activa la pasiva robada!");
 
-            // 🔥 aquí copiamos comportamiento según el tipo de pasiva
+
             habilidadRobada.alMatar(this); // ejemplo básico
         }
     }
@@ -342,11 +342,10 @@ class Corki extends Yordle {
 
             System.out.println(nombre + " lanza un misil hextech! 🚀");
 
-            // elegir objetivo aleatorio
+
             Personajes objetivo = null;
 
-            // necesitamos referencia al equipo → lo resolvemos simple desde combate
-            // SOLUCIÓN: buscar el primero vivo que no sea Corki
+
 
             Personajes[] equipo = Main.equipos; // ❗ ver nota abajo
 
@@ -361,7 +360,7 @@ class Corki extends Yordle {
 
             if (idxObjetivo == -1) return;
 
-            // 💥 daño principal
+
             equipo[idxObjetivo].vidas -= 75;
 
             System.out.println(equipo[idxObjetivo].getNombre() + " recibe 75 de daño.");
@@ -372,7 +371,7 @@ class Corki extends Yordle {
                 this.alMatar(equipo[idxObjetivo]);
             }
 
-            // 💣 daño área
+
             for (int i = 0; i < equipo.length; i++) {
                 if (i != idxObjetivo && equipo[i].getVidas() > 0 && !equipo[i].equals(this)) {
 
