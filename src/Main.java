@@ -1,409 +1,306 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
+ * Clase principal del juego. Contiene el menú inicial,
+ * la creación de equipos y el desarrollo de las rondas.
  * */
 public class Main {
-
-    private static final Scanner sc = new Scanner(System.in);
-
-    private static final int VIDAS_INICIALES = 200;
-    private static final int MISILES_POR_RONDA = 50;
-    private static final int MIN_EQUIPOS = 3;
-    private static final int MAX_EQUIPOS = 5;
+    public static Personajes[] equipos;
 
     /**
+     * Punto de entrada del programa. Muestra el menú principal y
+     * permite acceder a las distintas opciones del juego.
      *
+     * @param args Argumentos de línea de comandos.
      * */
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int opcion = 0;
 
-        int opcion;
-        ArrayList<Planeta> equipos = new ArrayList<>();
 
-        opcion = mostrarMenu();
+        do {
+            try {
+                System.out.println("---- MENU ----\n" +
+                        "1º JUGAR\n" +
+                        "2º REGLAS DEL JUEGO\n" +
+                        "3º INFORMACIÓN GENERAL\n" +
+                        "4º INFORMACIÓN DE PERSONAJES\n" +
+                        "0º SALIR\n" +
+                        "Elige una opción: ");
+                opcion = sc.nextInt();
+                sc.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
+                sc.nextLine();
+                continue;
+            }
 
-        switch (opcion) {
-            case 1:
-                System.out.println("Creando equipos...");
-                crearEquipos(equipos, pedirNumeroEquipos());
-                jugar(equipos);
-                break;
+            if (opcion < 0 || opcion > 4) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
+                continue;
+            }
 
-            case 2:
-                InformacionJuego.mostrarReglas();
-                break;
+            switch (opcion) {
+                case 0:
+                    System.out.println("Saliendo del juego...");
+                    break;
+                case 1:
+                    System.out.println("Creando equipos...");
+                    equipos = new Personajes[pedirNumeroEquipos(sc)];
+                    crearEquipos(equipos, sc);
+                    jugar(equipos, sc);
+                    break;
+                case 2:
+                    mostrarReglas();
+                    break;
+                case 3:
+                    mostrarInformacion();
+                    break;
+                case 4:
+                    infoPersonajes(sc);
+                    break;
+            }
 
-            case 3:
-                InformacionJuego.mostrarInformacionGeneral();
-                break;
-
-            case 4:
-                InformacionJuego.mostrarInfoPersonajes(sc);
-                break;
-
-            case 0:
-                System.out.println("Saliendo del juego...");
-                break;
-        }
+        } while (opcion != 0);
 
         sc.close();
     }
 
     /**
+     * Método que solicita al usuario el número de equipos que participarán en la partida.
      *
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
+     * @return Número de equipos válido mínimo de 3.
      * */
-    public static int mostrarMenu() {
-        while (true) {
+    public static int pedirNumeroEquipos(Scanner sc) {
+        int numEquipos = 0;
+
+        do {
+            System.out.print("¿Cuántos equipos quieres crear? (mínimo 3): ");
             try {
-                System.out.println("\n---- MENU ----");
-                System.out.println("1º JUGAR");
-                System.out.println("2º REGLAS DEL JUEGO");
-                System.out.println("3º INFORMACIÓN GENERAL");
-                System.out.println("4º INFORMACIÓN DE PERSONAJES");
-                System.out.println("0º SALIR");
-                System.out.print("Elige opción: ");
-
-                int opcion = sc.nextInt();
+                numEquipos = sc.nextInt();
                 sc.nextLine();
-
-                if (opcion < 0 || opcion > 4) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
-                } else {
-                    return opcion;
-                }
-
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
                 sc.nextLine();
+                continue;
             }
-        }
+
+            if (numEquipos < 3) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
+            }
+        } while (numEquipos < 3);
+
+        return numEquipos;
     }
 
     /**
+     * Método que crea todos los equipos de la partida pidiendo al usuario un personaje para cada jugador.
      *
+     * @param equipos Array donde se guardarán los personajes creados.
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
      * */
-    public static int pedirNumeroEquipos() {
-        return leerEnteroRango(
-                MIN_EQUIPOS,
-                MAX_EQUIPOS,
-                "¿Cuántos equipos quieres crear? (" + MIN_EQUIPOS + "-" + MAX_EQUIPOS + "): "
-        );
-    }
-
-    /**
-     *
-     * */
-    public static void crearEquipos(ArrayList<Planeta> equipos, int numEquipos) {
-        for (int i = 0; i < numEquipos; i++) {
+    public static void crearEquipos(Personajes[] equipos, Scanner sc) {
+        for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
-            String nombre = pedirPersonaje();
-            equipos.add(new Planeta(nombre, VIDAS_INICIALES, MISILES_POR_RONDA));
+            int opcionPersonaje = pedirPersonaje(sc);
+            equipos[i] = crearPersonaje(opcionPersonaje, sc);
+
+            System.out.println("Equipo creado: " + equipos[i].getNombre()
+                    + " | Tipo: " + equipos[i].getTipo()
+                    + " | Vidas: " + equipos[i].getVidas()
+                    + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
         }
     }
 
     /**
+     * Método que crea un personaje según la opción seleccionada por el usuario.
      *
+     * @param opcion Número que corresponde al personaje elegido.
+     * @param sc Scanner utilizado para crear un personaje personalizado si se necesita.
+     * @return Instancia del personaje seleccionado.
      * */
-    public static String pedirPersonaje() {
-        while (true) {
-            try {
-                InformacionJuego.mostrarPersonajes();
-                System.out.println("13- Otro nombre");
-                System.out.println("14- Aleatorio");
-                System.out.println("0- Salir");
-                System.out.print("Escoge el número del personaje: ");
+    public static Personajes crearPersonaje(int opcion, Scanner sc) {
+        switch (opcion) {
+            case 1:
+                return new Jinx();
+            case 2:
+                return new Jhin();
+            case 3:
+                return new Gangplank();
+            case 4:
+                return new Rumble();
+            case 5:
+                return new Heimerdinger();
+            case 6:
+                return new KogMaw();
+            case 7:
+                return new AurelionSol();
+            case 8:
+                return new Sylas();
+            case 9:
+                return new Tristana();
+            case 10:
+                return new Xerath();
+            case 11:
+                return new Ziggs();
+            case 12:
+                return new Corki();
+            case 13:
+                return crearPersonalizado(sc);
+            case 14:
+                int aleatorio = (int) (Math.random() * 12) + 1;
+                return crearPersonaje(aleatorio, sc);
+            default:
+                return new Jinx();
+        }
+    }
 
-                int personaje = sc.nextInt();
+    /**
+     * Método que crea un personaje personalizado introducido por el usuario.
+     *
+     * @param sc Scanner utilizado para leer el nombre y el tipo del personaje.
+     * @return Instancia de un personaje personalizado.
+     * */
+    public static Personajes crearPersonalizado(Scanner sc) {
+        String nombre;
+        int tipo;
+
+        System.out.print("Escribe el nombre del personaje: ");
+        nombre = sc.nextLine();
+
+        do {
+            try {
+                System.out.println("Elige el tipo del personaje:\n" +
+                        "1- HUMANO\n" +
+                        "2- YORDLE\n" +
+                        "3- SER MAGICO\n" +
+                        "Opción: ");
+                tipo = sc.nextInt();
+                sc.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Has introducido un valor no válido.");
+                sc.nextLine();
+                tipo = 0;
+                continue;
+            }
+
+            if (tipo < 1 || tipo > 3) {
+                System.out.println("Opción no válida. Elige entre 1 y 3.");
+            }
+        } while (tipo < 1 || tipo > 3);
+
+        switch (tipo) {
+            case 1:
+                return new HumanoPersonalizado(nombre, 200, 50);
+            case 2:
+                return new YordlePersonalizado(nombre, 200, 50);
+            case 3:
+                return new SerMagicoPersonalizado(nombre, 200, 50);
+            default:
+                return new HumanoPersonalizado(nombre, 200, 50);
+        }
+    }
+
+    /**
+     * Método que muestra la lista de personajes disponibles y devuelve la opción elegida.
+     *
+     * @param sc Scanner utilizado para leer la selección del usuario.
+     * @return Número del personaje seleccionado.
+     * */
+    public static int pedirPersonaje(Scanner sc) {
+        int personaje = 0;
+        boolean valido = false;
+
+        while (!valido) {
+            try {
+                mostrarPersonajes();
+                System.out.println("13- Personalizado\n" +
+                        "14- Aleatorio\n" +
+                        "Escoge el número del personaje: ");
+                personaje = sc.nextInt();
                 sc.nextLine();
 
-                if (personaje == 0) {
-                    return "SinNombre";
+                if (personaje < 1 || personaje > 14) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (1-14).");
+                    continue;
                 }
 
-                if (personaje >= 1 && personaje <= InformacionJuego.getTotalPersonajes()) {
-                    return InformacionJuego.getPersonaje(personaje - 1);
-                }
-
-                if (personaje == 13) {
-                    System.out.print("Escribe el nombre que quieras: ");
-                    return sc.nextLine();
-                }
-
-                if (personaje == 14) {
-                    int aleatorio = (int) (Math.random() * InformacionJuego.getTotalPersonajes());
-                    String nombre = InformacionJuego.getPersonaje(aleatorio);
-                    System.out.println("¡Te ha tocado " + nombre + "!");
-                    return nombre;
-                }
-
-                System.out.println("Has introducido una opción no existente. Elige otra opción (0-14).");
-
+                valido = true;
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-14).");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (1-14).");
                 sc.nextLine();
             }
         }
+
+        return personaje;
     }
 
     /**
+     * Método que ejecuta la partida completa hasta que solo quede un equipo con vida.
      *
+     * @param equipos Array con todos los personajes de la partida.
+     * @param sc Scanner utilizado para leer las decisiones de los jugadores.
      * */
-    public static void jugar(ArrayList<Planeta> equipos) {
+    public static void jugar(Personajes[] equipos, Scanner sc) {
         int ronda = 1;
-
+        int turnoGlobal = 0;
         while (equiposVivos(equipos) > 1) {
-
-            System.out.println("\n---- " + ronda + "ª RONDA ----");
+            for (Personajes p : equipos) {
+                if (p.getVidas() > 0) {
+                    p.alInicioTurnoGlobal(turnoGlobal);
+                }
+            }
+            turnoGlobal++;
+            System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
-            int[] vidasInicio = guardarVidasInicio(equipos);
-            int[] danoPendiente = new int[equipos.size()];
-            int[] defensaPendiente = new int[equipos.size()];
+            String[] listaAcciones = new String[200];
+            int numAcciones = 0;
 
-            ArrayList<String> listaAcciones = new ArrayList<>();
-
-            for (int i = 0; i < equipos.size(); i++) {
-                if (vidasInicio[i] > 0 && equiposVivos(equipos) > 1) {
-                    turnoEquipo(
-                            equipos,
-                            i,
-                            ronda,
-                            danoPendiente,
-                            defensaPendiente,
-                            listaAcciones
-                    );
+            for (int i = 0; i < equipos.length && equiposVivos(equipos) > 1; i++) {
+                if (equipos[i].getVidas() > 0) {
+                    numAcciones = turnoEquipo(equipos, i, sc, listaAcciones, numAcciones);
                 }
             }
 
             System.out.println("\n---- ACCIONES DE LA RONDA ----");
-            for (String accion : listaAcciones) {
-                System.out.println(accion);
+            for (int i = 0; i < numAcciones; i++) {
+                System.out.println(listaAcciones[i]);
             }
 
+            for (Personajes e : equipos) {
+                if (e.getVidas() > 0) {
+                    e.reiniciarMisilesRonda();
+                }
+            }
 
-            aplicarResultadosRonda(equipos, danoPendiente, defensaPendiente);
-            mostrarResumenRonda(equipos, vidasInicio, danoPendiente, defensaPendiente);
-
-            ronda++;
+            System.out.println("\n---- ESTADO FINAL DE LA RONDA ----\n" +
+                    "Equipos vivos: " + equiposVivos(equipos));
+            for (Personajes e : equipos) {
+                if (e.getVidas() > 0) {
+                    System.out.println(e.getNombre() + ": " + e.getVidas()
+                            + " vidas | Tipo: " + e.getTipo()
+                            + " | Misiles próxima ronda: " + e.getMisilesRonda());
+                }
+            }
+            System.out.println();
         }
 
         anunciarGanador(equipos);
     }
 
     /**
+     * Método que cuenta cuántos equipos siguen vivos.
      *
+     * @param equipos Array con todos los personajes de la partida.
+     * @return Número de personajes con vidas mayores que cero.
      * */
-    public static int[] guardarVidasInicio(ArrayList<Planeta> equipos) {
-        int[] vidasInicio = new int[equipos.size()];
-        for (int i = 0; i < equipos.size(); i++) {
-            vidasInicio[i] = equipos.get(i).getVidas();
-        }
-        return vidasInicio;
-    }
-
-    /**
-     *
-     * */
-    public static void turnoEquipo(ArrayList<Planeta> equipos,
-                                  int indiceAtacante,
-                                  int ronda,
-                                  int[] danoPendiente,
-                                  int[] defensaPendiente,
-                                  ArrayList<String> listaAcciones) {
-
-        Planeta atacante = equipos.get(indiceAtacante);
-
-        if (!atacante.estaVivo()) {
-            return;
-        }
-
-        System.out.println("\nTurno de: " + atacante.getNombre());
-        System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
-
-        int accion = 1;
-
-        if (ronda == 1) {
-            System.out.println("En la primera ronda solo se puede atacar.");
-        } else {
-            System.out.println("1. Atacar");
-            System.out.println("2. Defenderse");
-            accion = leerEnteroRango(1, 2, "¿Qué quieres hacer? (1-2): ");
-        }
-
-        if (accion == 1) {
-            procesarAtaque(equipos, indiceAtacante, danoPendiente, listaAcciones);
-        } else {
-            procesarDefensa(equipos, indiceAtacante, defensaPendiente, listaAcciones);
-        }
-
-        atacante.recargarMisiles(MISILES_POR_RONDA);
-    }
-
-    /**
-     *
-     * */
-    public static void procesarAtaque(ArrayList<Planeta> equipos,
-                                     int indiceAtacante,
-                                     int[] danoPendiente,
-                                     ArrayList<String> listaAcciones) {
-
-        Planeta atacante = equipos.get(indiceAtacante);
-
-        while (atacante.getMisiles_ronda() > 0 && equiposVivos(equipos) > 1) {
-
-            int objetivo = elegirObjetivo(equipos, indiceAtacante);
-            if (objetivo == -1) {
-                break;
-            }
-
-            System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
-
-            int misiles = leerEnteroRango(
-                    0,
-                    atacante.getMisiles_ronda(),
-                    "¿Cuántos misiles quieres usar contra " + equipos.get(objetivo).getNombre() + "? "
-            );
-
-            if (misiles == 0) {
-                break;
-            }
-
-            atacante.usarMisiles(misiles);
-            danoPendiente[objetivo] += misiles;
-
-            listaAcciones.add(
-                    atacante.getNombre()
-                            + " ataca a " + equipos.get(objetivo).getNombre()
-                            + " con " + misiles + " misiles."
-            );
-        }
-    }
-
-    /**
-     *
-     * */
-    public static void procesarDefensa(ArrayList<Planeta> equipos,
-                                      int indiceAtacante,
-                                      int[] defensaPendiente,
-                                       ArrayList<String> listaAcciones) {
-
-        Planeta atacante = equipos.get(indiceAtacante);
-
-        while (atacante.getMisiles_ronda() > 0) {
-
-            System.out.println("Misiles disponibles: " + atacante.getMisiles_ronda());
-
-            int misilesDefensa = leerEnteroRango(
-                    0,
-                    atacante.getMisiles_ronda(),
-                    "¿Cuántos misiles quieres usar para defenderte? "
-            );
-
-            if (misilesDefensa == 0) {
-                break;
-            }
-
-            atacante.usarMisiles(misilesDefensa);
-            int defensaTotal = misilesDefensa / 2;
-            defensaPendiente[indiceAtacante] += defensaTotal;
-
-            listaAcciones.add(
-                    atacante.getNombre()
-                            + " se defiende usando " + misilesDefensa
-                            + " misiles (" + defensaTotal + " de defensa)."
-            );
-        }
-    }
-
-    /**
-     *
-     * */
-    public static int elegirObjetivo(ArrayList<Planeta> equipos, int indiceAtacante) {
-        System.out.println("Objetivos disponibles:");
-
-        int[] indicesReales = new int[equipos.size()];
-        int contador = 0;
-
-        for (int i = 0; i < equipos.size(); i++) {
-            if (i != indiceAtacante && equipos.get(i).estaVivo()) {
-                System.out.println((contador + 1) + ". " + equipos.get(i).getNombre()
-                        + " (" + equipos.get(i).getVidas() + " vidas)");
-                indicesReales[contador] = i;
-                contador++;
-            }
-        }
-
-        if (contador == 0) {
-            System.out.println("No hay objetivos vivos.");
-            return -1;
-        }
-
-        int opcion = leerEnteroRango(
-                1,
-                contador,
-                "¿A quién quieres atacar? Introduce el número: "
-        );
-
-        return indicesReales[opcion - 1];
-    }
-
-    /**
-     *
-     * */
-    public static void aplicarResultadosRonda(ArrayList<Planeta> equipos,
-                                              int[] danoPendiente,
-                                              int[] defensaPendiente) {
-
-        for (int i = 0; i < equipos.size(); i++) {
-            if (!equipos.get(i).estaVivo()) {
-                continue;
-            }
-
-            int danoFinal = danoPendiente[i] - defensaPendiente[i];
-            if (danoFinal < 0) {
-                danoFinal = 0;
-            }
-
-            equipos.get(i).recibirDanio(danoFinal);
-        }
-    }
-
-    /**
-     *
-     * */
-    public static void mostrarResumenRonda(ArrayList<Planeta> equipos,
-                                           int[] vidasInicio,
-                                           int[] danoPendiente,
-                                           int[] defensaPendiente) {
-
-        System.out.println("\n---- RESUMEN DE LA RONDA ----");
-
-        for (int i = 0; i < equipos.size(); i++) {
-            int danoFinal = danoPendiente[i] - defensaPendiente[i];
-            if (danoFinal < 0) {
-                danoFinal = 0;
-            }
-
-            System.out.println(equipos.get(i).getNombre()
-                    + " | Inicio: " + vidasInicio[i]
-                    + " | Daño recibido: " + danoPendiente[i]
-                    + " | Defensa: " + defensaPendiente[i]
-                    + " | Daño final: " + danoFinal
-                    + " | Fin: " + equipos.get(i).getVidas());
-        }
-
-        System.out.println("------------------------------");
-    }
-
-    /**
-     *
-     * */
-    public static int equiposVivos(ArrayList<Planeta> equipos) {
+    public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
-        for (Planeta equipo : equipos) {
-            if (equipo.estaVivo()) {
+        for (Personajes e : equipos) {
+            if (e.getVidas() > 0) {
                 vivos++;
             }
         }
@@ -411,23 +308,166 @@ public class Main {
     }
 
     /**
+     * Método que muestra por pantalla el estado actual de todos los equipos vivos.
      *
+     * @param equipos Array con todos los personajes de la partida.
      * */
-    public static void mostrarEstadoRonda(ArrayList<Planeta> equipos) {
-        for (Planeta equipo : equipos) {
-            if (equipo.estaVivo()) {
-                System.out.println(equipo.getNombre() + " > " + equipo.getVidas() + " vidas");
+    public static void mostrarEstadoRonda(Personajes[] equipos) {
+        for (Personajes equipo : equipos) {
+            if (equipo.getVidas() > 0) {
+                System.out.println(equipo.getNombre() + " > " + equipo.getVidas()
+                        + " vidas | Tipo: " + equipo.getTipo()
+                        + " | Misiles: " + equipo.getMisilesRonda());
             }
         }
     }
 
     /**
+     * Método que gestiona el turno de un equipo, permitiendo atacar o defenderse.
      *
+     * @param equipos Array con todos los personajes de la partida.
+     * @param indiceAtacante Índice del personaje que realiza el turno.
+     * @param sc Scanner utilizado para leer las decisiones del usuario.
+     * @param listaAcciones Array donde se guardan los mensajes de cada acción.
+     * @param numAcciones Número actual de acciones guardadas.
+     * @return Número actualizado de acciones guardadas.
      * */
-    public static void anunciarGanador(ArrayList<Planeta> equipos) {
-        for (Planeta equipo : equipos) {
-            if (equipo.estaVivo()) {
-                System.out.println("\n¡" + equipo.getNombre() + " GANA LA PARTIDA!\n");
+    public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,
+                                  int numAcciones) {
+        Personajes atacante = equipos[indiceAtacante];
+        System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
+                "1. Atacar\n" +
+                "2. Defenderse");
+
+        int accion = 0;
+
+        do {
+            try {
+                System.out.print("¿Qué quieres hacer? (1-2): ");
+                accion = sc.nextInt();
+                sc.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido. Elige 1 o 2.");
+                sc.nextLine();
+                continue;
+            }
+
+            if (accion < 1 || accion > 2) {
+                System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
+            }
+        } while (accion < 1 || accion > 2);
+
+        if (accion == 2) {
+            int misilesDefensa = 0;
+
+            do {
+                try {
+                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda() + "\n" +
+                            "¿Cuántos misiles quieres usar para defenderte? ");
+                    misilesDefensa = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Has introducido un valor no válido.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda()) {
+                    System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
+                }
+            } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda());
+
+            if (misilesDefensa > 0) {
+                atacante.setMisilesRonda(atacante.getMisilesRonda() - misilesDefensa);
+                int defensaTotal = atacante.defender(misilesDefensa);
+
+                String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa
+                        + " misiles y recupera " + defensaTotal + " vidas.";
+                listaAcciones[numAcciones] = mensaje;
+                numAcciones++;
+            }
+
+            return numAcciones;
+        }
+
+        while (atacante.getMisilesRonda() > 0 && equiposVivos(equipos) > 1) {
+            int misiles = 0;
+
+            do {
+                try {
+                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda() + "\n" +
+                            "¿Cuántos misiles quieres usar? ");
+                    misiles = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Has introducido un valor no válido.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (misiles < 0 || misiles > atacante.getMisilesRonda()) {
+                    System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
+                }
+            } while (misiles < 0 || misiles > atacante.getMisilesRonda());
+
+            if (misiles == 0) {
+                break;
+            }
+
+            int[] objetivosValidos = new int[equipos.length];
+            int totalObjetivos = 0;
+
+            System.out.println("Objetivos disponibles:");
+            for (int j = 0; j < equipos.length; j++) {
+                if (j != indiceAtacante && equipos[j].getVidas() > 0) {
+                    objetivosValidos[totalObjetivos] = j;
+                    System.out.println((totalObjetivos + 1) + ". " + equipos[j].getNombre());
+                    totalObjetivos++;
+                }
+            }
+
+            int opcionObjetivo = 0;
+            do {
+                try {
+                    System.out.print("¿A quién quieres atacar? Introduce el número: ");
+                    opcionObjetivo = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Objetivo no válido.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos) {
+                    System.out.println("Elige un objetivo válido.");
+                }
+            } while (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos);
+
+            int indiceObjetivoReal = objetivosValidos[opcionObjetivo - 1];
+
+            int danioHecho = equipos[indiceObjetivoReal].combate(misiles, atacante);
+            atacante.alAtacar(equipos, indiceAtacante, danioHecho);
+            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+
+            String mensaje = atacante.getNombre() + " (" + atacante.getTipo() + ") ataca a "
+                    + equipos[indiceObjetivoReal].getNombre() + " (" + equipos[indiceObjetivoReal].getTipo() + ") con "
+                    + misiles + " misiles y causa " + danioHecho + " de daño.";
+            listaAcciones[numAcciones] = mensaje;
+            numAcciones++;
+        }
+
+        return numAcciones;
+    }
+
+    /**
+     * Método que anuncia qué equipo ha ganado la partida.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * */
+    public static void anunciarGanador(Personajes[] equipos) {
+        for (Personajes e : equipos) {
+            if (e.getVidas() > 0) {
+                System.out.println("\n¡" + e.getNombre() + " GANA LA PARTIDA!\n");
                 return;
             }
         }
@@ -436,23 +476,125 @@ public class Main {
     /**
      *
      * */
-    public static int leerEnteroRango(int min, int max, String mensaje) {
-        while (true) {
+    public static void mostrarReglas() {
+        System.out.println("\n--- REGLAS DEL JUEGO ---\n" +
+                "1. La partida se juega con un mínimo de 3 equipos.\n" +
+                "2. Cada equipo comienza con las vidas y los misiles por ronda determinados por su personaje.\n" +
+                "3. Cada personaje tiene estadísticas base propias.\n" +
+                "4. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.\n" +
+                "5. Los HUMANOS hacen 1,25x de daño a los YORDLES.\n" +
+                "6. Los SERES MAGICOS hacen 1,75x de daño a HUMANOS y 0,75x a YORDLES.\n" +
+                "7. En la primera ronda solo se puede atacar.\n" +
+                "8. El daño se aplica al final de la ronda, después de que todos jueguen.\n" +
+                "9. A partir de la ronda 2 puedes atacar o defenderte.\n" +
+                "10. Primero eliges a quién atacas y luego cuántos misiles usas.\n" +
+                "11. Al final de cada ronda se muestra un resumen.\n" +
+                "12. El último equipo en pie gana la partida.\n");
+    }
+
+    /**
+     *
+     * */
+    public static void mostrarInformacion() {
+        System.out.println("\n--- INFORMACIÓN GENERAL ---\n" +
+                "Versión: 2.1\n" +
+                "Contacto: losdelfondo@gmail.com\n" +
+                "Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n");
+    }
+
+    /**
+     *
+     * */
+    public static void infoPersonajes(Scanner sc) {
+        int personaje = 0;
+
+        do {
             try {
-                System.out.print(mensaje);
-                int valor = sc.nextInt();
+                mostrarPersonajes();
+                System.out.println("0- Salir\n" +
+                        "Escoge el número del personaje: ");
+                personaje = sc.nextInt();
                 sc.nextLine();
-
-                if (valor < min || valor > max) {
-                    System.out.println("Elige un número entre " + min + " y " + max + ".");
-                } else {
-                    return valor;
-                }
-
             } catch (InputMismatchException e) {
-                System.out.println("Valor no válido. Introduce un número entero.");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (0-12).");
                 sc.nextLine();
+                continue;
             }
-        }
+
+            if (personaje < 0 || personaje > 12) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (0-12).");
+                continue;
+            }
+
+            switch (personaje) {
+                case 1:
+                    System.out.println("Jinx - HUMANO | Vidas: 180 | Misiles: 55\n" +
+                            "Supermegacohete Requetemortal!: al matar gana +10 misiles permanentes.\n");
+                    break;
+                case 2:
+                    System.out.println("Jhin - HUMANO | Vidas: 170 | Misiles: 60\n" +
+                            "Uno,Dos,Tres...CUATRO!: cada 4 ataques hace daño crítico x2.\n");
+                    break;
+                case 3:
+                    System.out.println("Gangplank - HUMANO | Vidas: 210 | Misiles: 45\n" +
+                            "Vitamina C: su curación es un 75% en vez de 50%.\n");
+                    break;
+                case 4:
+                    System.out.println("Rumble - YORDLE | Vidas: 160 | Misiles: 50\n" +
+                            "Mechero: aplica quemadura (5 de daño por ronda al enemigo).\n");
+                    break;
+                case 5:
+                    System.out.println("Heimerdinger - YORDLE | Vidas: 150 | Misiles: 55\n" +
+                            "Eureka!: cada 2 rondas coloca una torreta que hace 10 de daño global.\n");
+                    break;
+                case 6:
+                    System.out.println("Kog'Maw - SER MAGICO | Vidas: 170 | Misiles: 60\n" +
+                            "Avanzamos sin descanso!: al morir hace 20 de daño al atacante.\n");
+                    break;
+                case 7:
+                    System.out.println("Aurelion Sol - SER MAGICO | Vidas: 220 | Misiles: 45\n" +
+                            "Experiencia Galactica: gana +5 de daño permanente cada turno.\n");
+                    break;
+                case 8:
+                    System.out.println("Sylas - HUMANO | Vidas: 190 | Misiles: 50\n" +
+                            "Matarreyes: roba la habilidad de un enemigo y la activa cada 2 turnos.\n");
+                    break;
+                case 9:
+                    System.out.println("Tristana - YORDLE | Vidas: 155 | Misiles: 60\n" +
+                            "Sanguinaria: al matar se cura 15 de vida.\n");
+                    break;
+                case 10:
+                    System.out.println("Xerath - SER MAGICO | Vidas: 160 | Misiles: 70\n" +
+                            "Reloj de arena de Zhonya: si baja de 50 de vida, bloquea el siguiente ataque.\n");
+                    break;
+                case 11:
+                    System.out.println("Ziggs - YORDLE | Vidas: 145 | Misiles: 65\n" +
+                            "Megabomba incendiaria: cada 4 turnos lanza un misil que hace 75 daño + 10 en área.\n");
+                    break;
+                case 12:
+                    System.out.println("Corki - YORDLE | Vidas: 165 | Misiles: 55\n" +
+                            "Bombas fuera!: cada 4 turnos lanza un misil que hace 75 daño y 10 en área.\n");
+                    break;
+            }
+        } while (personaje != 0);
+    }
+
+    /**
+     *
+     * */
+    public static void mostrarPersonajes() {
+        System.out.println("\n---- PERSONAJES ----\n" +
+                "1-  Jinx\n" +
+                "2-  Jhin\n" +
+                "3-  Gangplank\n" +
+                "4-  Rumble\n" +
+                "5-  Heimerdinger\n" +
+                "6-  Kog'Maw\n" +
+                "7-  Aurelion Sol\n" +
+                "8-  Sylas\n" +
+                "9-  Tristana\n" +
+                "10- Xerath\n" +
+                "11- Ziggs\n" +
+                "12- Corki");
     }
 }
