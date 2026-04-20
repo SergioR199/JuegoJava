@@ -479,7 +479,7 @@ public class Main {
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---\n" +
                 "1. La partida se juega con un mínimo de 3 equipos.\n" +
-                "2. Cada equipo comienza con 200 vidas y 50 misiles por ronda.\n" +
+                "2. Cada equipo comienza con las vidas y los misiles por ronda determinados por su personaje.\n" +
                 "3. Cada personaje tiene estadísticas base propias.\n" +
                 "4. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.\n" +
                 "5. Los HUMANOS hacen 1,25x de daño a los YORDLES.\n" +
@@ -595,6 +595,6 @@ public class Main {
                 "9-  Tristana\n" +
                 "10- Xerath\n" +
                 "11- Ziggs\n" +
-                "12- Corki\n");
+                "12- Corki");
     }
 }
