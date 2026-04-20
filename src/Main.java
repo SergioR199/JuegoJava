@@ -1,18 +1,12 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
- * */
 public class Main {
-
-    /**
-     *
-     * */
+    public static Personajes[] equipos;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
-        Personajes[] equipos = null;
+
 
         do {
             try {
@@ -62,34 +56,28 @@ public class Main {
         sc.close();
     }
 
-    /**
-     *
-     * */
     public static int pedirNumeroEquipos(Scanner sc) {
         int numEquipos = 0;
 
         do {
-            System.out.print("¿Cuántos equipos quieres crear? (mínimo 3): ");
+            System.out.print("¿Cuántos equipos quieres crear? (2-5): ");
             try {
                 numEquipos = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (2-5).");
                 sc.nextLine();
                 continue;
             }
 
-            if (numEquipos < 3) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
+            if (numEquipos < 2 || numEquipos > 5) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (2-5).");
             }
-        } while (numEquipos < 3);
+        } while (numEquipos < 2 || numEquipos > 5);
 
         return numEquipos;
     }
 
-    /**
-     *
-     * */
     public static void crearEquipos(Personajes[] equipos, Scanner sc) {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
@@ -103,9 +91,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static Personajes crearPersonaje(int opcion, Scanner sc) {
         switch (opcion) {
             case 1:
@@ -142,9 +127,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static Personajes crearPersonalizado(Scanner sc) {
         String nombre;
         int tipo;
@@ -185,9 +167,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static int pedirPersonaje(Scanner sc) {
         int personaje = 0;
         boolean valido = false;
@@ -216,13 +195,16 @@ public class Main {
         return personaje;
     }
 
-    /**
-     *
-     * */
     public static void jugar(Personajes[] equipos, Scanner sc) {
         int ronda = 1;
-
+        int turnoGlobal = 0;
         while (equiposVivos(equipos) > 1) {
+            for (Personajes p : equipos) {
+                if (p.getVidas() > 0) {
+                    p.alInicioTurnoGlobal(turnoGlobal);
+                }
+            }
+            turnoGlobal++;
             System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
@@ -261,9 +243,6 @@ public class Main {
         anunciarGanador(equipos);
     }
 
-    /**
-     *
-     * */
     public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
         for (Personajes e : equipos) {
@@ -274,9 +253,6 @@ public class Main {
         return vivos;
     }
 
-    /**
-     *
-     * */
     public static void mostrarEstadoRonda(Personajes[] equipos) {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
@@ -287,9 +263,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,
                                   int numAcciones) {
         Personajes atacante = equipos[indiceAtacante];
@@ -404,6 +377,7 @@ public class Main {
             int indiceObjetivoReal = objetivosValidos[opcionObjetivo - 1];
 
             int danioHecho = equipos[indiceObjetivoReal].combate(misiles, atacante);
+            atacante.alAtacar(equipos, indiceAtacante, danioHecho);
             atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
 
             String mensaje = atacante.getNombre() + " (" + atacante.getTipo() + ") ataca a "
@@ -416,9 +390,6 @@ public class Main {
         return numAcciones;
     }
 
-    /**
-     *
-     * */
     public static void anunciarGanador(Personajes[] equipos) {
         for (Personajes e : equipos) {
             if (e.getVidas() > 0) {
@@ -428,9 +399,6 @@ public class Main {
         }
     }
 
-    /**
-     *
-     * */
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---");
         System.out.println("1. Cada personaje tiene estadísticas base propias.");
@@ -441,9 +409,6 @@ public class Main {
         System.out.println("6. El último equipo en pie gana la partida.\n");
     }
 
-    /**
-     *
-     * */
     public static void mostrarInformacion() {
         System.out.println("\n--- INFORMACIÓN ---");
         System.out.println("Versión: 2.1");
@@ -451,9 +416,6 @@ public class Main {
         System.out.println("Sistema de daño y estadísticas base personalizadas.\n");
     }
 
-    /**
-     *
-     * */
     public static void infoPersonajes(Scanner sc) {
         int personaje = 0;
 
@@ -478,47 +440,56 @@ public class Main {
             switch (personaje) {
                 case 1:
                     System.out.println("Jinx - HUMANO | Vidas: 180 | Misiles: 55");
+                    System.out.println("Supermegacohete Requetemortal!: al matar gana +10 misiles permanentes.");
                     break;
                 case 2:
                     System.out.println("Jhin - HUMANO | Vidas: 170 | Misiles: 60");
+                    System.out.println("Uno,Dos,Tres...CUATRO!: cada 4 ataques hace daño crítico x2.");
                     break;
                 case 3:
                     System.out.println("Gangplank - HUMANO | Vidas: 210 | Misiles: 45");
+                    System.out.println("Vitamina C: su curación es un 75% en vez de 50%.");
                     break;
                 case 4:
                     System.out.println("Rumble - YORDLE | Vidas: 160 | Misiles: 50");
+                    System.out.println("Mechero: aplica quemadura (5 de daño por ronda al enemigo).");
                     break;
                 case 5:
                     System.out.println("Heimerdinger - YORDLE | Vidas: 150 | Misiles: 55");
+                    System.out.println("Eureka!: cada 2 rondas coloca una torreta que hace 10 de daño global.");
                     break;
                 case 6:
                     System.out.println("Kog'Maw - SER MAGICO | Vidas: 170 | Misiles: 60");
+                    System.out.println("Avanzamos sin descanso!: al morir hace 20 de daño al atacante.");
                     break;
                 case 7:
                     System.out.println("Aurelion Sol - SER MAGICO | Vidas: 220 | Misiles: 45");
+                    System.out.println("Experiencia Galactica: gana +5 de daño permanente cada turno.");
                     break;
                 case 8:
                     System.out.println("Sylas - HUMANO | Vidas: 190 | Misiles: 50");
+                    System.out.println("Matarreyes: roba la habilidad de un enemigo y la activa cada 2 turnos.");
                     break;
                 case 9:
                     System.out.println("Tristana - YORDLE | Vidas: 155 | Misiles: 60");
+                    System.out.println("Sanguinaria: al matar se cura 15 de vida.");
                     break;
                 case 10:
                     System.out.println("Xerath - SER MAGICO | Vidas: 160 | Misiles: 70");
+                    System.out.println("Reloj de arena de Zhonya: si baja de 50 de vida, bloquea el siguiente ataque.");
                     break;
                 case 11:
                     System.out.println("Ziggs - YORDLE | Vidas: 145 | Misiles: 65");
+                    System.out.println("Megabomba incendiaria: cada 4 turnos lanza un misil que hace 75 daño + 10 en área.");
                     break;
                 case 12:
                     System.out.println("Corki - YORDLE | Vidas: 165 | Misiles: 55");
+                    System.out.println("Bombas fuera!: cada 4 turnos lanza un misil que hace 75 daño y 10 en área.");
                     break;
             }
         } while (personaje != 0);
     }
 
-    /**
-     *
-     * */
     public static void mostrarPersonajes() {
         System.out.println("\n---- PERSONAJES ----");
         System.out.println("1-  Jinx");
