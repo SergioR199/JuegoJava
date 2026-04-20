@@ -389,7 +389,7 @@ public class Main {
 
             do {
                 try {
-                    System.out.print("¿Qué quieres hacer? (1-2): ");
+                    System.out.print("¿Qué quieres hacer? 1 (Atacar) 2 (Defenderte): ");
                     accion = sc.nextInt();
                     sc.nextLine();
                 } catch (InputMismatchException e) {
