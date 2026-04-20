@@ -452,19 +452,19 @@ class Rumble extends Yordle {
      * @param danioBase Daño base del ataque.
      * */
     public void alAtacar(Personajes[] equipos, int indiceAtacante, int danioBase) {
-        int idx = -1;
+        int indice = -1;
 
         for (int i = 0; i < equipos.length; i++) {
             if (equipos[i].getVidas() <= 0) continue;
             if (equipos[i] != this) {
-                idx = i;
+                indice = i;
                 break;
             }
         }
 
-        if (idx != -1) {
-            equipos[idx].quemadura = 5;
-            System.out.println(equipos[idx].getNombre() + " está quemándose!");
+        if (indice != -1) {
+            equipos[indice].quemadura = 5;
+            System.out.println(equipos[indice].getNombre() + " está quemándose!");
         }
     }
 }
