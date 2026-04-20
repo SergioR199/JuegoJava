@@ -11,6 +11,7 @@ public abstract class Personajes {
     protected int bonusMisiles = 0;
     protected int quemadura = 0;
     protected int bonusDanio = 0;
+    protected int misilesBase;
 
     /**
      * Método que modifica el daño base sumándole el bonus de daño.
@@ -87,6 +88,7 @@ public abstract class Personajes {
         this.vidas = vidas;
         this.vidaMaxima = vidas;
         this.misilesRonda = misilesRonda;
+        this.misilesBase = misilesRonda;
     }
 
     /**
@@ -160,7 +162,7 @@ public abstract class Personajes {
      * Método que reinicia los misiles disponibles al comienzo de cada ronda.
      * */
     public void reiniciarMisilesRonda() {
-        this.misilesRonda = 50 + bonusMisiles;
+        this.misilesRonda = misilesBase + bonusMisiles;
     }
 
     /**

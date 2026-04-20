@@ -6,9 +6,9 @@ import java.util.Scanner;
  * */
 public class InformacionJuego {
     private static final String[] PERSONAJES = {
-            "Jinx", "Jhin", "Gangplank", "Sylas",
-            "Rumble", "Heimerdinger", "Tristana",
-            "Corki", "Ziggs", "Xerath", "Kog'Maw", "Aurelion Sol"
+            "Jinx", "Jhin", "Gangplank", "Rumble",
+            "Heimerdinger", "Kog'Maw", "Aurelion Sol", "Sylas",
+            "Tristana", "Xerath", "Ziggs", "Corki"
     };
 
     /**

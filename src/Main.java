@@ -72,15 +72,15 @@ public class Main {
                     break;
 
                 case 2:
-                    mostrarReglas();
+                    InformacionJuego.mostrarReglas();
                     break;
 
                 case 3:
-                    mostrarInformacion();
+                    InformacionJuego.mostrarInformacionGeneral();
                     break;
 
                 case 4:
-                    infoPersonajes(sc);
+                    InformacionJuego.mostrarInfoPersonajes(sc);
                     break;
             }
 
@@ -235,7 +235,7 @@ public class Main {
 
         while (!valido) {
             try {
-                mostrarPersonajes();
+                InformacionJuego.mostrarPersonajes();
                 System.out.println("13- Personalizado\n" +
                         "14- Aleatorio\n" +
                         "Escoge el número del personaje: ");
@@ -562,134 +562,5 @@ public class Main {
 
             System.out.println("ERROR DE LECTURA");
         }
-    }
-
-    /**
-     *
-     * */
-    public static void mostrarReglas() {
-        System.out.println("\n--- REGLAS DEL JUEGO ---\n" +
-                "1. La partida se juega con un mínimo de 3 equipos.\n" +
-                "2. Cada equipo comienza con las vidas y los misiles por ronda determinados por su personaje.\n" +
-                "3. Cada personaje tiene estadísticas base propias.\n" +
-                "4. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.\n" +
-                "5. Los HUMANOS hacen 1,25x de daño a los YORDLES.\n" +
-                "6. Los SERES MAGICOS hacen 1,75x de daño a HUMANOS y 0,75x a YORDLES.\n" +
-                "7. En la primera ronda solo se puede atacar.\n" +
-                "8. El daño se aplica al final de la ronda, después de que todos jueguen.\n" +
-                "9. A partir de la ronda 2 puedes atacar o defenderte.\n" +
-                "10. Primero eliges a quién atacas y luego cuántos misiles usas.\n" +
-                "11. Al final de cada ronda se muestra un resumen.\n" +
-                "12. El último equipo en pie gana la partida.\n");
-    }
-
-    /**
-     *
-     * */
-    public static void mostrarInformacion() {
-        System.out.println("\n--- INFORMACIÓN GENERAL ---\n" +
-                "Versión: 2.1\n" +
-                "Contacto: losdelfondo@gmail.com\n" +
-                "Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n");
-    }
-
-    /**
-     *
-     * */
-    public static void infoPersonajes(Scanner sc) {
-        int personaje = -1;
-
-        do {
-            mostrarPersonajes();
-
-            do{
-                System.out.print("Escoge el número del personaje: ");
-                try {
-                    personaje = sc.nextInt();
-                    sc.nextLine();
-                } catch (InputMismatchException e) {
-                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-12).");
-                    sc.nextLine();
-                    continue;
-                }
-
-                if (personaje < 0 || personaje > 12) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-12).");
-                    continue;
-                }
-            }while(personaje < 0 || personaje > 12);
-
-
-            switch (personaje) {
-                case 1:
-                    System.out.println("\nJinx - HUMANO | Vidas: 180 | Misiles: 55\n" +
-                            "Supermegacohete Requetemortal!: al matar gana +10 misiles permanentes.\n");
-                    break;
-                case 2:
-                    System.out.println("\nJhin - HUMANO | Vidas: 170 | Misiles: 60\n" +
-                            "Uno,Dos,Tres...CUATRO!: cada 4 ataques hace daño crítico x2.\n");
-                    break;
-                case 3:
-                    System.out.println("\nGangplank - HUMANO | Vidas: 210 | Misiles: 45\n" +
-                            "Vitamina C: su curación es un 75% en vez de 50%.\n");
-                    break;
-                case 4:
-                    System.out.println("\nRumble - YORDLE | Vidas: 160 | Misiles: 50\n" +
-                            "Mechero: aplica quemadura (5 de daño por ronda al enemigo).\n");
-                    break;
-                case 5:
-                    System.out.println("\nHeimerdinger - YORDLE | Vidas: 150 | Misiles: 55\n" +
-                            "Eureka!: cada 2 rondas coloca una torreta que hace 10 de daño global.\n");
-                    break;
-                case 6:
-                    System.out.println("\nKog'Maw - SER MAGICO | Vidas: 170 | Misiles: 60\n" +
-                            "Avanzamos sin descanso!: al morir hace 20 de daño al atacante.\n");
-                    break;
-                case 7:
-                    System.out.println("\nAurelion Sol - SER MAGICO | Vidas: 220 | Misiles: 45\n" +
-                            "Experiencia Galactica: gana +5 de daño permanente cada turno.\n");
-                    break;
-                case 8:
-                    System.out.println("\nSylas - HUMANO | Vidas: 190 | Misiles: 50\n" +
-                            "Matarreyes: roba la habilidad de un enemigo y la activa cada 2 turnos.\n");
-                    break;
-                case 9:
-                    System.out.println("\nTristana - YORDLE | Vidas: 155 | Misiles: 60\n" +
-                            "Sanguinaria: al matar se cura 15 de vida.\n");
-                    break;
-                case 10:
-                    System.out.println("\nXerath - SER MAGICO | Vidas: 160 | Misiles: 70\n" +
-                            "Reloj de arena de Zhonya: si baja de 50 de vida, bloquea el siguiente ataque.\n");
-                    break;
-                case 11:
-                    System.out.println("\nZiggs - YORDLE | Vidas: 145 | Misiles: 65\n" +
-                            "Megabomba incendiaria: cada 4 turnos lanza un misil que hace 75 daño + 10 en área.\n");
-                    break;
-                case 12:
-                    System.out.println("\nCorki - YORDLE | Vidas: 165 | Misiles: 55\n" +
-                            "Bombas fuera!: cada 4 turnos lanza un misil que hace 75 daño y 10 en área.\n");
-                    break;
-            }
-        } while (personaje != 0);
-    }
-
-    /**
-     *
-     * */
-    public static void mostrarPersonajes() {
-        System.out.print("\n---- PERSONAJES ----\n" +
-                "1-  Jinx\n" +
-                "2-  Jhin\n" +
-                "3-  Gangplank\n" +
-                "4-  Rumble\n" +
-                "5-  Heimerdinger\n" +
-                "6-  Kog'Maw\n" +
-                "7-  Aurelion Sol\n" +
-                "8-  Sylas\n" +
-                "9-  Tristana\n" +
-                "10- Xerath\n" +
-                "11- Ziggs\n" +
-                "12- Corki\n" +
-                "0- Salir\n");
     }
 }
