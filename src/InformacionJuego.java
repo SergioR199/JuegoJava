@@ -13,7 +13,8 @@ public class InformacionJuego {
 
     /**
      * Método que muestra las reglas del juego.
-     * */
+     *
+     */
     public static void mostrarReglas() {
         System.out.println("\n--- REGLAS DEL JUEGO ---\n" +
                 "1. La partida se juega con un mínimo de 3 equipos.\n" +
@@ -32,7 +33,8 @@ public class InformacionJuego {
 
     /**
      * Método que muestra la información general del juego.
-     * */
+     *
+     */
     public static void mostrarInformacionGeneral() {
         System.out.println("\n--- INFORMACIÓN GENERAL ---\n" +
                 "Versión: 2.1\n" +
@@ -42,7 +44,8 @@ public class InformacionJuego {
 
     /**
      * Método que muestra la lista de personajes disponibles.
-     * */
+     *
+     */
     public static void mostrarPersonajes() {
         System.out.println("\n---- PERSONAJES ----");
         for (int i = 0; i < PERSONAJES.length; i++) {
@@ -54,7 +57,8 @@ public class InformacionJuego {
      * Método que permite consultar la información del personaje que se solicite.
      *
      * @param sc Scanner que se utiliza para leer el número que introduce el usuario
-     * */
+     *
+     */
     public static void mostrarInfoPersonajes(Scanner sc) {
         int personaje;
 
@@ -124,7 +128,8 @@ public class InformacionJuego {
      *
      * @param indice Índice del personaje en el array
      * @return Nombre del personaje
-     * */
+     *
+     */
     public static String getPersonaje(int indice) {
         return PERSONAJES[indice];
     }
@@ -133,7 +138,8 @@ public class InformacionJuego {
      * Método que devuelve el número de personajes disponibles.
      *
      * @return Cantidad de personajes
-     * */
+     *
+     */
     public static int getTotalPersonajes() {
         return PERSONAJES.length;
     }
@@ -142,12 +148,13 @@ public class InformacionJuego {
      * Método que lee el número entero que introduce el usuario dentro del rango definido,
      * teniendo que repetir hasta que se introduzca un valor válido.
      *
-     * @param sc Scanner que se utiliza para leer el número que introduce el usuario
-     * @param min Valor mínimo
-     * @param max Valor máximo
+     * @param sc      Scanner que se utiliza para leer el número que introduce el usuario
+     * @param min     Valor mínimo
+     * @param max     Valor máximo
      * @param mensaje Mensaje que se le muestra al usuario
      * @return Número entero válido
-     * */
+     *
+     */
     private static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
         while (true) {
             try {

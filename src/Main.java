@@ -273,7 +273,7 @@ public class Main {
                 }
             }
             turnoGlobal++;
-            System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
+            System.out.println("\n---- " + ronda + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
             String[] listaAcciones = new String[200];
@@ -305,6 +305,7 @@ public class Main {
                             + " | Misiles próxima ronda: " + e.getMisilesRonda());
                 }
             }
+            ronda++;
             System.out.println();
         }
 
@@ -361,21 +362,47 @@ public class Main {
 
         int accion = 0;
 
-        do {
-            try {
-                System.out.print("¿Qué quieres hacer? (1-2): ");
-                accion = sc.nextInt();
-                sc.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido. Elige 1 o 2.");
-                sc.nextLine();
-                continue;
-            }
+        if (ronda == 1) {
+            System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
+                    "1. Atacar");
 
-            if (accion < 1 || accion > 2) {
-                System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
-            }
-        } while (accion < 1 || accion > 2);
+            do {
+                try {
+                    System.out.print("En la primera ronda solo puedes atacar (1): ");
+                    accion = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor no válido. Elige 1.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (accion != 1) {
+                    System.out.println("En la primera ronda no puedes defenderte.");
+                }
+            } while (accion != 1);
+
+        } else {
+            System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
+                    "1. Atacar\n" +
+                    "2. Defenderse");
+
+            do {
+                try {
+                    System.out.print("¿Qué quieres hacer? (1-2): ");
+                    accion = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor no válido. Elige 1 o 2.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (accion < 1 || accion > 2) {
+                    System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
+                }
+            } while (accion < 1 || accion > 2);
+        }
 
         if (accion == 2) {
             int misilesDefensa = 0;
