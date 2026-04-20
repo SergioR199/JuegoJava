@@ -480,9 +480,11 @@ public class Main {
     }
 
     /**
-     * Método que anuncia qué equipo ha ganado la partida.
+     * Método que anuncia qué equipo ha ganado la partida y lo guarda en el archivo "ganadores.txt".
+     * Si ningún personaje tiene vidas, se registra un empate.
      *
      * @param equipos Array con todos los personajes de la partida.
+     * @param partida Número de la partida que se está registrando.
      * */
     public static void anunciarGanador(Personajes[] equipos, int partida) {
         boolean empate = true;
@@ -506,7 +508,7 @@ public class Main {
 
                 }catch(IOException e){
 
-                    System.out.println("ERROR DE ESRITURA");
+                    System.out.println("ERROR DE ESCRITURA");
                 }
 
                 lecturaArchivo();
@@ -531,13 +533,16 @@ public class Main {
 
             }catch(IOException e){
 
-                System.out.println("ERROR DE ESRITURA");
+                System.out.println("ERROR DE ESCRITURA");
             }
 
             lecturaArchivo();
         }
     }
 
+    /**
+     * Método que lee el contenido de "ganadores.txt" y lo muestra por consola.
+     * */
     public static void lecturaArchivo(){
 
         String linea = "";
