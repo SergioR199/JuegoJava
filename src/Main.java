@@ -355,10 +355,6 @@ public class Main {
      * */
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
-       
-        System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
-                "1. Atacar\n" +
-                "2. Defenderse");
 
         int accion = 0;
 
