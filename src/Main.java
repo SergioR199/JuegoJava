@@ -1,83 +1,126 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Clase principal del juego. Contiene el menú inicial,
+ * la creación de equipos y el desarrollo de las rondas.
+ * */
 public class Main {
     public static Personajes[] equipos;
+
+    /**
+     * Punto de entrada del programa. Muestra el menú principal y
+     * permite acceder a las distintas opciones del juego.
+     *
+     * @param args Argumentos de línea de comandos.
+     * */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int opcion = 0;
+        int opcion = -1;
+        int partida = 1;
 
 
         do {
-            try {
-                System.out.println("---- MENU ----");
-                System.out.println("1º JUGAR");
-                System.out.println("2º REGLAS DEL JUEGO");
-                System.out.println("3º INFORMACIÓN GENERAL");
-                System.out.println("4º INFORMACIÓN DE PERSONAJES");
-                System.out.println("0º SALIR");
-                System.out.print("Elige una opción: ");
-                opcion = sc.nextInt();
-                sc.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
-                sc.nextLine();
-                continue;
-            }
+            
+            System.out.print("---- MENU ----\n" +
+                    "1º JUGAR\n" +
+                    "2º REGLAS DEL JUEGO\n" +
+                    "3º INFORMACIÓN GENERAL\n" +
+                    "4º INFORMACIÓN DE PERSONAJES\n" +
+                    "0º SALIR\n" +
+                    "Elige una opción: ");
 
-            if (opcion < 0 || opcion > 4) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
-                continue;
-            }
+             do{
+                try {            
+                    opcion = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (opcion < 0 || opcion > 4) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
+                    continue;
+                }
+             }while (opcion < 0 || opcion > 4);
 
             switch (opcion) {
                 case 0:
                     System.out.println("Saliendo del juego...");
+
+                    try{
+                        new FileWriter ("ganadores.txt").close();
+                    }catch(IOException e){
+                        System.out.println("ERROR DE BORRADO");
+                    }
                     break;
+
                 case 1:
                     System.out.println("Creando equipos...");
                     equipos = new Personajes[pedirNumeroEquipos(sc)];
                     crearEquipos(equipos, sc);
-                    jugar(equipos, sc);
+                    jugar(equipos, sc, partida);
+                    partida +=1;
+
                     break;
+
                 case 2:
-                    mostrarReglas();
+                    InformacionJuego.mostrarReglas();
                     break;
+
                 case 3:
-                    mostrarInformacion();
+                    InformacionJuego.mostrarInformacionGeneral();
                     break;
+
                 case 4:
-                    infoPersonajes(sc);
+                    InformacionJuego.mostrarInfoPersonajes(sc);
                     break;
             }
 
         } while (opcion != 0);
-
-        sc.close();
     }
 
+    /**
+     * Método que solicita al usuario el número de equipos que participarán en la partida.
+     *
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
+     * @return Número de equipos válido mínimo de 3.
+     * */
     public static int pedirNumeroEquipos(Scanner sc) {
         int numEquipos = 0;
 
         do {
-            System.out.print("¿Cuántos equipos quieres crear? (2-5): ");
+            System.out.print("¿Cuántos equipos quieres crear? (mínimo 3): ");
             try {
                 numEquipos = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (2-5).");
+                System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
                 sc.nextLine();
                 continue;
             }
 
-            if (numEquipos < 2 || numEquipos > 5) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (2-5).");
+            if (numEquipos < 3) {
+                System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
             }
-        } while (numEquipos < 2 || numEquipos > 5);
+        } while (numEquipos < 3);
 
         return numEquipos;
     }
 
+    /**
+     * Método que crea todos los equipos de la partida pidiendo al usuario un personaje para cada jugador.
+     *
+     * @param equipos Array donde se guardarán los personajes creados.
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
+     * */
     public static void crearEquipos(Personajes[] equipos, Scanner sc) {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
@@ -91,6 +134,13 @@ public class Main {
         }
     }
 
+    /**
+     * Método que crea un personaje según la opción seleccionada por el usuario.
+     *
+     * @param opcion Número que corresponde al personaje elegido.
+     * @param sc Scanner utilizado para crear un personaje personalizado si se necesita.
+     * @return Instancia del personaje seleccionado.
+     * */
     public static Personajes crearPersonaje(int opcion, Scanner sc) {
         switch (opcion) {
             case 1:
@@ -127,6 +177,12 @@ public class Main {
         }
     }
 
+    /**
+     * Método que crea un personaje personalizado introducido por el usuario.
+     *
+     * @param sc Scanner utilizado para leer el nombre y el tipo del personaje.
+     * @return Instancia de un personaje personalizado.
+     * */
     public static Personajes crearPersonalizado(Scanner sc) {
         String nombre;
         int tipo;
@@ -136,11 +192,11 @@ public class Main {
 
         do {
             try {
-                System.out.println("Elige el tipo del personaje:");
-                System.out.println("1- HUMANO");
-                System.out.println("2- YORDLE");
-                System.out.println("3- SER MAGICO");
-                System.out.print("Opción: ");
+                System.out.println("Elige el tipo del personaje:\n" +
+                        "1- HUMANO\n" +
+                        "2- YORDLE\n" +
+                        "3- SER MAGICO\n" +
+                        "Opción: ");
                 tipo = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
@@ -167,16 +223,22 @@ public class Main {
         }
     }
 
+    /**
+     * Método que muestra la lista de personajes disponibles y devuelve la opción elegida.
+     *
+     * @param sc Scanner utilizado para leer la selección del usuario.
+     * @return Número del personaje seleccionado.
+     * */
     public static int pedirPersonaje(Scanner sc) {
         int personaje = 0;
         boolean valido = false;
 
         while (!valido) {
             try {
-                mostrarPersonajes();
-                System.out.println("13- Personalizado");
-                System.out.println("14- Aleatorio");
-                System.out.print("Escoge el número del personaje: ");
+                InformacionJuego.mostrarPersonajes();
+                System.out.println("13- Personalizado\n" +
+                        "14- Aleatorio\n" +
+                        "Escoge el número del personaje: ");
                 personaje = sc.nextInt();
                 sc.nextLine();
 
@@ -195,7 +257,13 @@ public class Main {
         return personaje;
     }
 
-    public static void jugar(Personajes[] equipos, Scanner sc) {
+    /**
+     * Método que ejecuta la partida completa hasta que solo quede un equipo con vida.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * @param sc Scanner utilizado para leer las decisiones de los jugadores.
+     * */
+    public static void jugar(Personajes[] equipos, Scanner sc, int partida) {
         int ronda = 1;
         int turnoGlobal = 0;
         while (equiposVivos(equipos) > 1) {
@@ -205,7 +273,7 @@ public class Main {
                 }
             }
             turnoGlobal++;
-            System.out.println("\n---- " + (ronda++) + "ª RONDA ----");
+            System.out.println("\n---- " + ronda + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
             String[] listaAcciones = new String[200];
@@ -213,7 +281,7 @@ public class Main {
 
             for (int i = 0; i < equipos.length && equiposVivos(equipos) > 1; i++) {
                 if (equipos[i].getVidas() > 0) {
-                    numAcciones = turnoEquipo(equipos, i, sc, listaAcciones, numAcciones);
+                    numAcciones = turnoEquipo(equipos, i, sc, listaAcciones, numAcciones, ronda);
                 }
             }
 
@@ -228,8 +296,8 @@ public class Main {
                 }
             }
 
-            System.out.println("\n---- ESTADO FINAL DE LA RONDA ----");
-            System.out.println("Equipos vivos: " + equiposVivos(equipos));
+            System.out.println("\n---- ESTADO FINAL DE LA RONDA ----\n" +
+                    "Equipos vivos: " + equiposVivos(equipos));
             for (Personajes e : equipos) {
                 if (e.getVidas() > 0) {
                     System.out.println(e.getNombre() + ": " + e.getVidas()
@@ -237,12 +305,19 @@ public class Main {
                             + " | Misiles próxima ronda: " + e.getMisilesRonda());
                 }
             }
+            ronda++;
             System.out.println();
         }
 
-        anunciarGanador(equipos);
+        anunciarGanador(equipos, partida);
     }
 
+    /**
+     * Método que cuenta cuántos equipos siguen vivos.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * @return Número de personajes con vidas mayores que cero.
+     * */
     public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
         for (Personajes e : equipos) {
@@ -253,6 +328,11 @@ public class Main {
         return vivos;
     }
 
+    /**
+     * Método que muestra por pantalla el estado actual de todos los equipos vivos.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * */
     public static void mostrarEstadoRonda(Personajes[] equipos) {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
@@ -263,38 +343,70 @@ public class Main {
         }
     }
 
-    public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,
-                                  int numAcciones) {
+    /**
+     * Método que gestiona el turno de un equipo, permitiendo atacar o defenderse.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * @param indiceAtacante Índice del personaje que realiza el turno.
+     * @param sc Scanner utilizado para leer las decisiones del usuario.
+     * @param listaAcciones Array donde se guardan los mensajes de cada acción.
+     * @param numAcciones Número actual de acciones guardadas.
+     * @return Número actualizado de acciones guardadas.
+     * */
+    public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
-        System.out.println("\nTurno de: " + atacante.getNombre());
-        System.out.println("1. Atacar");
-        System.out.println("2. Defenderse");
 
         int accion = 0;
 
-        do {
-            try {
-                System.out.print("¿Qué quieres hacer? (1-2): ");
-                accion = sc.nextInt();
-                sc.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido. Elige 1 o 2.");
-                sc.nextLine();
-                continue;
-            }
+        if (ronda == 1) {
+            System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
+                    "1. Atacar");
 
-            if (accion < 1 || accion > 2) {
-                System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
-            }
-        } while (accion < 1 || accion > 2);
+            do {
+                try {
+                    System.out.print("En la primera ronda solo puedes atacar (1): ");
+                    accion = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor no válido. Elige 1.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (accion != 1) {
+                    System.out.println("En la primera ronda no puedes defenderte.");
+                }
+            } while (accion != 1);
+
+        } else {
+            System.out.println("\nTurno de: " + atacante.getNombre() + "\n" +
+                    "1. Atacar\n" +
+                    "2. Defenderse");
+
+            do {
+                try {
+                    System.out.print("¿Qué quieres hacer? 1 (Atacar) 2 (Defenderte): ");
+                    accion = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Valor no válido. Elige 1 o 2.");
+                    sc.nextLine();
+                    continue;
+                }
+
+                if (accion < 1 || accion > 2) {
+                    System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
+                }
+            } while (accion < 1 || accion > 2);
+        }
 
         if (accion == 2) {
             int misilesDefensa = 0;
 
             do {
                 try {
-                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda());
-                    System.out.print("¿Cuántos misiles quieres usar para defenderte? ");
+                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda() + "\n" +
+                            "¿Cuántos misiles quieres usar para defenderte? ");
                     misilesDefensa = sc.nextInt();
                     sc.nextLine();
                 } catch (InputMismatchException e) {
@@ -326,8 +438,8 @@ public class Main {
 
             do {
                 try {
-                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda());
-                    System.out.print("¿Cuántos misiles quieres usar? ");
+                    System.out.println("Misiles disponibles: " + atacante.getMisilesRonda() + "\n" +
+                            "¿Cuántos misiles quieres usar? ");
                     misiles = sc.nextInt();
                     sc.nextLine();
                 } catch (InputMismatchException e) {
@@ -390,119 +502,88 @@ public class Main {
         return numAcciones;
     }
 
-    public static void anunciarGanador(Personajes[] equipos) {
-        for (Personajes e : equipos) {
-            if (e.getVidas() > 0) {
-                System.out.println("\n¡" + e.getNombre() + " GANA LA PARTIDA!\n");
+    /**
+     * Método que anuncia qué equipo ha ganado la partida y lo guarda en el archivo "ganadores.txt".
+     * Si ningún personaje tiene vidas, se registra un empate.
+     *
+     * @param equipos Array con todos los personajes de la partida.
+     * @param partida Número de la partida que se está registrando.
+     * */
+    public static void anunciarGanador(Personajes[] equipos, int partida) {
+        boolean empate = true;
+
+        for (Personajes equipo : equipos) {
+            if (equipo.getVidas() > 0) {
+
+                empate = false;
+
+                try{
+
+                    BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
+
+                    guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                    guardarGanadores.newLine();
+                    guardarGanadores.write(equipo.getNombre());
+                    guardarGanadores.newLine();
+                    guardarGanadores.newLine();
+
+                    guardarGanadores.close();
+
+                }catch(IOException e){
+
+                    System.out.println("ERROR DE ESCRITURA");
+                }
+
+                lecturaArchivo();
+
                 return;
             }
         }
-    }
 
-    public static void mostrarReglas() {
-        System.out.println("\n--- REGLAS DEL JUEGO ---");
-        System.out.println("1. Cada personaje tiene estadísticas base propias.");
-        System.out.println("2. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.");
-        System.out.println("3. Los HUMANOS hacen 1,25x de daño a los YORDLES.");
-        System.out.println("4. Los SERES MAGICOS hacen 1,75x de daño a HUMANOS y 0,75x a YORDLES.");
-        System.out.println("5. Cada equipo puede atacar o defenderse en su turno.");
-        System.out.println("6. El último equipo en pie gana la partida.\n");
-    }
+        if(empate){
 
-    public static void mostrarInformacion() {
-        System.out.println("\n--- INFORMACIÓN ---");
-        System.out.println("Versión: 2.1");
-        System.out.println("Juego basado en herencia por tipo y personaje.");
-        System.out.println("Sistema de daño y estadísticas base personalizadas.\n");
-    }
+            try{
 
-    public static void infoPersonajes(Scanner sc) {
-        int personaje = 0;
+                BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
 
-        do {
-            try {
-                mostrarPersonajes();
-                System.out.println("0- Salir");
-                System.out.print("Escoge el número del personaje: ");
-                personaje = sc.nextInt();
-                sc.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (0-12).");
-                sc.nextLine();
-                continue;
+                guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
+                guardarGanadores.newLine();
+                guardarGanadores.write("EMPATE");
+                guardarGanadores.newLine();
+                guardarGanadores.newLine();
+
+                guardarGanadores.close();
+
+            }catch(IOException e){
+
+                System.out.println("ERROR DE ESCRITURA");
             }
 
-            if (personaje < 0 || personaje > 12) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (0-12).");
-                continue;
-            }
-
-            switch (personaje) {
-                case 1:
-                    System.out.println("Jinx - HUMANO | Vidas: 180 | Misiles: 55");
-                    System.out.println("Supermegacohete Requetemortal!: al matar gana +10 misiles permanentes.");
-                    break;
-                case 2:
-                    System.out.println("Jhin - HUMANO | Vidas: 170 | Misiles: 60");
-                    System.out.println("Uno,Dos,Tres...CUATRO!: cada 4 ataques hace daño crítico x2.");
-                    break;
-                case 3:
-                    System.out.println("Gangplank - HUMANO | Vidas: 210 | Misiles: 45");
-                    System.out.println("Vitamina C: su curación es un 75% en vez de 50%.");
-                    break;
-                case 4:
-                    System.out.println("Rumble - YORDLE | Vidas: 160 | Misiles: 50");
-                    System.out.println("Mechero: aplica quemadura (5 de daño por ronda al enemigo).");
-                    break;
-                case 5:
-                    System.out.println("Heimerdinger - YORDLE | Vidas: 150 | Misiles: 55");
-                    System.out.println("Eureka!: cada 2 rondas coloca una torreta que hace 10 de daño global.");
-                    break;
-                case 6:
-                    System.out.println("Kog'Maw - SER MAGICO | Vidas: 170 | Misiles: 60");
-                    System.out.println("Avanzamos sin descanso!: al morir hace 20 de daño al atacante.");
-                    break;
-                case 7:
-                    System.out.println("Aurelion Sol - SER MAGICO | Vidas: 220 | Misiles: 45");
-                    System.out.println("Experiencia Galactica: gana +5 de daño permanente cada turno.");
-                    break;
-                case 8:
-                    System.out.println("Sylas - HUMANO | Vidas: 190 | Misiles: 50");
-                    System.out.println("Matarreyes: roba la habilidad de un enemigo y la activa cada 2 turnos.");
-                    break;
-                case 9:
-                    System.out.println("Tristana - YORDLE | Vidas: 155 | Misiles: 60");
-                    System.out.println("Sanguinaria: al matar se cura 15 de vida.");
-                    break;
-                case 10:
-                    System.out.println("Xerath - SER MAGICO | Vidas: 160 | Misiles: 70");
-                    System.out.println("Reloj de arena de Zhonya: si baja de 50 de vida, bloquea el siguiente ataque.");
-                    break;
-                case 11:
-                    System.out.println("Ziggs - YORDLE | Vidas: 145 | Misiles: 65");
-                    System.out.println("Megabomba incendiaria: cada 4 turnos lanza un misil que hace 75 daño + 10 en área.");
-                    break;
-                case 12:
-                    System.out.println("Corki - YORDLE | Vidas: 165 | Misiles: 55");
-                    System.out.println("Bombas fuera!: cada 4 turnos lanza un misil que hace 75 daño y 10 en área.");
-                    break;
-            }
-        } while (personaje != 0);
+            lecturaArchivo();
+        }
     }
 
-    public static void mostrarPersonajes() {
-        System.out.println("\n---- PERSONAJES ----");
-        System.out.println("1-  Jinx");
-        System.out.println("2-  Jhin");
-        System.out.println("3-  Gangplank");
-        System.out.println("4-  Rumble");
-        System.out.println("5-  Heimerdinger");
-        System.out.println("6-  Kog'Maw");
-        System.out.println("7-  Aurelion Sol");
-        System.out.println("8-  Sylas");
-        System.out.println("9-  Tristana");
-        System.out.println("10- Xerath");
-        System.out.println("11- Ziggs");
-        System.out.println("12- Corki");
+    /**
+     * Método que lee el contenido de "ganadores.txt" y lo muestra por consola.
+     * */
+    public static void lecturaArchivo(){
+
+        String linea = "";
+
+        try{
+
+            BufferedReader lecturaGanadores = new BufferedReader(new FileReader("ganadores.txt"));
+
+            while ((linea = lecturaGanadores.readLine()) != null) {
+
+                System.out.println(linea);
+            }
+
+            lecturaGanadores.close();
+
+        }catch(IOException e){
+
+            System.out.println("ERROR DE LECTURA");
+        }
     }
 }
