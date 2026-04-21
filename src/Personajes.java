@@ -387,7 +387,7 @@ class Gangplank extends Humano {
  * */
 class Sylas extends Humano {
 
-    private Personajes habilidadRobada = null;
+    private Personajes pasivaRobada = null;
     private int contadorTurnos = 0;
 
     /**
@@ -403,7 +403,7 @@ class Sylas extends Humano {
      * @param objetivo Personaje del que se roba la pasiva.
      * */
     public void robarPasiva(Personajes objetivo) {
-        this.habilidadRobada = objetivo;
+        this.pasivaRobada = objetivo;
         System.out.println(nombre + " ha robado la pasiva de " + objetivo.getNombre());
     }
 
@@ -416,7 +416,7 @@ class Sylas extends Humano {
      * */
     public void alInicioTurnoGlobal(int turnoGlobal) {
 
-        if (habilidadRobada == null) {
+        if (pasivaRobada == null) {
             return;
         }
 
@@ -427,7 +427,7 @@ class Sylas extends Humano {
 
             System.out.println(nombre + " activa la pasiva robada!");
 
-            habilidadRobada.alMatar(this);
+            pasivaRobada.alMatar(this);
         }
     }
 }
