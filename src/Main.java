@@ -489,7 +489,15 @@ public class Main {
             int indiceObjetivoReal = objetivosValidos[opcionObjetivo - 1];
 
             int danioHecho = equipos[indiceObjetivoReal].combate(misiles, atacante);
-            atacante.alAtacar(equipos, indiceAtacante, danioHecho);
+
+            if (atacante instanceof Rumble) {
+                ((Rumble) atacante).alAtacar(equipos, indiceObjetivoReal, danioHecho);
+            }
+
+            if (atacante instanceof Ziggs) {
+                ((Ziggs) atacante).alAtacar(equipos, indiceAtacante, danioHecho);
+            }
+
             atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
 
             String mensaje = atacante.getNombre() + " (" + atacante.getTipo() + ") ataca a "

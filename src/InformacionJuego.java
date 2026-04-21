@@ -124,27 +124,6 @@ public class InformacionJuego {
     }
 
     /**
-     * Método que devuelve el nombre del personaje según su índice.
-     *
-     * @param indice Índice del personaje en el array
-     * @return Nombre del personaje
-     *
-     */
-    public static String getPersonaje(int indice) {
-        return PERSONAJES[indice];
-    }
-
-    /**
-     * Método que devuelve el número de personajes disponibles.
-     *
-     * @return Cantidad de personajes
-     *
-     */
-    public static int getTotalPersonajes() {
-        return PERSONAJES.length;
-    }
-
-    /**
      * Método que lee el número entero que introduce el usuario dentro del rango definido,
      * teniendo que repetir hasta que se introduzca un valor válido.
      *
