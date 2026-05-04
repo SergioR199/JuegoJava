@@ -2,7 +2,7 @@
  * Clase que representa a Xerath.
  *
  */
-class Xerath extends SerMagico {
+class Xerath extends Personajes {
 
     private boolean escudoActivo = false;
 
@@ -33,4 +33,13 @@ class Xerath extends SerMagico {
 
         return super.combate(misiles, atacante);
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "SER MAGICO".
+     * */
+    public String getRaza() { return "SER MAGICO"; }
 }

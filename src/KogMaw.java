@@ -2,7 +2,7 @@
  * Clase que representa a Kog'Maw.
  *
  */
-class KogMaw extends SerMagico {
+class KogMaw extends Personajes {
 
     /**
      * Constructor de Kog'Maw con sus estadísticas iniciales.
@@ -22,4 +22,13 @@ class KogMaw extends SerMagico {
         atacante.vidas -= 20;
         System.out.println(nombre + " explota y hace 20 de daño!");
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "SER MAGICO".
+     * */
+    public String getRaza() { return "SER MAGICO"; }
 }

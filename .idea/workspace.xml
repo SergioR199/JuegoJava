@@ -5,28 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="defnderse corregido">
-      <change afterPath="$PROJECT_DIR$/src/AurelionSol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Corki.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Gangplank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Heimerdinger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Humano.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HumanoPersonalizado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Jhin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Jinx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/KogMaw.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rumble.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SerMagico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sylas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tristana.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Xerath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Yordle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/YordlePersonalizado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Ziggs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InformacionJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AurelionSol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Corki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gangplank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimerdinger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Humano.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HumanoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HumanoPersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jhin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jinx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KogMaw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rumble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SerMagico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sylas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tristana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Xerath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Yordle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/YordlePersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/YordlePersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ziggs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Version-1.2b" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,7 +80,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Version.1.2&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,

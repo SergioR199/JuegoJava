@@ -2,7 +2,7 @@
  * Clase que representa a Jinx.
  *
  */
-class Jinx extends Humano {
+class Jinx extends Personajes {
 
     /**
      * Constructor de Jinx con sus estadísticas iniciales.
@@ -22,4 +22,13 @@ class Jinx extends Humano {
         this.bonusMisiles += 10;
         System.out.println(nombre + " gana +10 misiles permanentes!");
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
+    public String getRaza() { return "HUMANO"; }
 }

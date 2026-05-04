@@ -2,7 +2,7 @@
  * Clase que representa a un Yordle personalizado.
  *
  */
-class YordlePersonalizado extends Yordle {
+class YordlePersonalizado extends Personajes {
 
     /**
      * Constructor de un Yordle personalizado con el nombre y estadísticas indicadas.
@@ -15,4 +15,13 @@ class YordlePersonalizado extends Yordle {
     public YordlePersonalizado(String nombre, int vidas, int misilesRonda) {
         super(nombre, vidas, misilesRonda);
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "YORDLE".
+     * */
+    public String getRaza() { return "YORDLE"; }
 }

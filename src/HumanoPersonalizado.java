@@ -2,7 +2,7 @@
  * Clase que representa a un Humano personalizado.
  *
  */
-class HumanoPersonalizado extends Humano {
+class HumanoPersonalizado extends Personajes {
 
     /**
      * Constructor de un humano personalizado con el nombre y estadísticas indicadas.
@@ -15,4 +15,13 @@ class HumanoPersonalizado extends Humano {
     public HumanoPersonalizado(String nombre, int vidas, int misilesRonda) {
         super(nombre, vidas, misilesRonda);
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
+    public String getRaza() { return "HUMANO"; }
 }

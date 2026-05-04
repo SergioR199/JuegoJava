@@ -2,7 +2,7 @@
  * Clase que representa a Rumble.
  *
  */
-class Rumble extends Yordle {
+class Rumble extends Personajes {
 
     /**
      * Constructor de Rumble con sus estadísticas iniciales.
@@ -30,4 +30,13 @@ class Rumble extends Yordle {
                     equipos[indiceObjetivo].quemadura + ")");
         }
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "YORDLE".
+     * */
+    public String getRaza() { return "YORDLE"; }
 }
