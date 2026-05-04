@@ -15,7 +15,9 @@ class Sylas extends Personajes {
      */
     @Override
     public void alInicioTurnoGlobal(int turnoGlobal) {
-
+    /**
+    * @param turnoGlobal Número del turno global actual del juego.
+     */
         contadorTurnos++;
 
         if (contadorTurnos == 2) {
@@ -64,8 +66,10 @@ class Sylas extends Personajes {
     }
 
     /**
-     * Tipo del personaje
-     */
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
     @Override
     public String getRaza() {
         return "HUMANO";
