@@ -98,7 +98,7 @@ public class InformacionJuego {
                     break;
                 case 8:
                     System.out.println("Sylas - HUMANO | Vidas: 190 | Misiles: 50\n" +
-                            "Matarreyes: roba la habilidad de un enemigo y la activa cada 2 turnos.\n");
+                            "Matarreyes:Cada 2 turnos, Sylas absorbe poder del enemigo con más vida, robándole 10 de vida y hasta 5 misiles.\n");
                     break;
                 case 9:
                     System.out.println("Tristana - YORDLE | Vidas: 155 | Misiles: 60\n" +
@@ -110,7 +110,7 @@ public class InformacionJuego {
                     break;
                 case 11:
                     System.out.println("Ziggs - YORDLE | Vidas: 145 | Misiles: 65\n" +
-                            "Megabomba incendiaria: cada 4 turnos lanza un misil que hace 75 daño + 10 en área.\n");
+                            "Megabomba incendiaria: Hace daño en area.\n");
                     break;
                 case 12:
                     System.out.println("Corki - YORDLE | Vidas: 165 | Misiles: 55\n" +
