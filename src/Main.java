@@ -32,6 +32,7 @@ public class Main {
                     "2º REGLAS DEL JUEGO\n" +
                     "3º INFORMACIÓN GENERAL\n" +
                     "4º INFORMACIÓN DE PERSONAJES\n" +
+                    "5º MOSTRAR PERSONAJES GANADORES\n" +
                     "0º SALIR\n" +
                     "Elige una opción: ");
 
@@ -40,16 +41,16 @@ public class Main {
                     opcion = sc.nextInt();
                     sc.nextLine();
                 } catch (InputMismatchException e) {
-                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-4).");
+                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-5).");
                     sc.nextLine();
                     continue;
                 }
 
-                if (opcion < 0 || opcion > 4) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-4).");
+                if (opcion < 0 || opcion > 5) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-5).");
                     continue;
                 }
-             }while (opcion < 0 || opcion > 4);
+             }while (opcion < 0 || opcion > 5);
 
             switch (opcion) {
                 case 0:
@@ -81,6 +82,10 @@ public class Main {
 
                 case 4:
                     InformacionJuego.mostrarInfoPersonajes(sc);
+                    break;
+
+                case 5:
+                    lecturaArchivo();
                     break;
             }
 
@@ -128,7 +133,7 @@ public class Main {
             equipos[i] = crearPersonaje(opcionPersonaje, sc);
 
             System.out.println("Equipo creado: " + equipos[i].getNombre()
-                    + " | Tipo: " + equipos[i].getTipo()
+                    + " | Tipo: " + equipos[i].getRaza()
                     + " | Vidas: " + equipos[i].getVidas()
                     + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
         }
@@ -185,33 +190,33 @@ public class Main {
      * */
     public static Personajes crearPersonalizado(Scanner sc) {
         String nombre;
-        int tipo;
+        int raza;
 
         System.out.print("Escribe el nombre del personaje: ");
         nombre = sc.nextLine();
 
         do {
             try {
-                System.out.println("Elige el tipo del personaje:\n" +
+                System.out.println("Elige la raza del personaje:\n" +
                         "1- HUMANO\n" +
                         "2- YORDLE\n" +
                         "3- SER MAGICO\n" +
                         "Opción: ");
-                tipo = sc.nextInt();
+                raza = sc.nextInt();
                 sc.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Has introducido un valor no válido.");
                 sc.nextLine();
-                tipo = 0;
+                raza = 0;
                 continue;
             }
 
-            if (tipo < 1 || tipo > 3) {
+            if (raza < 1 || raza > 3) {
                 System.out.println("Opción no válida. Elige entre 1 y 3.");
             }
-        } while (tipo < 1 || tipo > 3);
+        } while (raza < 1 || raza > 3);
 
-        switch (tipo) {
+        switch (raza) {
             case 1:
                 return new HumanoPersonalizado(nombre, 200, 50);
             case 2:
@@ -301,7 +306,7 @@ public class Main {
             for (Personajes e : equipos) {
                 if (e.getVidas() > 0) {
                     System.out.println(e.getNombre() + ": " + e.getVidas()
-                            + " vidas | Tipo: " + e.getTipo()
+                            + " vidas | Tipo: " + e.getRaza()
                             + " | Misiles próxima ronda: " + e.getMisilesRonda());
                 }
             }
@@ -337,7 +342,7 @@ public class Main {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
                 System.out.println(equipo.getNombre() + " > " + equipo.getVidas()
-                        + " vidas | Tipo: " + equipo.getTipo()
+                        + " vidas | Tipo: " + equipo.getRaza()
                         + " | Misiles: " + equipo.getMisilesRonda());
             }
         }
@@ -353,7 +358,7 @@ public class Main {
      * @param numAcciones Número actual de acciones guardadas.
      * @return Número actualizado de acciones guardadas.
      * */
-    public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones,int numAcciones, int ronda) {
+    public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones, int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
 
         int accion = 0;
@@ -498,10 +503,8 @@ public class Main {
                 ((Ziggs) atacante).alAtacar(equipos, indiceAtacante, danioHecho);
             }
 
-            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
-
-            String mensaje = atacante.getNombre() + " (" + atacante.getTipo() + ") ataca a "
-                    + equipos[indiceObjetivoReal].getNombre() + " (" + equipos[indiceObjetivoReal].getTipo() + ") con "
+            String mensaje = atacante.getNombre() + " (" + atacante.getRaza() + ") ataca a "
+                    + equipos[indiceObjetivoReal].getNombre() + " (" + equipos[indiceObjetivoReal].getRaza() + ") con "
                     + misiles + " misiles y causa " + danioHecho + " de daño.";
             listaAcciones[numAcciones] = mensaje;
             numAcciones++;

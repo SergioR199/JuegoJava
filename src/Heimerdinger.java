@@ -2,7 +2,7 @@
  * Clase que representa a Heimerdinger.
  *
  */
-class Heimerdinger extends Yordle {
+class Heimerdinger extends Personajes {
 
     private int contador = 0;
 
@@ -37,4 +37,13 @@ class Heimerdinger extends Yordle {
             }
         }
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "YORDLD".
+     * */
+    public String getRaza() { return "YORDLE"; }
 }

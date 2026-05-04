@@ -2,7 +2,7 @@
  * Clase que representa a Gangplank.
  *
  */
-class Gangplank extends Humano {
+class Gangplank extends Personajes {
 
     /**
      * Constructor de Gangplank con sus estadísticas iniciales.
@@ -25,4 +25,13 @@ class Gangplank extends Humano {
         System.out.println(nombre + " mejora su curación!");
         return curacionMejorada;
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
+    public String getRaza() { return "HUMANO"; }
 }

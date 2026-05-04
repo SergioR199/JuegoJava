@@ -3,7 +3,7 @@
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public abstract class Personajes {
+public class Personajes {
     protected String nombre;
     protected int vidas;
     protected int vidaMaxima;
@@ -42,12 +42,14 @@ public abstract class Personajes {
     }
 
     /**
-     * Getter del tipo del personaje (Humano, Yordle o Ser Mágico).
+     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
      * No hace nada por defecto pero se puede sobrescribir en subclases.
      *
      * @return Tipo del personaje.
      * */
-    public abstract String getTipo();
+    public String getRaza(){
+        return "DESCONOCIDA";
+    }
 
     /**
      * Método que calcula un ataque contra este personaje aplicando las modificaciones del tipo,
@@ -58,18 +60,19 @@ public abstract class Personajes {
      * @return Daño final infligido.
      * */
     public int combate(int misiles, Personajes atacante) {
-        if (this instanceof Yordle && Math.random() < 0.25) {
+        if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
             System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
             return 0;
         }
 
         double multiplicador = 1.0;
 
-        if (atacante instanceof Humano && this instanceof Yordle) {
+        if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
             multiplicador = 1.25;
-        } else if (atacante instanceof SerMagico && this instanceof Humano) {
+        } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
             multiplicador = 1.75;
-        } else if (atacante instanceof SerMagico && this instanceof Yordle) {
+        } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
             multiplicador = 0.75;
         }
 
@@ -80,6 +83,8 @@ public abstract class Personajes {
             danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
         }
 
+        atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+
         this.vidas -= danioFinal;
 
         if (this.vidas <= 0) {
@@ -88,9 +93,7 @@ public abstract class Personajes {
 
             if (atacante instanceof Jinx) {
                 ((Jinx) atacante).alMatar(this);
-            }
-
-            if (atacante instanceof Tristana) {
+            } else if (atacante instanceof Tristana) {
                 ((Tristana) atacante).alMatar(this);
             }
 

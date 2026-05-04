@@ -2,7 +2,7 @@
  * Clase que representa a Corki.
  *
  */
-class Corki extends Yordle {
+class Corki extends Personajes {
 
     private int contadorTurnos = 0;
 
@@ -69,4 +69,13 @@ class Corki extends Yordle {
             }
         }
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "YORDLE".
+     * */
+    public String getRaza() { return "YORDLE"; }
 }

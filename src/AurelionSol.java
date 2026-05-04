@@ -2,7 +2,7 @@
  * Clase que representa a Aurelion Sol.
  *
  */
-class AurelionSol extends SerMagico {
+class AurelionSol extends Personajes {
 
     /**
      * Constructor de Aurelion Sol con sus estadísticas iniciales.
@@ -23,4 +23,13 @@ class AurelionSol extends SerMagico {
         bonusDanio += 5;
         System.out.println(nombre + " gana +5 daño permanente!");
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "SER MAGICO".
+     * */
+    public String getRaza() { return "SER MAGICO"; }
 }

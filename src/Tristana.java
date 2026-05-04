@@ -2,7 +2,7 @@
  * Clase que representa a Tristana.
  *
  */
-class Tristana extends Yordle {
+class Tristana extends Personajes {
 
     /**
      * Constructor de Tristana con sus estadísticas iniciales.
@@ -27,4 +27,13 @@ class Tristana extends Yordle {
 
         System.out.println(nombre + " se cura 15 de vida!");
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "YORDLE".
+     * */
+    public String getRaza() { return "YORDLE"; }
 }

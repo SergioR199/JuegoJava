@@ -2,7 +2,7 @@
  * Clase que representa a Jhin.
  *
  */
-class Jhin extends Humano {
+class Jhin extends Personajes {
     private int contadorAtaques = 0;
 
     /**
@@ -31,4 +31,13 @@ class Jhin extends Humano {
 
         return danioBase;
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
+    public String getRaza() { return "HUMANO"; }
 }

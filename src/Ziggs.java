@@ -2,7 +2,7 @@
  * Clase que representa a Ziggs.
  *
  */
-class Ziggs extends Yordle {
+class Ziggs extends Personajes {
 
     /**
      * Constructor de Ziggs con sus estadísticas iniciales.
@@ -38,4 +38,13 @@ class Ziggs extends Yordle {
             }
         }
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "SER MAGICO".
+     * */
+    public String getRaza() { return "SER MAGICO"; }
 }

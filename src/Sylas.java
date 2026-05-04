@@ -2,7 +2,7 @@
  * Clase que representa a Sylas.
  *
  */
-class Sylas extends Humano {
+class Sylas extends Personajes {
 
     private Personajes pasivaRobada = null;
     private int contadorTurnos = 0;
@@ -53,4 +53,13 @@ class Sylas extends Humano {
             }
         }
     }
+
+    @Override
+
+    /**
+     * Getter de la raza del personaje.
+     *
+     * @return String "HUMANO".
+     * */
+    public String getRaza() { return "HUMANO"; }
 }
