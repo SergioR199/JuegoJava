@@ -3,7 +3,7 @@
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public abstract class Personajes {
+public class Personajes {
     protected String nombre;
     protected int vidas;
     protected int vidaMaxima;
@@ -47,7 +47,9 @@ public abstract class Personajes {
      *
      * @return Tipo del personaje.
      * */
-    public abstract String getRaza();
+    public String getRaza(){
+        return "DESCONOCIDA";
+    }
 
     /**
      * Método que calcula un ataque contra este personaje aplicando las modificaciones del tipo,
@@ -60,6 +62,7 @@ public abstract class Personajes {
     public int combate(int misiles, Personajes atacante) {
         if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
             System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
             return 0;
         }
 
@@ -80,6 +83,8 @@ public abstract class Personajes {
             danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
         }
 
+        atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+
         this.vidas -= danioFinal;
 
         if (this.vidas <= 0) {
@@ -88,9 +93,7 @@ public abstract class Personajes {
 
             if (atacante instanceof Jinx) {
                 ((Jinx) atacante).alMatar(this);
-            }
-
-            if (atacante instanceof Tristana) {
+            } else if (atacante instanceof Tristana) {
                 ((Tristana) atacante).alMatar(this);
             }
 
