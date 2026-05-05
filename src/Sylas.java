@@ -3,31 +3,26 @@ class Sylas extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor
+     * Constructor de Sylas con sus estadísticas iniciales.
      */
-
     public Sylas() {
         super("Sylas", 190, 50);
     }
 
     /**
-     * Pasiva: cada 2 turnos roba vida y misiles
+     * Método que hace que este personaje robe vida y misiles cada 2 turnos.
+     *
+     * @param turnoGlobal Número del turno global actual del juego.
      */
     @Override
     public void alInicioTurnoGlobal(int turnoGlobal) {
-    /**
-    * @param turnoGlobal Número del turno global actual del juego.
-     */
+
         contadorTurnos++;
 
         if (contadorTurnos == 2) {
             contadorTurnos = 0;
 
             Personajes objetivo = null;
-
-            /**
-             * buscar enemigo con más vida
-             */
 
             for (Personajes p : Main.equipos) {
                 if (p != this && p.getVidas() > 0) {
@@ -39,10 +34,6 @@ class Sylas extends Personajes {
 
             if (objetivo != null) {
 
-                /**
-                 * robar vida
-                 */
-
                 int roboVida = 10;
                 objetivo.vidas -= roboVida;
                 this.vidas += roboVida;
@@ -50,10 +41,6 @@ class Sylas extends Personajes {
                 if (this.vidas > this.vidaMaxima) {
                     this.vidas = this.vidaMaxima;
                 }
-
-                /**
-                 * robar misiles
-                 */
 
                 int roboMisiles = Math.min(5, objetivo.getMisilesRonda());
                 objetivo.setMisilesRonda(objetivo.getMisilesRonda() - roboMisiles);

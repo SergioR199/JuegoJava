@@ -65,7 +65,7 @@ public class InformacionJuego {
         do {
             mostrarPersonajes();
             System.out.println("0- Salir");
-            personaje = leerEnteroRango(sc, 0, PERSONAJES.length, "Escoge el número del personaje: ");
+            personaje = Main.leerEnteroRango(sc, 0, PERSONAJES.length, "Escoge el número del personaje: ");
 
             switch (personaje) {
                 case 1:
@@ -121,36 +121,5 @@ public class InformacionJuego {
             System.out.println();
 
         } while (personaje != 0);
-    }
-
-    /**
-     * Método que lee el número entero que introduce el usuario dentro del rango definido,
-     * teniendo que repetir hasta que se introduzca un valor válido.
-     *
-     * @param sc      Scanner que se utiliza para leer el número que introduce el usuario
-     * @param min     Valor mínimo
-     * @param max     Valor máximo
-     * @param mensaje Mensaje que se le muestra al usuario
-     * @return Número entero válido
-     *
-     */
-    private static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
-        while (true) {
-            try {
-                System.out.print(mensaje);
-                int valor = sc.nextInt();
-                sc.nextLine();
-
-                if (valor < min || valor > max) {
-                    System.out.println("Elige un número entre " + min + " y " + max + ".");
-                } else {
-                    return valor;
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido. Introduce un número entero.");
-                sc.nextLine();
-            }
-        }
     }
 }

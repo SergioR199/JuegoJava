@@ -85,7 +85,7 @@ public class Main {
                     break;
 
                 case 5:
-                    lecturaArchivo();
+                    Ganadores.lecturaArchivo();
                     break;
             }
 
@@ -314,7 +314,7 @@ public class Main {
             System.out.println();
         }
 
-        anunciarGanador(equipos, partida);
+        Ganadores.anunciarGanador(equipos, partida);
     }
 
     /**
@@ -427,7 +427,7 @@ public class Main {
 
             if (misilesDefensa > 0) {
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misilesDefensa);
-                int defensaTotal = atacante.defender(misilesDefensa);
+                int defensaTotal = atacante.accion("defender", misilesDefensa, atacante);
 
                 String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa
                         + " misiles y recupera " + defensaTotal + " vidas.";
@@ -493,7 +493,8 @@ public class Main {
 
             int indiceObjetivoReal = objetivosValidos[opcionObjetivo - 1];
 
-            int danioHecho = equipos[indiceObjetivoReal].combate(misiles, atacante);
+            int danioHecho = equipos[indiceObjetivoReal].accion("atacar", misiles, atacante);
+
 
             if (atacante instanceof Rumble) {
                 ((Rumble) atacante).alAtacar(equipos, indiceObjetivoReal, danioHecho);
@@ -514,87 +515,33 @@ public class Main {
     }
 
     /**
-     * Método que anuncia qué equipo ha ganado la partida y lo guarda en el archivo "ganadores.txt".
-     * Si ningún personaje tiene vidas, se registra un empate.
+     * Método que lee el número entero que introduce el usuario dentro del rango definido,
+     * teniendo que repetir hasta que se introduzca un valor válido.
      *
-     * @param equipos Array con todos los personajes de la partida.
-     * @param partida Número de la partida que se está registrando.
-     * */
-    public static void anunciarGanador(Personajes[] equipos, int partida) {
-        boolean empate = true;
+     * @param sc      Scanner que se utiliza para leer el número que introduce el usuario
+     * @param min     Valor mínimo
+     * @param max     Valor máximo
+     * @param mensaje Mensaje que se le muestra al usuario
+     * @return Número entero válido
+     *
+     */
+    public static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
+        while (true) {
+            try {
+                System.out.print(mensaje);
+                int valor = sc.nextInt();
+                sc.nextLine();
 
-        for (Personajes equipo : equipos) {
-            if (equipo.getVidas() > 0) {
-
-                empate = false;
-
-                try{
-
-                    BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
-
-                    guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
-                    guardarGanadores.newLine();
-                    guardarGanadores.write(equipo.getNombre());
-                    guardarGanadores.newLine();
-                    guardarGanadores.newLine();
-
-                    guardarGanadores.close();
-
-                }catch(IOException e){
-
-                    System.out.println("ERROR DE ESCRITURA");
+                if (valor < min || valor > max) {
+                    System.out.println("Elige un número entre " + min + " y " + max + ".");
+                } else {
+                    return valor;
                 }
 
-                lecturaArchivo();
-
-                return;
+            } catch (InputMismatchException e) {
+                System.out.println("Valor no válido. Introduce un número entero.");
+                sc.nextLine();
             }
-        }
-
-        if(empate){
-
-            try{
-
-                BufferedWriter guardarGanadores = new BufferedWriter(new FileWriter("ganadores.txt", true));
-
-                guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
-                guardarGanadores.newLine();
-                guardarGanadores.write("EMPATE");
-                guardarGanadores.newLine();
-                guardarGanadores.newLine();
-
-                guardarGanadores.close();
-
-            }catch(IOException e){
-
-                System.out.println("ERROR DE ESCRITURA");
-            }
-
-            lecturaArchivo();
-        }
-    }
-
-    /**
-     * Método que lee el contenido de "ganadores.txt" y lo muestra por consola.
-     * */
-    public static void lecturaArchivo(){
-
-        String linea = "";
-
-        try{
-
-            BufferedReader lecturaGanadores = new BufferedReader(new FileReader("ganadores.txt"));
-
-            while ((linea = lecturaGanadores.readLine()) != null) {
-
-                System.out.println(linea);
-            }
-
-            lecturaGanadores.close();
-
-        }catch(IOException e){
-
-            System.out.println("ERROR DE LECTURA");
         }
     }
 }
