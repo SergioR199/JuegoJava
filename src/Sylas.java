@@ -1,65 +1,77 @@
-/**
- * Clase que representa a Sylas.
- *
- */
 class Sylas extends Personajes {
 
-    private Personajes pasivaRobada = null;
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de Sylas con sus estadísticas iniciales.
-     *
+     * Constructor
      */
+
     public Sylas() {
         super("Sylas", 190, 50);
     }
 
     /**
-     * Método que roba la pasiva de otro personaje.
-     *
-     * @param objetivo Personaje del que se roba la pasiva.
-     *
+     * Pasiva: cada 2 turnos roba vida y misiles
      */
-    public void robarPasiva(Personajes objetivo) {
-        this.pasivaRobada = objetivo;
-        System.out.println(nombre + " ha robado la pasiva de " + objetivo.getNombre());
-    }
-
     @Override
-
-    /**
-     * Método que ejecuta la pasiva robada cada dos turnos globales.
-     *
-     * @param turnoGlobal Número de turno global actual.
-     * */
     public void alInicioTurnoGlobal(int turnoGlobal) {
-        if (pasivaRobada == null) {
-            return;
-        }
-
+    /**
+    * @param turnoGlobal Número del turno global actual del juego.
+     */
         contadorTurnos++;
 
         if (contadorTurnos == 2) {
             contadorTurnos = 0;
-            System.out.println(nombre + " activa la pasiva robada!");
 
-            if (pasivaRobada instanceof Jinx) {
-                ((Jinx) pasivaRobada).alMatar(this);
+            Personajes objetivo = null;
+
+            /**
+             * buscar enemigo con más vida
+             */
+
+            for (Personajes p : Main.equipos) {
+                if (p != this && p.getVidas() > 0) {
+                    if (objetivo == null || p.getVidas() > objetivo.getVidas()) {
+                        objetivo = p;
+                    }
+                }
             }
 
-            if (pasivaRobada instanceof Tristana) {
-                ((Tristana) pasivaRobada).alMatar(this);
+            if (objetivo != null) {
+
+                /**
+                 * robar vida
+                 */
+
+                int roboVida = 10;
+                objetivo.vidas -= roboVida;
+                this.vidas += roboVida;
+
+                if (this.vidas > this.vidaMaxima) {
+                    this.vidas = this.vidaMaxima;
+                }
+
+                /**
+                 * robar misiles
+                 */
+
+                int roboMisiles = Math.min(5, objetivo.getMisilesRonda());
+                objetivo.setMisilesRonda(objetivo.getMisilesRonda() - roboMisiles);
+                this.setMisilesRonda(this.getMisilesRonda() + roboMisiles);
+
+                System.out.println(nombre + " roba poder de " + objetivo.getNombre()
+                        + " (-10 vida, -" + roboMisiles + " misiles)");
             }
         }
     }
-
-    @Override
 
     /**
      * Getter de la raza del personaje.
      *
      * @return String "HUMANO".
      * */
-    public String getRaza() { return "HUMANO"; }
+    @Override
+    public String getRaza() {
+        return "HUMANO";
+    }
 }
