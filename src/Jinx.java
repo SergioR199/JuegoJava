@@ -19,7 +19,7 @@ public class Jinx extends Personajes {
      * @param objetivo Personaje eliminado por Jinx.
      *
      */
-    public void alMatar(Personajes objetivo) {
+    public void pasivaMatar(Personajes objetivo) {
         this.bonusMisiles += 10;
         System.out.println(nombre + " gana +10 misiles permanentes!");
     }

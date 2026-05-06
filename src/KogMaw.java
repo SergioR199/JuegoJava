@@ -19,7 +19,7 @@ public class KogMaw extends Personajes {
      * @param atacante Personaje que ha matado a Kog'Maw.
      *
      */
-    public void alMorir(Personajes atacante) {
+    public void pasivaMorir(Personajes atacante) {
         atacante.vidas -= 20;
         if (atacante.vidas < 0) {
             atacante.vidas = 0;

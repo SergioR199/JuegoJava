@@ -293,7 +293,7 @@ public class Main {
         while (equiposVivos(equipos) > 1) {
             for (Personajes p : equipos) {
                 if (p.getVidas() > 0) {
-                    p.alInicioTurnoGlobal(turnoGlobal);
+                    p.pasivaRonda(turnoGlobal);
                 }
             }
 

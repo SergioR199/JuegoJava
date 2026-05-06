@@ -20,7 +20,7 @@ public class Gangplank extends Personajes {
      * @return Curación aumentada un 50%.
      *
      */
-    public int modificarCuracion(int curacionBase) {
+    public int pasivaCuracion(int curacionBase) {
         int curacionMejorada = (int) (curacionBase * 1.5);
 
         System.out.println(nombre + " mejora su curación!");

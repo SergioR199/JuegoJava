@@ -21,7 +21,7 @@ public class Heimerdinger extends Personajes {
      * @param turnoGlobal Número de turno global actual.
      * */
     @Override
-    public void alInicioTurnoGlobal(int turnoGlobal) {
+    public void pasivaRonda(int turnoGlobal) {
         contador++;
 
         if (contador == 2) {

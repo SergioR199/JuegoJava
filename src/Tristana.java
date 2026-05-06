@@ -19,7 +19,7 @@ public class Tristana extends Personajes {
      * @param objetivo Personaje eliminado.
      *
      */
-    public void alMatar(Personajes objetivo) {
+    public void pasivaMatar(Personajes objetivo) {
         this.vidas += 15;
 
         if (this.vidas > this.vidaMaxima) {
