@@ -85,11 +85,12 @@ public class Main {
     }
 
     /**
-     * Método que solicita al usuario el número de equipos que participarán en la partida.
+     * Método que pregunta al usuario cuantos equipos quiere crear para la partida.
+     * El mínimo son 3; si mete algo menor, reseteamos el valor a 0 para que el bucle le vuelva a preguntar.
      *
-     * @param sc Scanner utilizado para leer lo que escribe el usuario.
-     * @return Número de equipos válido mínimo de 3.
-     * */
+     * @param sc Scanner para leer lo que escribe el usuario.
+     * @return Número de equipos que ha elegido, siempre 3 o más.
+     */
     public static int pedirNumeroEquipos(Scanner sc) {
         int numEquipos = 0;
 
@@ -98,7 +99,8 @@ public class Main {
             try {
                 numEquipos = sc.nextInt();
                 sc.nextLine();
-                if (numEquipos < 3) {
+                numEquipos = (numEquipos >= 3) ? numEquipos : 0;
+                if (numEquipos == 0) {
                     System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
                 }
             } catch (InputMismatchException e) {
@@ -337,15 +339,17 @@ public class Main {
     }
 
     /**
-     * Método que cuenta cuántos equipos siguen vivos.
+     * Método que cuenta cuántos personajes quedan vivos en la partida.
+     * Recorre el array y por cada uno comprueba si tiene vidas usando un operador ternario.
      *
-     * @param equipos Array con todos los personajes de la partida.
-     * @return Número de personajes con vidas mayores que cero.
-     * */
+     * @param equipos El array con todos los personajes de la partida.
+     * @return Cuantos personajes tienen todavia vidas por encima de cero.
+     */
     public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
         for (Personajes e : equipos) {
-            if (e.getVidas() > 0) {
+            boolean estaVivo = (e.getVidas() > 0) ? true : false;
+            if (estaVivo) {
                 vivos++;
             }
         }
@@ -353,15 +357,18 @@ public class Main {
     }
 
     /**
-     * Método que muestra por pantalla el estado actual de todos los equipos vivos.
+     * Método que muestra el estado de todos los equipos que siguen en pie durante la ronda.
+     * También usamos un operador ternario para que escriba "vida" o "vidas" dependiendo
+     * de si son 1 o varias.
      *
-     * @param equipos Array con todos los personajes de la partida.
-     * */
+     * @param equipos El array con todos los personajes de la partida.
+     */
     public static void mostrarEstadoRonda(Personajes[] equipos) {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
+                String vidaLabel = (equipo.getVidas() == 1) ? "vida" : "vidas";
                 System.out.println(equipo.getNombre() + " [" + equipo.getIdentificador() + "] > " + equipo.getVidas()
-                        + " vidas | Tipo: " + equipo.getRaza()
+                        + " " + vidaLabel + " | Tipo: " + equipo.getRaza()
                         + " | Misiles: " + equipo.getMisilesRonda());
             }
         }
