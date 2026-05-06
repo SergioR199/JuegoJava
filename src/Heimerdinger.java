@@ -43,7 +43,7 @@ class Heimerdinger extends Personajes {
     /**
      * Getter de la raza del personaje.
      *
-     * @return String "YORDLD".
+     * @return String "YORDLE".
      * */
     public String getRaza() { return "YORDLE"; }
 }

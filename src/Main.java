@@ -37,15 +37,12 @@ public class Main {
                 try {            
                     opcion = sc.nextInt();
                     sc.nextLine();
+                    if (opcion < 0 || opcion > 5) {
+                        System.out.println("Has introducido una opción no existente. Elige otra opción (0-5).");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Has introducido un valor no válido. Elige otra opción (0-5).");
                     sc.nextLine();
-                    continue;
-                }
-
-                if (opcion < 0 || opcion > 5) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (0-5).");
-                    continue;
                 }
              }while (opcion < 0 || opcion > 5);
 
@@ -66,7 +63,6 @@ public class Main {
                     crearEquipos(equipos, sc);
                     jugar(equipos, sc, partida);
                     partida +=1;
-
                     break;
 
                 case 2:
@@ -103,14 +99,12 @@ public class Main {
             try {
                 numEquipos = sc.nextInt();
                 sc.nextLine();
+                if (numEquipos < 3) {
+                    System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
                 sc.nextLine();
-                continue;
-            }
-
-            if (numEquipos < 3) {
-                System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
             }
         } while (numEquipos < 3);
 
@@ -201,15 +195,13 @@ public class Main {
                         "Opción: ");
                 raza = sc.nextInt();
                 sc.nextLine();
+                if (raza < 1 || raza > 3) {
+                    System.out.println("Opción no válida. Elige entre 1 y 3.");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Has introducido un valor no válido.");
                 sc.nextLine();
                 raza = 0;
-                continue;
-            }
-
-            if (raza < 1 || raza > 3) {
-                System.out.println("Opción no válida. Elige entre 1 y 3.");
             }
         } while (raza < 1 || raza > 3);
 
@@ -369,14 +361,12 @@ public class Main {
                     System.out.print("En la primera ronda solo puedes atacar (1): ");
                     accion = sc.nextInt();
                     sc.nextLine();
+                    if (accion != 1) {
+                        System.out.println("En la primera ronda no puedes defenderte.");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Valor no válido. Elige 1.");
                     sc.nextLine();
-                    continue;
-                }
-
-                if (accion != 1) {
-                    System.out.println("En la primera ronda no puedes defenderte.");
                 }
             } while (accion != 1);
 
@@ -390,14 +380,12 @@ public class Main {
                     System.out.print("¿Qué quieres hacer? 1 (Atacar) 2 (Defenderte): ");
                     accion = sc.nextInt();
                     sc.nextLine();
+                    if (accion < 1 || accion > 2) {
+                        System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Valor no válido. Elige 1 o 2.");
                     sc.nextLine();
-                    continue;
-                }
-
-                if (accion < 1 || accion > 2) {
-                    System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
                 }
             } while (accion < 1 || accion > 2);
         }
@@ -411,15 +399,15 @@ public class Main {
                             "¿Cuántos misiles quieres usar para defenderte? ");
                     misilesDefensa = sc.nextInt();
                     sc.nextLine();
+                    if (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda()) {
+                        System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Has introducido un valor no válido.");
                     sc.nextLine();
-                    continue;
                 }
 
-                if (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda()) {
-                    System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
-                }
+
             } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda());
 
             if (misilesDefensa > 0) {
@@ -444,14 +432,12 @@ public class Main {
                             "¿Cuántos misiles quieres usar? ");
                     misiles = sc.nextInt();
                     sc.nextLine();
+                    if (misiles < 0 || misiles > atacante.getMisilesRonda()) {
+                        System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Has introducido un valor no válido.");
                     sc.nextLine();
-                    continue;
-                }
-
-                if (misiles < 0 || misiles > atacante.getMisilesRonda()) {
-                    System.out.println("Usa entre 0 y " + atacante.getMisilesRonda() + " misiles.");
                 }
             } while (misiles < 0 || misiles > atacante.getMisilesRonda());
 
@@ -477,14 +463,12 @@ public class Main {
                     System.out.print("¿A quién quieres atacar? Introduce el número: ");
                     opcionObjetivo = sc.nextInt();
                     sc.nextLine();
+                    if (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos) {
+                        System.out.println("Elige un objetivo válido.");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Objetivo no válido.");
                     sc.nextLine();
-                    continue;
-                }
-
-                if (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos) {
-                    System.out.println("Elige un objetivo válido.");
                 }
             } while (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos);
 
