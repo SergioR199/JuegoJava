@@ -14,6 +14,58 @@ public class Personajes {
     protected int misilesBase;
 
     /**
+     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
+     * */
+    public void reiniciarMisilesRonda() {
+        this.misilesRonda = misilesBase + bonusMisiles;
+    }
+
+    /**
+     * Getter del nombre del personaje.
+     *
+     * @return Nombre del personaje.
+     * */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Getter de las vidas actuales del personaje.
+     *
+     * @return Vidas actuales.
+     * */
+    public int getVidas() {
+        return vidas;
+    }
+
+    /**
+     * Getter de los misiles disponibles en la ronda actual.
+     *
+     * @return Misiles de la ronda actual.
+     * */
+    public int getMisilesRonda() {
+        return misilesRonda;
+    }
+
+    /**
+     * Setter de la cantidad de misiles disponibles en la ronda actual.
+     *
+     * @param misilesRonda Nuevo número de misiles de ronda.
+     * */
+    public void setMisilesRonda(int misilesRonda) {
+        this.misilesRonda = misilesRonda;
+    }
+
+    /**
+     * Getter de la vida máxima del personaje.
+     *
+     * @return Vida máxima.
+     * */
+    public int getVidaMaxima() {
+        return vidaMaxima;
+    }
+
+    /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
@@ -123,57 +175,5 @@ public class Personajes {
         }
 
         return 0;
-    }
-
-    /**
-     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
-     * */
-    public void reiniciarMisilesRonda() {
-        this.misilesRonda = misilesBase + bonusMisiles;
-    }
-
-    /**
-     * Getter del nombre del personaje.
-     *
-     * @return Nombre del personaje.
-     * */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Getter de las vidas actuales del personaje.
-     *
-     * @return Vidas actuales.
-     * */
-    public int getVidas() {
-        return vidas;
-    }
-
-    /**
-     * Getter de los misiles disponibles en la ronda actual.
-     *
-     * @return Misiles de la ronda actual.
-     * */
-    public int getMisilesRonda() {
-        return misilesRonda;
-    }
-
-    /**
-     * Setter de la cantidad de misiles disponibles en la ronda actual.
-     *
-     * @param misilesRonda Nuevo número de misiles de ronda.
-     * */
-    public void setMisilesRonda(int misilesRonda) {
-        this.misilesRonda = misilesRonda;
-    }
-
-    /**
-     * Getter de la vida máxima del personaje.
-     *
-     * @return Vida máxima.
-     * */
-    public int getVidaMaxima() {
-        return vidaMaxima;
     }
 }
