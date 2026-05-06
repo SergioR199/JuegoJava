@@ -19,8 +19,8 @@ public class AurelionSol extends Personajes {
      * @param turnoGlobal Número de turno global actual.
      * */
     @Override
-    public void alInicioTurnoGlobal(int turnoGlobal) {
-        bonusDanio += 5;
+    public void pasivaRonda(int turnoGlobal) {
+        misilesBase += 5;
         System.out.println(nombre + " gana +5 daño permanente!");
     }
 

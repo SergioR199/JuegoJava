@@ -1,9 +1,13 @@
+import java.lang.classfile.Interfaces;
+
+import interfaces.InterfacePasivas;
+
 /**
  * Clase que representa un personaje del juego.
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public class Personajes {
+public class Personajes implements InterfacePasivas {
     protected String nombre;
     protected String identificador;
     protected int vidas;
@@ -101,7 +105,7 @@ public class Personajes {
      *
      * @param turnoGlobal Número de turno global actual.
      * */
-    public void alInicioTurnoGlobal(int turnoGlobal) {
+    public void pasivaRonda(int turnoGlobal) {
         if (quemadura > 0) {
             this.vidas -= quemadura;
             if (this.vidas < 0) {
@@ -110,6 +114,14 @@ public class Personajes {
             System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
         }
     }
+
+    public int pasivaCuracion(int curacionBase){
+        return 0;
+    }
+
+    public void pasivaMatar(){}
+
+    public void pasivaMorir(){}
 
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
@@ -126,7 +138,7 @@ public class Personajes {
             int curacionFinal = curacionBase;
 
             if (this instanceof Gangplank) {
-                curacionFinal = ((Gangplank) this).modificarCuracion(curacionBase);
+                curacionFinal = ((Gangplank) this).pasivaCuracion(curacionBase);
             }
 
             this.vidas += curacionFinal;
@@ -170,13 +182,13 @@ public class Personajes {
                 System.out.println(this.nombre + " ha sido destruido.");
 
                 if (atacante instanceof Jinx) {
-                    ((Jinx) atacante).alMatar(this);
+                    ((Jinx) atacante).pasivaMatar(this);
                 } else if (atacante instanceof Tristana) {
-                    ((Tristana) atacante).alMatar(this);
+                    ((Tristana) atacante).pasivaMatar(this);
                 }
 
                 if (this instanceof KogMaw) {
-                    ((KogMaw) this).alMorir(atacante);
+                    ((KogMaw) this).pasivaMorir(atacante);
                 }
             }
 
