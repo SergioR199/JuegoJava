@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="mas errores corregidos">
-      <change afterPath="$PROJECT_DIR$/src/testJuego1_Utils/Validaciones.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AurelionSol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Corki.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ganadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ganadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gangplank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimerdinger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HumanoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HumanoPersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InformacionJuego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jhin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jinx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KogMaw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rumble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sylas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tristana.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Xerath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/YordlePersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/YordlePersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ziggs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +61,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Version.1.3-identificador",
+    "git-widget-placeholder": "experimental",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
