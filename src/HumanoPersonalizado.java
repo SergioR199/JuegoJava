@@ -2,26 +2,28 @@
  * Clase que representa a un Humano personalizado.
  *
  */
-class HumanoPersonalizado extends Personajes {
+public class HumanoPersonalizado extends Personajes {
 
     /**
      * Constructor de un humano personalizado con el nombre y estadísticas indicadas.
      *
-     * @param nombre       Nombre del personaje.
-     * @param vidas        Vidas iniciales.
+     * @param nombre Nombre del personaje.
+     * @param identificador Identificador del personaje.
+     * @param vidas Vidas iniciales.
      * @param misilesRonda Misiles iniciales por ronda.
      *
      */
-    public HumanoPersonalizado(String nombre, int vidas, int misilesRonda) {
-        super(nombre, vidas, misilesRonda);
+    public HumanoPersonalizado(String nombre, String identificador, int vidas, int misilesRonda) {
+        super(nombre, identificador, vidas, misilesRonda);
     }
-
-    @Override
 
     /**
      * Getter de la raza del personaje.
      *
      * @return String "HUMANO".
      * */
-    public String getRaza() { return "HUMANO"; }
+    @Override
+    public String getRaza() {
+        return "HUMANO";
+    }
 }

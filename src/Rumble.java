@@ -2,41 +2,42 @@
  * Clase que representa a Rumble.
  *
  */
-class Rumble extends Personajes {
+public class Rumble extends Personajes {
 
     /**
      * Constructor de Rumble con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Rumble() {
-        super("Rumble", 160, 50);
+    public Rumble(String identificador) {
+        super("Rumble", identificador, 160, 50);
     }
 
     /**
      * Método que aplica quemadura al objetivo atacado tras atacar.
      *
-     * @param equipos        Array con todos los personajes de la partida.
+     * @param equipos Array con todos los personajes de la partida.
      * @param indiceObjetivo Índice del objetivo atacado.
-     * @param danioBase      Daño base del ataque.
+     * @param danioBase Daño base del ataque.
      *
      */
     public void alAtacar(Personajes[] equipos, int indiceObjetivo, int danioBase) {
         if (indiceObjetivo >= 0 && indiceObjetivo < equipos.length &&
                 equipos[indiceObjetivo].getVidas() > 0) {
 
-            equipos[indiceObjetivo].quemadura += 5;
+            equipos[indiceObjetivo].quemadura = 5;
             System.out.println(equipos[indiceObjetivo].getNombre() +
-                    " está quemándose! (Quemadura total: " +
-                    equipos[indiceObjetivo].quemadura + ")");
+                    " está quemándose! (-5 de vida al inicio de cada turno)");
         }
     }
-
-    @Override
 
     /**
      * Getter de la raza del personaje.
      *
      * @return String "YORDLE".
      * */
-    public String getRaza() { return "YORDLE"; }
+    @Override
+    public String getRaza() {
+        return "YORDLE";
+    }
 }

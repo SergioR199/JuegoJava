@@ -5,6 +5,7 @@
  * */
 public class Personajes {
     protected String nombre;
+    protected String identificador;
     protected int vidas;
     protected int vidaMaxima;
     protected int misilesRonda;
@@ -17,11 +18,13 @@ public class Personajes {
      * Constructor de un personaje con sus estadísticas iniciales.
      *
      * @param nombre Nombre del personaje.
+     * @param identificador Identificador del personaje.
      * @param vidas Cantidad inicial de vidas.
      * @param misilesRonda Misiles disponibles por ronda.
      * */
-    public Personajes(String nombre, int vidas, int misilesRonda) {
+    public Personajes(String nombre, String identificador, int vidas, int misilesRonda) {
         this.nombre = nombre;
+        this.identificador = identificador;
         this.vidas = vidas;
         this.vidaMaxima = vidas;
         this.misilesRonda = misilesRonda;
@@ -35,6 +38,15 @@ public class Personajes {
      * */
     public String getNombre() {
         return nombre;
+    }
+
+    /**
+     * Getter del identificador del personaje.
+     *
+     * @return Identificador del personaje.
+     * */
+    public String getIdentificador() {
+        return identificador;
     }
 
     /**
@@ -79,7 +91,7 @@ public class Personajes {
      *
      * @return Tipo del personaje.
      * */
-    public String getRaza(){
+    public String getRaza() {
         return "DESCONOCIDA";
     }
 
@@ -92,18 +104,21 @@ public class Personajes {
     public void alInicioTurnoGlobal(int turnoGlobal) {
         if (quemadura > 0) {
             this.vidas -= quemadura;
+            if (this.vidas < 0) {
+                this.vidas = 0;
+            }
             System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
         }
     }
 
     /**
-     * Método que ataca o defiende dependiendo de la cadena que se le de como parámetro.
+     * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
      *
-     * @param accion "atacar" o "defender"
-     * @param misiles Cantidad de misiles usados
-     * @param atacante Personaje que realiza la acción
-     * @return Resultado final: daño causado o vida recuperada
-     */
+     * @param accion "atacar" o "defender".
+     * @param misiles Cantidad de misiles usados.
+     * @param atacante Personaje que realiza la acción.
+     * @return Resultado final: daño causado o vida recuperada.
+     * */
     public int accion(String accion, int misiles, Personajes atacante) {
 
         if (accion.equalsIgnoreCase("defender")) {
@@ -121,7 +136,8 @@ public class Personajes {
             }
 
             return curacionFinal;
-        }else if (accion.equalsIgnoreCase("atacar")) {
+
+        } else if (accion.equalsIgnoreCase("atacar")) {
             if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
                 System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
@@ -138,7 +154,7 @@ public class Personajes {
                 multiplicador = 0.75;
             }
 
-            int danioBase = (int) (misiles * multiplicador);
+            int danioBase = (int) (misiles * multiplicador) + atacante.bonusDanio;
             int danioFinal = danioBase;
 
             if (atacante instanceof Jhin) {

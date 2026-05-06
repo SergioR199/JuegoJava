@@ -2,15 +2,16 @@
  * Clase que representa a Jhin.
  *
  */
-class Jhin extends Personajes {
+public class Jhin extends Personajes {
     private int contadorAtaques = 0;
 
     /**
      * Constructor de Jhin con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Jhin() {
-        super("Jhin", 170, 60);
+    public Jhin(String identificador) {
+        super("Jhin", identificador, 170, 60);
     }
 
     /**
@@ -32,12 +33,13 @@ class Jhin extends Personajes {
         return danioBase;
     }
 
-    @Override
-
     /**
      * Getter de la raza del personaje.
      *
      * @return String "HUMANO".
      * */
-    public String getRaza() { return "HUMANO"; }
+    @Override
+    public String getRaza() {
+        return "HUMANO";
+    }
 }

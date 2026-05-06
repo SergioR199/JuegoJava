@@ -1,12 +1,18 @@
-class Sylas extends Personajes {
+/**
+ * Clase que representa a Sylas.
+ *
+ */
+public class Sylas extends Personajes {
 
     private int contadorTurnos = 0;
 
     /**
      * Constructor de Sylas con sus estadísticas iniciales.
+     *
+     * @param identificador Identificador del personaje.
      */
-    public Sylas() {
-        super("Sylas", 190, 50);
+    public Sylas(String identificador) {
+        super("Sylas", identificador, 190, 50);
     }
 
     /**
@@ -33,9 +39,12 @@ class Sylas extends Personajes {
             }
 
             if (objetivo != null) {
-
                 int roboVida = 10;
                 objetivo.vidas -= roboVida;
+                if (objetivo.vidas < 0) {
+                    objetivo.vidas = 0;
+                }
+
                 this.vidas += roboVida;
 
                 if (this.vidas > this.vidaMaxima) {

@@ -2,25 +2,25 @@
  * Clase que representa a Heimerdinger.
  *
  */
-class Heimerdinger extends Personajes {
+public class Heimerdinger extends Personajes {
 
     private int contador = 0;
 
     /**
      * Constructor de Heimerdinger con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Heimerdinger() {
-        super("Heimerdinger", 150, 55);
+    public Heimerdinger(String identificador) {
+        super("Heimerdinger", identificador, 150, 55);
     }
-
-    @Override
 
     /**
      * Método que coloca una torreta cada dos turnos globales e inflige daño a los enemigos vivos.
      *
      * @param turnoGlobal Número de turno global actual.
      * */
+    @Override
     public void alInicioTurnoGlobal(int turnoGlobal) {
         contador++;
 
@@ -32,18 +32,22 @@ class Heimerdinger extends Personajes {
             for (Personajes p : Main.equipos) {
                 if (p.getVidas() > 0 && p != this) {
                     p.vidas -= 10;
+                    if (p.vidas < 0) {
+                        p.vidas = 0;
+                    }
                     System.out.println(p.getNombre() + " recibe 10 de daño de la torreta");
                 }
             }
         }
     }
 
-    @Override
-
     /**
      * Getter de la raza del personaje.
      *
      * @return String "YORDLE".
      * */
-    public String getRaza() { return "YORDLE"; }
+    @Override
+    public String getRaza() {
+        return "YORDLE";
+    }
 }

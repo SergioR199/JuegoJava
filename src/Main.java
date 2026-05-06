@@ -2,6 +2,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import testJuego1_Utils.Validaciones;
 
 /**
  * Clase principal del juego. Contiene el menú inicial,
@@ -21,9 +22,7 @@ public class Main {
         int opcion = -1;
         int partida = 1;
 
-
         do {
-            
             System.out.print("---- MENU ----\n" +
                     "1º JUGAR\n" +
                     "2º REGLAS DEL JUEGO\n" +
@@ -33,8 +32,8 @@ public class Main {
                     "0º SALIR\n" +
                     "Elige una opción: ");
 
-             do{
-                try {            
+            do {
+                try {
                     opcion = sc.nextInt();
                     sc.nextLine();
                     if (opcion < 0 || opcion > 5) {
@@ -43,16 +42,16 @@ public class Main {
                 } catch (InputMismatchException e) {
                     System.out.println("Has introducido un valor no válido. Elige otra opción (0-5).");
                     sc.nextLine();
+                    opcion = -1;
                 }
-             }while (opcion < 0 || opcion > 5);
+            } while (opcion < 0 || opcion > 5);
 
             switch (opcion) {
                 case 0:
                     System.out.println("Saliendo del juego...");
-
-                    try{
-                        new FileWriter ("ganadores.txt").close();
-                    }catch(IOException e){
+                    try {
+                        new FileWriter("ganadores.txt").close();
+                    } catch (IOException e) {
                         System.out.println("ERROR DE BORRADO");
                     }
                     break;
@@ -62,7 +61,7 @@ public class Main {
                     equipos = new Personajes[pedirNumeroEquipos(sc)];
                     crearEquipos(equipos, sc);
                     jugar(equipos, sc, partida);
-                    partida +=1;
+                    partida += 1;
                     break;
 
                 case 2:
@@ -105,10 +104,33 @@ public class Main {
             } catch (InputMismatchException e) {
                 System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
                 sc.nextLine();
+                numEquipos = 0;
             }
         } while (numEquipos < 3);
 
         return numEquipos;
+    }
+
+    /**
+     * Método que pide un identificador válido con formato de 4 números y 3 letras mayúsculas.
+     *
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
+     * @return Identificador válido.
+     * */
+    public static String pedirIdentificador(Scanner sc) {
+        String identificador;
+
+        do {
+            System.out.print("Introduce el identificador (4 números y 3 letras mayúsculas, ej. 4325EIS): ");
+            identificador = sc.nextLine().trim();
+
+            if (!Validaciones.validarIdentificador(identificador)) {
+                System.out.println("Identificador no válido. Debe tener 4 números seguidos de 3 letras mayúsculas.");
+            }
+
+        } while (!identificador.matches("^[0-9]{4}[A-Z]{3}$"));
+
+        return identificador;
     }
 
     /**
@@ -121,9 +143,11 @@ public class Main {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             int opcionPersonaje = pedirPersonaje(sc);
-            equipos[i] = crearPersonaje(opcionPersonaje, sc);
+            String identificador = pedirIdentificador(sc);
+            equipos[i] = crearPersonaje(opcionPersonaje, identificador, sc);
 
             System.out.println("Equipo creado: " + equipos[i].getNombre()
+                    + " | ID: " + equipos[i].getIdentificador()
                     + " | Tipo: " + equipos[i].getRaza()
                     + " | Vidas: " + equipos[i].getVidas()
                     + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
@@ -134,52 +158,54 @@ public class Main {
      * Método que crea un personaje según la opción seleccionada por el usuario.
      *
      * @param opcion Número que corresponde al personaje elegido.
+     * @param identificador Identificador del personaje.
      * @param sc Scanner utilizado para crear un personaje personalizado si se necesita.
      * @return Instancia del personaje seleccionado.
      * */
-    public static Personajes crearPersonaje(int opcion, Scanner sc) {
+    public static Personajes crearPersonaje(int opcion, String identificador, Scanner sc) {
         switch (opcion) {
             case 1:
-                return new Jinx();
+                return new Jinx(identificador);
             case 2:
-                return new Jhin();
+                return new Jhin(identificador);
             case 3:
-                return new Gangplank();
+                return new Gangplank(identificador);
             case 4:
-                return new Rumble();
+                return new Rumble(identificador);
             case 5:
-                return new Heimerdinger();
+                return new Heimerdinger(identificador);
             case 6:
-                return new KogMaw();
+                return new KogMaw(identificador);
             case 7:
-                return new AurelionSol();
+                return new AurelionSol(identificador);
             case 8:
-                return new Sylas();
+                return new Sylas(identificador);
             case 9:
-                return new Tristana();
+                return new Tristana(identificador);
             case 10:
-                return new Xerath();
+                return new Xerath(identificador);
             case 11:
-                return new Ziggs();
+                return new Ziggs(identificador);
             case 12:
-                return new Corki();
+                return new Corki(identificador);
             case 13:
-                return crearPersonalizado(sc);
+                return crearPersonalizado(identificador, sc);
             case 14:
                 int aleatorio = (int) (Math.random() * 12) + 1;
-                return crearPersonaje(aleatorio, sc);
+                return crearPersonaje(aleatorio, identificador, sc);
             default:
-                return new Jinx();
+                return new Jinx(identificador);
         }
     }
 
     /**
      * Método que crea un personaje personalizado introducido por el usuario.
      *
+     * @param identificador Identificador del personaje.
      * @param sc Scanner utilizado para leer el nombre y el tipo del personaje.
      * @return Instancia de un personaje personalizado.
      * */
-    public static Personajes crearPersonalizado(Scanner sc) {
+    public static Personajes crearPersonalizado(String identificador, Scanner sc) {
         String nombre;
         int raza;
 
@@ -207,13 +233,13 @@ public class Main {
 
         switch (raza) {
             case 1:
-                return new HumanoPersonalizado(nombre, 200, 50);
+                return new HumanoPersonalizado(nombre, identificador, 200, 50);
             case 2:
-                return new YordlePersonalizado(nombre, 200, 50);
+                return new YordlePersonalizado(nombre, identificador, 200, 50);
             case 3:
-                return new SerMagicoPersonalizado(nombre, 200, 50);
+                return new SerMagicoPersonalizado(nombre, identificador, 200, 50);
             default:
-                return new HumanoPersonalizado(nombre, 200, 50);
+                return new HumanoPersonalizado(nombre, identificador, 200, 50);
         }
     }
 
@@ -256,16 +282,19 @@ public class Main {
      *
      * @param equipos Array con todos los personajes de la partida.
      * @param sc Scanner utilizado para leer las decisiones de los jugadores.
+     * @param partida Número de partida actual.
      * */
     public static void jugar(Personajes[] equipos, Scanner sc, int partida) {
         int ronda = 1;
         int turnoGlobal = 0;
+
         while (equiposVivos(equipos) > 1) {
             for (Personajes p : equipos) {
                 if (p.getVidas() > 0) {
                     p.alInicioTurnoGlobal(turnoGlobal);
                 }
             }
+
             turnoGlobal++;
             System.out.println("\n---- " + ronda + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
@@ -294,11 +323,12 @@ public class Main {
                     "Equipos vivos: " + equiposVivos(equipos));
             for (Personajes e : equipos) {
                 if (e.getVidas() > 0) {
-                    System.out.println(e.getNombre() + ": " + e.getVidas()
+                    System.out.println(e.getNombre() + " [" + e.getIdentificador() + "]: " + e.getVidas()
                             + " vidas | Tipo: " + e.getRaza()
                             + " | Misiles próxima ronda: " + e.getMisilesRonda());
                 }
             }
+
             ronda++;
             System.out.println();
         }
@@ -330,7 +360,7 @@ public class Main {
     public static void mostrarEstadoRonda(Personajes[] equipos) {
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
-                System.out.println(equipo.getNombre() + " > " + equipo.getVidas()
+                System.out.println(equipo.getNombre() + " [" + equipo.getIdentificador() + "] > " + equipo.getVidas()
                         + " vidas | Tipo: " + equipo.getRaza()
                         + " | Misiles: " + equipo.getMisilesRonda());
             }
@@ -345,11 +375,11 @@ public class Main {
      * @param sc Scanner utilizado para leer las decisiones del usuario.
      * @param listaAcciones Array donde se guardan los mensajes de cada acción.
      * @param numAcciones Número actual de acciones guardadas.
+     * @param ronda Ronda actual.
      * @return Número actualizado de acciones guardadas.
      * */
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, Scanner sc, String[] listaAcciones, int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
-
         int accion = 0;
 
         if (ronda == 1) {
@@ -381,7 +411,7 @@ public class Main {
                     accion = sc.nextInt();
                     sc.nextLine();
                     if (accion < 1 || accion > 2) {
-                        System.out.println("Elige 1 (Atacar) o 2 (Defenderse).");
+                        System.out.println("Elige 1 (Atacar) o 2 (Defenderte).");
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("Valor no válido. Elige 1 o 2.");
@@ -407,14 +437,13 @@ public class Main {
                     sc.nextLine();
                 }
 
-
             } while (misilesDefensa < 0 || misilesDefensa > atacante.getMisilesRonda());
 
             if (misilesDefensa > 0) {
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misilesDefensa);
                 int defensaTotal = atacante.accion("defender", misilesDefensa, atacante);
 
-                String mensaje = atacante.getNombre() + " se defiende con " + misilesDefensa
+                String mensaje = atacante.getNombre() + " [" + atacante.getIdentificador() + "] se defiende con " + misilesDefensa
                         + " misiles y recupera " + defensaTotal + " vidas.";
                 listaAcciones[numAcciones] = mensaje;
                 numAcciones++;
@@ -452,7 +481,7 @@ public class Main {
             for (int j = 0; j < equipos.length; j++) {
                 if (j != indiceAtacante && equipos[j].getVidas() > 0) {
                     objetivosValidos[totalObjetivos] = j;
-                    System.out.println((totalObjetivos + 1) + ". " + equipos[j].getNombre());
+                    System.out.println((totalObjetivos + 1) + ". " + equipos[j].getNombre() + " [" + equipos[j].getIdentificador() + "]");
                     totalObjetivos++;
                 }
             }
@@ -473,9 +502,7 @@ public class Main {
             } while (opcionObjetivo < 1 || opcionObjetivo > totalObjetivos);
 
             int indiceObjetivoReal = objetivosValidos[opcionObjetivo - 1];
-
             int danioHecho = equipos[indiceObjetivoReal].accion("atacar", misiles, atacante);
-
 
             if (atacante instanceof Rumble) {
                 ((Rumble) atacante).alAtacar(equipos, indiceObjetivoReal, danioHecho);
@@ -485,8 +512,8 @@ public class Main {
                 ((Ziggs) atacante).alAtacar(equipos, indiceAtacante, danioHecho);
             }
 
-            String mensaje = atacante.getNombre() + " (" + atacante.getRaza() + ") ataca a "
-                    + equipos[indiceObjetivoReal].getNombre() + " (" + equipos[indiceObjetivoReal].getRaza() + ") con "
+            String mensaje = atacante.getNombre() + " [" + atacante.getIdentificador() + "] (" + atacante.getRaza() + ") ataca a "
+                    + equipos[indiceObjetivoReal].getNombre() + " [" + equipos[indiceObjetivoReal].getIdentificador() + "] (" + equipos[indiceObjetivoReal].getRaza() + ") con "
                     + misiles + " misiles y causa " + danioHecho + " de daño.";
             listaAcciones[numAcciones] = mensaje;
             numAcciones++;
@@ -499,13 +526,12 @@ public class Main {
      * Método que lee el número entero que introduce el usuario dentro del rango definido,
      * teniendo que repetir hasta que se introduzca un valor válido.
      *
-     * @param sc      Scanner que se utiliza para leer el número que introduce el usuario
-     * @param min     Valor mínimo
-     * @param max     Valor máximo
-     * @param mensaje Mensaje que se le muestra al usuario
-     * @return Número entero válido
-     *
-     */
+     * @param sc Scanner que se utiliza para leer el número que introduce el usuario.
+     * @param min Valor mínimo.
+     * @param max Valor máximo.
+     * @param mensaje Mensaje que se le muestra al usuario.
+     * @return Número entero válido.
+     * */
     public static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
         while (true) {
             try {

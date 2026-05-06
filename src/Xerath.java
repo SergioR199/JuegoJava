@@ -2,19 +2,18 @@
  * Clase que representa a Xerath.
  *
  */
-class Xerath extends Personajes {
+public class Xerath extends Personajes {
 
     private boolean escudoActivo = false;
 
     /**
      * Constructor de Xerath con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Xerath() {
-        super("Xerath", 160, 70);
+    public Xerath(String identificador) {
+        super("Xerath", identificador, 160, 70);
     }
-
-    @Override
 
     /**
      * Método que activa un escudo cuando baja de 50 vidas por primera vez.
@@ -24,6 +23,7 @@ class Xerath extends Personajes {
      * @param atacante Personaje que realiza el ataque.
      * @return Daño final recibido o 0 si el escudo se activa.
      * */
+    @Override
     public int accion(String accion, int misiles, Personajes atacante) {
 
         if (accion.equalsIgnoreCase("atacar")) {
@@ -38,12 +38,13 @@ class Xerath extends Personajes {
         return super.accion(accion, misiles, atacante);
     }
 
-    @Override
-
     /**
      * Getter de la raza del personaje.
      *
      * @return String "SER MAGICO".
      * */
-    public String getRaza() { return "SER MAGICO"; }
+    @Override
+    public String getRaza() {
+        return "SER MAGICO";
+    }
 }

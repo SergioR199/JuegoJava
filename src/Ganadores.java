@@ -28,7 +28,7 @@ public class Ganadores {
 
                     guardarGanadores.write("\tGANADOR DE LA " + partida + "ª PARTIDA");
                     guardarGanadores.newLine();
-                    guardarGanadores.write(equipo.getNombre());
+                    guardarGanadores.write(equipo.getNombre() + " [" + equipo.getIdentificador() + "]");
                     guardarGanadores.newLine();
                     guardarGanadores.newLine();
 

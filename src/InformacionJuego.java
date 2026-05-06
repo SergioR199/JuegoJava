@@ -18,14 +18,14 @@ public class InformacionJuego {
         System.out.println("\n--- REGLAS DEL JUEGO ---\n" +
                 "1. La partida se juega con un mínimo de 3 equipos.\n" +
                 "2. Cada equipo comienza con las vidas y los misiles por ronda determinados por su personaje.\n" +
-                "3. Cada personaje tiene estadísticas base propias.\n" +
+                "3. Cada personaje tiene estadísticas base propias e identificador propio.\n" +
                 "4. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.\n" +
                 "5. Los HUMANOS hacen 1,25x de daño a los YORDLES.\n" +
                 "6. Los SERES MAGICOS hacen 1,75x de daño a HUMANOS y 0,75x a YORDLES.\n" +
                 "7. En la primera ronda solo se puede atacar.\n" +
-                "8. El daño se aplica al final de la ronda, después de que todos jueguen.\n" +
+                "8. El daño se aplica inmediatamente al realizarse el ataque.\n" +
                 "9. A partir de la ronda 2 puedes atacar o defenderte.\n" +
-                "10. Primero eliges a quién atacas y luego cuántos misiles usas.\n" +
+                "10. Primero eliges cuántos misiles usas y luego a quién atacas.\n" +
                 "11. Al final de cada ronda se muestra un resumen.\n" +
                 "12. El último equipo en pie gana la partida.\n");
     }
@@ -73,15 +73,15 @@ public class InformacionJuego {
                     break;
                 case 2:
                     System.out.println("Jhin - HUMANO | Vidas: 170 | Misiles: 60\n" +
-                            "Uno,Dos,Tres...CUATRO!: cada 4 ataques hace daño crítico x2.\n");
+                            "Uno, Dos, Tres... CUATRO!: cada 4 ataques hace daño crítico x2.\n");
                     break;
                 case 3:
                     System.out.println("Gangplank - HUMANO | Vidas: 210 | Misiles: 45\n" +
-                            "Vitamina C: su curación es un 75% en vez de 50%.\n");
+                            "Vitamina C: su curación es un 50% mayor.\n");
                     break;
                 case 4:
                     System.out.println("Rumble - YORDLE | Vidas: 160 | Misiles: 50\n" +
-                            "Mechero: aplica quemadura (5 de daño por ronda al enemigo).\n");
+                            "Mechero: aplica quemadura de 5 al enemigo.\n");
                     break;
                 case 5:
                     System.out.println("Heimerdinger - YORDLE | Vidas: 150 | Misiles: 55\n" +
@@ -93,11 +93,11 @@ public class InformacionJuego {
                     break;
                 case 7:
                     System.out.println("Aurelion Sol - SER MAGICO | Vidas: 220 | Misiles: 45\n" +
-                            "Experiencia Galactica: gana +5 de daño permanente cada turno.\n");
+                            "Experiencia Galáctica: gana +5 de daño permanente cada turno.\n");
                     break;
                 case 8:
                     System.out.println("Sylas - HUMANO | Vidas: 190 | Misiles: 50\n" +
-                            "Matarreyes:Cada 2 turnos, Sylas absorbe poder del enemigo con más vida, robándole 10 de vida y hasta 5 misiles.\n");
+                            "Matarreyes: cada 2 turnos roba 10 de vida y hasta 5 misiles al enemigo con más vida.\n");
                     break;
                 case 9:
                     System.out.println("Tristana - YORDLE | Vidas: 155 | Misiles: 60\n" +
@@ -109,7 +109,7 @@ public class InformacionJuego {
                     break;
                 case 11:
                     System.out.println("Ziggs - YORDLE | Vidas: 145 | Misiles: 65\n" +
-                            "Megabomba incendiaria: Hace daño en area.\n");
+                            "Megabomba incendiaria: hace daño en área.\n");
                     break;
                 case 12:
                     System.out.println("Corki - YORDLE | Vidas: 165 | Misiles: 55\n" +
