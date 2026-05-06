@@ -14,13 +14,6 @@ public class Personajes {
     protected int misilesBase;
 
     /**
-     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
-     * */
-    public void reiniciarMisilesRonda() {
-        this.misilesRonda = misilesBase + bonusMisiles;
-    }
-
-    /**
      * Getter del nombre del personaje.
      *
      * @return Nombre del personaje.
@@ -175,5 +168,12 @@ public class Personajes {
         }
 
         return 0;
+    }
+
+    /**
+     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
+     * */
+    public void reiniciarMisilesRonda() {
+        this.misilesRonda = misilesBase + bonusMisiles;
     }
 }
