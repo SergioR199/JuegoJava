@@ -52,80 +52,77 @@ public class Personajes {
     }
 
     /**
-     * Método que calcula un ataque contra este personaje aplicando las modificaciones del tipo,
-     * la probabilidad de esquiva de los Yordles y las bonificaciones del atacante.
+     * Método que ataca o defiende dependiendo de la cadena que se le de como parámetro.
      *
-     * @param misiles Cantidad de misiles usados en el ataque.
-     * @param atacante Personaje que realiza el ataque.
-     * @return Daño final infligido.
-     * */
-    public int combate(int misiles, Personajes atacante) {
-        if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
-            System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+     * @param accion "atacar" o "defender"
+     * @param misiles Cantidad de misiles usados
+     * @param atacante Personaje que realiza la acción
+     * @return Resultado final: daño causado o vida recuperada
+     */
+    public int accion(String accion, int misiles, Personajes atacante) {
+
+        if (accion.equalsIgnoreCase("defender")) {
+            int curacionBase = misiles / 2;
+            int curacionFinal = curacionBase;
+
+            if (this instanceof Gangplank) {
+                curacionFinal = ((Gangplank) this).modificarCuracion(curacionBase);
+            }
+
+            this.vidas += curacionFinal;
+
+            if (this.vidas > this.vidaMaxima) {
+                this.vidas = this.vidaMaxima;
+            }
+
+            return curacionFinal;
+        }else if (accion.equalsIgnoreCase("atacar")) {
+            if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
+                System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+                atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+                return 0;
+            }
+
+            double multiplicador = 1.0;
+
+            if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
+                multiplicador = 1.25;
+            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
+                multiplicador = 1.75;
+            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
+                multiplicador = 0.75;
+            }
+
+            int danioBase = (int) (misiles * multiplicador);
+            int danioFinal = danioBase;
+
+            if (atacante instanceof Jhin) {
+                danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
+            }
+
             atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
-            return 0;
-        }
 
-        double multiplicador = 1.0;
+            this.vidas -= danioFinal;
 
-        if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
-            multiplicador = 1.25;
-        } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
-            multiplicador = 1.75;
-        } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
-            multiplicador = 0.75;
-        }
+            if (this.vidas <= 0) {
+                this.vidas = 0;
+                System.out.println(this.nombre + " ha sido destruido.");
 
-        int danioBase = (int) (misiles * multiplicador);
-        int danioFinal = danioBase;
+                if (atacante instanceof Jinx) {
+                    ((Jinx) atacante).alMatar(this);
+                } else if (atacante instanceof Tristana) {
+                    ((Tristana) atacante).alMatar(this);
+                }
 
-        if (atacante instanceof Jhin) {
-            danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
-        }
-
-        atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
-
-        this.vidas -= danioFinal;
-
-        if (this.vidas <= 0) {
-            this.vidas = 0;
-            System.out.println(this.nombre + " ha sido destruido.");
-
-            if (atacante instanceof Jinx) {
-                ((Jinx) atacante).alMatar(this);
-            } else if (atacante instanceof Tristana) {
-                ((Tristana) atacante).alMatar(this);
+                if (this instanceof KogMaw) {
+                    ((KogMaw) this).alMorir(atacante);
+                }
             }
 
-            if (this instanceof KogMaw) {
-                ((KogMaw) this).alMorir(atacante);
-            }
+            return danioFinal;
         }
 
-        return danioFinal;
-    }
-
-    /**
-     * Método que ejecuta la defensa usando misiles y aplica la curación final.
-     *
-     * @param misilesDefensa Cantidad de misiles usados para defenderse.
-     * @return Cantidad de vida recuperada.
-     * */
-    public int defender(int misilesDefensa) {
-        int curacionBase = misilesDefensa / 2;
-        int curacionFinal = curacionBase;
-
-        if (this instanceof Gangplank) {
-            curacionFinal = ((Gangplank) this).modificarCuracion(curacionBase);
-        }
-
-        this.vidas += curacionFinal;
-
-        if (this.vidas > this.vidaMaxima) {
-            this.vidas = this.vidaMaxima;
-        }
-
-        return curacionFinal;
+        return 0;
     }
 
     /**

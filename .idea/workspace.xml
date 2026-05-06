@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="Comente en javadoc" />
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="for">
+      <change afterPath="$PROJECT_DIR$/src/Ganadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InformacionJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sylas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Xerath.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +66,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "experimental",
+    "git-widget-placeholder": "Version.1.3",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -204,15 +212,7 @@
       <option name="project" value="LOCAL" />
       <updated>1777928310311</updated>
     </task>
-    <task id="LOCAL-00014" summary="Comente en javadoc">
-      <option name="closed" value="true" />
-      <created>1777928874328</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1777928874328</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +236,6 @@
     <MESSAGE value="defnderse corregido" />
     <MESSAGE value="clases borradas y apartado agregado" />
     <MESSAGE value="for" />
-    <MESSAGE value="Comente en javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comente en javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="for" />
   </component>
 </project>
