@@ -14,6 +14,21 @@ public class Personajes {
     protected int misilesBase;
 
     /**
+     * Constructor de un personaje con sus estadísticas iniciales.
+     *
+     * @param nombre Nombre del personaje.
+     * @param vidas Cantidad inicial de vidas.
+     * @param misilesRonda Misiles disponibles por ronda.
+     * */
+    public Personajes(String nombre, int vidas, int misilesRonda) {
+        this.nombre = nombre;
+        this.vidas = vidas;
+        this.vidaMaxima = vidas;
+        this.misilesRonda = misilesRonda;
+        this.misilesBase = misilesRonda;
+    }
+
+    /**
      * Getter del nombre del personaje.
      *
      * @return Nombre del personaje.
@@ -59,6 +74,16 @@ public class Personajes {
     }
 
     /**
+     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
+     * Por defecto devuelve "Desconocida" pero se puede sobrescribir en subclases.
+     *
+     * @return Tipo del personaje.
+     * */
+    public String getRaza(){
+        return "DESCONOCIDA";
+    }
+
+    /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
@@ -69,31 +94,6 @@ public class Personajes {
             this.vidas -= quemadura;
             System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
         }
-    }
-
-    /**
-     * Constructor de un personaje con sus estadísticas iniciales.
-     *
-     * @param nombre Nombre del personaje.
-     * @param vidas Cantidad inicial de vidas.
-     * @param misilesRonda Misiles disponibles por ronda.
-     * */
-    public Personajes(String nombre, int vidas, int misilesRonda) {
-        this.nombre = nombre;
-        this.vidas = vidas;
-        this.vidaMaxima = vidas;
-        this.misilesRonda = misilesRonda;
-        this.misilesBase = misilesRonda;
-    }
-
-    /**
-     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
-     * No hace nada por defecto pero se puede sobrescribir en subclases.
-     *
-     * @return Tipo del personaje.
-     * */
-    public String getRaza(){
-        return "DESCONOCIDA";
     }
 
     /**
