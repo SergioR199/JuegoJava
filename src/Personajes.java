@@ -115,12 +115,29 @@ public class Personajes implements InterfacePasivas {
         }
     }
 
+    /**
+     * Método que permite modificar la curación base recibida por el personaje.
+     * Está pensado para ser sobrescrito por subclases que tengan habilidades pasivas de curación.
+     *
+     * @param curacionBase Cantidad de curación inicial calculada.
+     * @return Cantidad final de curación tras aplicar la pasiva.
+     */
     public int pasivaCuracion(int curacionBase){
         return 0;
     }
 
+    /**
+     * Método que se ejecuta cuando el personaje elimina a otro.
+     * Puede ser sobrescrito por subclases para aplicar efectos especiales al matar,
+     * como obtener bonificaciones o activar habilidades.
+     */
     public void pasivaMatar(){}
 
+    /**
+     * Método que se ejecuta cuando el personaje muere.
+     * Puede ser sobrescrito por subclases para aplicar efectos al morir,
+     * como infligir daño adicional o activar habilidades especiales.
+     */
     public void pasivaMorir(){}
 
     /**
