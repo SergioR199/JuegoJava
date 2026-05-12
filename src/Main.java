@@ -118,17 +118,14 @@ public class Main {
      * @return Identificador válido.
      * */
     public static String pedirIdentificador(Scanner sc) {
-        String identificador;
+        String identificador = "";
 
-        do {
             System.out.print("Introduce el identificador (4 números y 3 letras mayúsculas, ej. 4325EIS): ");
             identificador = sc.nextLine().trim();
 
             if (!Validaciones.validarIdentificador(identificador)) {
                 System.out.println("Identificador no válido. Debe tener 4 números seguidos de 3 letras mayúsculas.");
             }
-
-        } while (!identificador.matches("^[0-9]{4}[A-Z]{3}$"));
 
         return identificador;
     }
