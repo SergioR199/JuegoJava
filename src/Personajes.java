@@ -81,15 +81,6 @@ public class Personajes implements InterfacePasivas {
     }
 
     /**
-     * Getter de la vida máxima del personaje.
-     *
-     * @return Vida máxima.
-     * */
-    public int getVidaMaxima() {
-        return vidaMaxima;
-    }
-
-    /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
