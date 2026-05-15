@@ -2,14 +2,15 @@
  * Clase que representa a Jinx.
  *
  */
-class Jinx extends Personajes {
+public class Jinx extends Personajes {
 
     /**
      * Constructor de Jinx con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Jinx() {
-        super("Jinx", 180, 55);
+    public Jinx(String identificador) {
+        super("Jinx", identificador, 180, 55);
     }
 
     /**
@@ -18,17 +19,8 @@ class Jinx extends Personajes {
      * @param objetivo Personaje eliminado por Jinx.
      *
      */
-    public void alMatar(Personajes objetivo) {
+    public void pasivaMatar(Personajes objetivo) {
         this.bonusMisiles += 10;
         System.out.println(nombre + " gana +10 misiles permanentes!");
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    public String getRaza() { return "HUMANO"; }
 }

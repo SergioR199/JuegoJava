@@ -2,14 +2,15 @@
  * Clase que representa a Tristana.
  *
  */
-class Tristana extends Personajes {
+public class Tristana extends Personajes {
 
     /**
      * Constructor de Tristana con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Tristana() {
-        super("Tristana", 155, 60);
+    public Tristana(String identificador) {
+        super("Tristana", identificador, 155, 60);
     }
 
     /**
@@ -18,7 +19,7 @@ class Tristana extends Personajes {
      * @param objetivo Personaje eliminado.
      *
      */
-    public void alMatar(Personajes objetivo) {
+    public void pasivaMatar(Personajes objetivo) {
         this.vidas += 15;
 
         if (this.vidas > this.vidaMaxima) {
@@ -27,13 +28,4 @@ class Tristana extends Personajes {
 
         System.out.println(nombre + " se cura 15 de vida!");
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    public String getRaza() { return "YORDLE"; }
 }

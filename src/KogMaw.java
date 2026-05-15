@@ -2,14 +2,15 @@
  * Clase que representa a Kog'Maw.
  *
  */
-class KogMaw extends Personajes {
+public class KogMaw extends Personajes {
 
     /**
      * Constructor de Kog'Maw con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public KogMaw() {
-        super("Kog'Maw", 170, 60);
+    public KogMaw(String identificador) {
+        super("Kog'Maw", identificador, 170, 60);
     }
 
     /**
@@ -18,17 +19,11 @@ class KogMaw extends Personajes {
      * @param atacante Personaje que ha matado a Kog'Maw.
      *
      */
-    public void alMorir(Personajes atacante) {
+    public void pasivaMorir(Personajes atacante) {
         atacante.vidas -= 20;
+        if (atacante.vidas < 0) {
+            atacante.vidas = 0;
+        }
         System.out.println(nombre + " explota y hace 20 de daño!");
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    public String getRaza() { return "SER MAGICO"; }
 }

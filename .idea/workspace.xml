@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="Comente en javadoc">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ALGUNOS ERRORES CORREGIDOS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testJuego1_Utils/Validaciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testJuego1_Utils/Validaciones.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +17,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
@@ -22,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="experimental2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,12 +36,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -51,30 +54,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "experimental",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/alumno/IdeaProjects/testJuego/src/Main.java",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Version.1.3&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/alumno/IdeaProjects/testJuego/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -206,7 +209,79 @@
       <option name="project" value="LOCAL" />
       <updated>1777928310311</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1777969392537</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777969392537</updated>
+    </task>
+    <task id="LOCAL-00015" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1777969481244</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1777969481244</updated>
+    </task>
+    <task id="LOCAL-00016" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1778085471699</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778085471699</updated>
+    </task>
+    <task id="LOCAL-00017" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1778086068824</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778086068824</updated>
+    </task>
+    <task id="LOCAL-00018" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1778086074154</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778086074154</updated>
+    </task>
+    <task id="LOCAL-00019" summary="mas errores corregidos">
+      <option name="closed" value="true" />
+      <created>1778086169449</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1778086169449</updated>
+    </task>
+    <task id="LOCAL-00020" summary="retoques finales">
+      <option name="closed" value="true" />
+      <created>1778102390221</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1778102390221</updated>
+    </task>
+    <task id="LOCAL-00021" summary=".">
+      <option name="closed" value="true" />
+      <created>1778848493040</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1778848493042</updated>
+    </task>
+    <task id="LOCAL-00022" summary="ALGUNOS ERRORES COREGIDOS">
+      <option name="closed" value="true" />
+      <created>1778853703847</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1778853703847</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,10 +301,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <MESSAGE value="version final c" />
-    <MESSAGE value="." />
     <MESSAGE value="defnderse corregido" />
     <MESSAGE value="clases borradas y apartado agregado" />
     <MESSAGE value="for" />
-    <option name="LAST_COMMIT_MESSAGE" value="for" />
+    <MESSAGE value="mas errores corregidos" />
+    <MESSAGE value="retoques finales" />
+    <MESSAGE value="." />
+    <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="ALGUNOS ERRORES COREGIDOS" />
   </component>
 </project>

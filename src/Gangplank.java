@@ -2,14 +2,15 @@
  * Clase que representa a Gangplank.
  *
  */
-class Gangplank extends Personajes {
+public class Gangplank extends Personajes {
 
     /**
      * Constructor de Gangplank con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Gangplank() {
-        super("Gangplank", 210, 45);
+    public Gangplank(String identificador) {
+        super("Gangplank", identificador, 210, 45);
     }
 
     /**
@@ -19,19 +20,10 @@ class Gangplank extends Personajes {
      * @return Curación aumentada un 50%.
      *
      */
-    public int modificarCuracion(int curacionBase) {
+    public int pasivaCuracion(int curacionBase) {
         int curacionMejorada = (int) (curacionBase * 1.5);
 
         System.out.println(nombre + " mejora su curación!");
         return curacionMejorada;
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    public String getRaza() { return "HUMANO"; }
 }

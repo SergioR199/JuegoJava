@@ -1,10 +1,15 @@
+import java.lang.classfile.Interfaces;
+
+import interfaces.InterfacePasivas;
+
 /**
  * Clase que representa un personaje del juego.
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public class Personajes {
+public class Personajes implements InterfacePasivas {
     protected String nombre;
+    protected String identificador;
     protected int vidas;
     protected int vidaMaxima;
     protected int misilesRonda;
@@ -14,122 +19,20 @@ public class Personajes {
     protected int misilesBase;
 
     /**
-     * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
-     * Si el personaje tiene quemadura, pierde la vida indicada.
-     *
-     * @param turnoGlobal Número de turno global actual.
-     * */
-    public void alInicioTurnoGlobal(int turnoGlobal) {
-        if (quemadura > 0) {
-            this.vidas -= quemadura;
-            System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
-        }
-    }
-
-    /**
      * Constructor de un personaje con sus estadísticas iniciales.
      *
      * @param nombre Nombre del personaje.
+     * @param identificador Identificador del personaje.
      * @param vidas Cantidad inicial de vidas.
      * @param misilesRonda Misiles disponibles por ronda.
      * */
-    public Personajes(String nombre, int vidas, int misilesRonda) {
+    public Personajes(String nombre, String identificador, int vidas, int misilesRonda) {
         this.nombre = nombre;
+        this.identificador = identificador;
         this.vidas = vidas;
         this.vidaMaxima = vidas;
         this.misilesRonda = misilesRonda;
         this.misilesBase = misilesRonda;
-    }
-
-    /**
-     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
-     * No hace nada por defecto pero se puede sobrescribir en subclases.
-     *
-     * @return Tipo del personaje.
-     * */
-    public String getRaza(){
-        return "DESCONOCIDA";
-    }
-
-    /**
-     * Método que ataca o defiende dependiendo de la cadena que se le de como parámetro.
-     *
-     * @param accion "atacar" o "defender"
-     * @param misiles Cantidad de misiles usados
-     * @param atacante Personaje que realiza la acción
-     * @return Resultado final: daño causado o vida recuperada
-     */
-    public int accion(String accion, int misiles, Personajes atacante) {
-
-        if (accion.equalsIgnoreCase("defender")) {
-            int curacionBase = misiles / 2;
-            int curacionFinal = curacionBase;
-
-            if (this instanceof Gangplank) {
-                curacionFinal = ((Gangplank) this).modificarCuracion(curacionBase);
-            }
-
-            this.vidas += curacionFinal;
-
-            if (this.vidas > this.vidaMaxima) {
-                this.vidas = this.vidaMaxima;
-            }
-
-            return curacionFinal;
-        }else if (accion.equalsIgnoreCase("atacar")) {
-            if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
-                System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
-                atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
-                return 0;
-            }
-
-            double multiplicador = 1.0;
-
-            if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
-                multiplicador = 1.25;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
-                multiplicador = 1.75;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
-                multiplicador = 0.75;
-            }
-
-            int danioBase = (int) (misiles * multiplicador);
-            int danioFinal = danioBase;
-
-            if (atacante instanceof Jhin) {
-                danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
-            }
-
-            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
-
-            this.vidas -= danioFinal;
-
-            if (this.vidas <= 0) {
-                this.vidas = 0;
-                System.out.println(this.nombre + " ha sido destruido.");
-
-                if (atacante instanceof Jinx) {
-                    ((Jinx) atacante).alMatar(this);
-                } else if (atacante instanceof Tristana) {
-                    ((Tristana) atacante).alMatar(this);
-                }
-
-                if (this instanceof KogMaw) {
-                    ((KogMaw) this).alMorir(atacante);
-                }
-            }
-
-            return danioFinal;
-        }
-
-        return 0;
-    }
-
-    /**
-     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
-     * */
-    public void reiniciarMisilesRonda() {
-        this.misilesRonda = misilesBase + bonusMisiles;
     }
 
     /**
@@ -139,6 +42,15 @@ public class Personajes {
      * */
     public String getNombre() {
         return nombre;
+    }
+
+    /**
+     * Getter del identificador del personaje.
+     *
+     * @return Identificador del personaje.
+     * */
+    public String getIdentificador() {
+        return identificador;
     }
 
     /**
@@ -169,12 +81,140 @@ public class Personajes {
     }
 
     /**
-     * Getter de la vida máxima del personaje.
+     * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
+     * Si el personaje tiene quemadura, pierde la vida indicada.
      *
-     * @return Vida máxima.
+     * @param turnoGlobal Número de turno global actual.
      * */
-    public int getVidaMaxima() {
-        return vidaMaxima;
+    public void pasivaRonda(int turnoGlobal) {
+        if (quemadura > 0) {
+            this.vidas -= quemadura;
+            if (this.vidas < 0) {
+                this.vidas = 0;
+            }
+            System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
+        }
+    }
+
+    /**
+     * Método que permite modificar la curación base recibida por el personaje.
+     * Está pensado para ser sobrescrito por subclases que tengan habilidades pasivas de curación.
+     *
+     * @param curacionBase Cantidad de curación inicial calculada.
+     * @return Cantidad final de curación tras aplicar la pasiva.
+     */
+    public int pasivaCuracion(int curacionBase){
+        return 0;
+    }
+
+    /**
+     * Método que se ejecuta cuando el personaje elimina a otro.
+     * Puede ser sobrescrito por subclases para aplicar efectos especiales al matar,
+     * como obtener bonificaciones o activar habilidades.
+     */
+    public void pasivaMatar(){}
+
+    /**
+     * Método que se ejecuta cuando el personaje muere.
+     * Puede ser sobrescrito por subclases para aplicar efectos al morir,
+     * como infligir daño adicional o activar habilidades especiales.
+     */
+    public void pasivaMorir(){}
+
+    /**
+     * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
+     *
+     * @param accion "atacar" o "defender".
+     * @param misiles Cantidad de misiles usados.
+     * @param atacante Personaje que realiza la acción.
+     * @return Resultado final: daño causado o vida recuperada.
+     * */
+    public int accion(String accion, int misiles, Personajes atacante) {
+
+        if (accion.equalsIgnoreCase("defender")) {
+            int curacionBase = misiles / 2;
+            int curacionFinal = curacionBase;
+
+            if (this instanceof Gangplank) {
+                curacionFinal = ((Gangplank) this).pasivaCuracion(curacionBase);
+            }
+
+            this.vidas += curacionFinal;
+
+            if (this.vidas > this.vidaMaxima) {
+                this.vidas = this.vidaMaxima;
+            }
+
+            return curacionFinal;
+
+        } else if (accion.equalsIgnoreCase("atacar")) {
+            if (this instanceof Corki|this instanceof Heimerdinger|this instanceof Rumble
+                    |this instanceof Tristana|this instanceof YordlePersonalizado
+                    |this instanceof Ziggs && Math.random() < 0.25) {
+                System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+                atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+                return 0;
+            }
+
+            double multiplicador = 1.0;
+
+            if (atacante instanceof Gangplank|atacante instanceof HumanoPersonalizado
+                    |atacante instanceof Jhin|atacante instanceof Jinx
+                    |atacante instanceof Sylas
+                    && this instanceof Corki|this instanceof Heimerdinger
+                    |this instanceof Rumble|this instanceof Tristana
+                    |this instanceof YordlePersonalizado |this instanceof Ziggs) {
+                multiplicador = 1.25;
+            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
+                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+                    && this instanceof Gangplank|this instanceof HumanoPersonalizado
+                    |this instanceof Jhin|this instanceof Jinx
+                    |this instanceof Sylas) {
+                multiplicador = 1.75;
+            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
+                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+                    && this instanceof Corki
+                    |this instanceof Heimerdinger|this instanceof Rumble
+                    |this instanceof Tristana |this instanceof YordlePersonalizado |this instanceof Ziggs) {
+                multiplicador = 0.75;
+            }
+
+            int danioBase = (int) (misiles * multiplicador) + atacante.bonusDanio;
+            int danioFinal = danioBase;
+
+            if (atacante instanceof Jhin) {
+                danioFinal = ((Jhin) atacante).modificarDanio(danioBase);
+            }
+
+            atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
+
+            this.vidas -= danioFinal;
+
+            if (this.vidas <= 0) {
+                this.vidas = 0;
+                System.out.println(this.nombre + " ha sido destruido.");
+
+                if (atacante instanceof Jinx) {
+                    ((Jinx) atacante).pasivaMatar(this);
+                } else if (atacante instanceof Tristana) {
+                    ((Tristana) atacante).pasivaMatar(this);
+                }
+
+                if (this instanceof KogMaw) {
+                    ((KogMaw) this).pasivaMorir(atacante);
+                }
+            }
+
+            return danioFinal;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Método que reinicia los misiles disponibles al comienzo de cada ronda.
+     * */
+    public void reiniciarMisilesRonda() {
+        this.misilesRonda = misilesBase + bonusMisiles;
     }
 }
-

@@ -2,22 +2,23 @@
  * Clase que representa a Ziggs.
  *
  */
-class Ziggs extends Personajes {
+public class Ziggs extends Personajes {
 
     /**
      * Constructor de Ziggs con sus estadísticas iniciales.
      *
+     * @param identificador Identificador del personaje.
      */
-    public Ziggs() {
-        super("Ziggs", 145, 65);
+    public Ziggs(String identificador) {
+        super("Ziggs", identificador, 145, 65);
     }
 
     /**
      * Método que inflige daño en área al atacar.
      *
-     * @param equipos        Array con todos los personajes de la partida.
+     * @param equipos Array con todos los personajes de la partida.
      * @param indiceAtacante Índice del atacante.
-     * @param danioBase      Daño del ataque principal.
+     * @param danioBase Daño del ataque principal.
      *
      */
     public void alAtacar(Personajes[] equipos, int indiceAtacante, int danioBase) {
@@ -38,13 +39,4 @@ class Ziggs extends Personajes {
             }
         }
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    public String getRaza() { return "SER MAGICO"; }
 }

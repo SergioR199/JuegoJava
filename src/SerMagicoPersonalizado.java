@@ -2,26 +2,18 @@
  * Clase que representa a un Ser Mágico personalizado.
  *
  */
-class SerMagicoPersonalizado extends Personajes {
+public class SerMagicoPersonalizado extends Personajes {
 
     /**
-     * Contructor de un Ser Mágico personalizado con el nombre y estadísticas indicadas.
+     * Constructor de un Ser Mágico personalizado con el nombre y estadísticas indicadas.
      *
-     * @param nombre       Nombre del personaje.
-     * @param vidas        Vidas iniciales.
+     * @param nombre Nombre del personaje.
+     * @param identificador Identificador del personaje.
+     * @param vidas Vidas iniciales.
      * @param misilesRonda Misiles iniciales por ronda.
      *
      */
-    public SerMagicoPersonalizado(String nombre, int vidas, int misilesRonda) {
-        super(nombre, vidas, misilesRonda);
+    public SerMagicoPersonalizado(String nombre, String identificador, int vidas, int misilesRonda) {
+        super(nombre, identificador, vidas, misilesRonda);
     }
-
-    @Override
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    public String getRaza() { return "SER MAGICO"; }
 }
