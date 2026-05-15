@@ -16,14 +16,4 @@ public class SerMagicoPersonalizado extends Personajes {
     public SerMagicoPersonalizado(String nombre, String identificador, int vidas, int misilesRonda) {
         super(nombre, identificador, vidas, misilesRonda);
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    @Override
-    public String getRaza() {
-        return "SER MAGICO";
-    }
 }

@@ -39,14 +39,4 @@ public class Ziggs extends Personajes {
             }
         }
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
-    }
 }

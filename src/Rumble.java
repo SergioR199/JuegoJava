@@ -30,14 +30,4 @@ public class Rumble extends Personajes {
                     " está quemándose! (-5 de vida al inicio de cada turno)");
         }
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
-    }
 }

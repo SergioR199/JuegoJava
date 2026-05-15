@@ -16,14 +16,4 @@ public class YordlePersonalizado extends Personajes {
     public YordlePersonalizado(String nombre, String identificador, int vidas, int misilesRonda) {
         super(nombre, identificador, vidas, misilesRonda);
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
-    }
 }

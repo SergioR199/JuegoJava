@@ -90,16 +90,6 @@ public class Personajes implements InterfacePasivas {
     }
 
     /**
-     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
-     * Por defecto devuelve "Desconocida" pero se puede sobrescribir en subclases.
-     *
-     * @return Tipo del personaje.
-     * */
-    public String getRaza() {
-        return "DESCONOCIDA";
-    }
-
-    /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
@@ -167,7 +157,9 @@ public class Personajes implements InterfacePasivas {
             return curacionFinal;
 
         } else if (accion.equalsIgnoreCase("atacar")) {
-            if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
+            if (this instanceof Corki|this instanceof Heimerdinger|this instanceof Rumble
+                    |this instanceof Tristana|this instanceof YordlePersonalizado
+                    |this instanceof Ziggs && Math.random() < 0.25) {
                 System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
@@ -175,11 +167,24 @@ public class Personajes implements InterfacePasivas {
 
             double multiplicador = 1.0;
 
-            if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
+            if (atacante instanceof Gangplank|atacante instanceof HumanoPersonalizado
+                    |atacante instanceof Jhin|atacante instanceof Jinx
+                    |atacante instanceof Sylas
+                    && this instanceof Corki|this instanceof Heimerdinger
+                    |this instanceof Rumble|this instanceof Tristana
+                    |this instanceof YordlePersonalizado |this instanceof Ziggs) {
                 multiplicador = 1.25;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
+            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
+                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+                    && this instanceof Gangplank|this instanceof HumanoPersonalizado
+                    |this instanceof Jhin|this instanceof Jinx
+                    |this instanceof Sylas) {
                 multiplicador = 1.75;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
+            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
+                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+                    && this instanceof Corki
+                    |this instanceof Heimerdinger|this instanceof Rumble
+                    |this instanceof Tristana |this instanceof YordlePersonalizado |this instanceof Ziggs) {
                 multiplicador = 0.75;
             }
 

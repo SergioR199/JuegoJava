@@ -26,14 +26,4 @@ public class Gangplank extends Personajes {
         System.out.println(nombre + " mejora su curación!");
         return curacionMejorada;
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
-    }
 }

@@ -23,14 +23,4 @@ public class AurelionSol extends Personajes {
         misilesBase += 5;
         System.out.println(nombre + " gana +5 daño permanente!");
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    @Override
-    public String getRaza() {
-        return "SER MAGICO";
-    }
 }

@@ -60,14 +60,4 @@ public class Sylas extends Personajes {
             }
         }
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
-    }
 }

@@ -23,14 +23,4 @@ public class Jinx extends Personajes {
         this.bonusMisiles += 10;
         System.out.println(nombre + " gana +10 misiles permanentes!");
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
-    }
 }

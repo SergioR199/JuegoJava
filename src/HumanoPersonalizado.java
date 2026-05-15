@@ -16,14 +16,4 @@ public class HumanoPersonalizado extends Personajes {
     public HumanoPersonalizado(String nombre, String identificador, int vidas, int misilesRonda) {
         super(nombre, identificador, vidas, misilesRonda);
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
-    }
 }

@@ -28,14 +28,4 @@ public class Tristana extends Personajes {
 
         System.out.println(nombre + " se cura 15 de vida!");
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
-    }
 }
