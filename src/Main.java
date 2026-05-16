@@ -114,13 +114,14 @@ public class Main {
     }
 
     /**
-
-     Método que pide un identificador válido y único.
-     El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
-     y no puede repetirse dentro del array de equipos.*,
-     @param sc Scanner utilizado para leer lo que escribe el usuario.,
-     @param equipos Array de personajes ya creados.,
-     @return Identificador válido y no repetido.*/
+     * Método que pide un identificador válido y único.
+     * El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
+     * y no puede repetirse dentro del array de equipos.
+     *
+     * @param sc Scanner utilizado para leer lo que escribe el usuario.
+     * @param equipos Array de personajes ya creados.
+     * @return Identificador válido y no repetido.
+     */
     public static String pedirIdentificador(Scanner sc, Personajes[] equipos) {
         String identificador;
         boolean repetido = true;
