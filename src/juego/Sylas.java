@@ -1,5 +1,7 @@
+package juego;
+
 /**
- * Clase que representa a Sylas.
+ * Clase que representa a juego.Sylas.
  *
  */
 public class Sylas extends Personajes {
@@ -7,12 +9,12 @@ public class Sylas extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de Sylas con sus estadísticas iniciales.
+     * Constructor de juego.Sylas con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Sylas(String identificador) {
-        super("Sylas", identificador, 190, 50);
+        super("juego.Sylas", identificador, 190, 50);
     }
 
     /**

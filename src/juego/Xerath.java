@@ -1,5 +1,7 @@
+package juego;
+
 /**
- * Clase que representa a Xerath.
+ * Clase que representa a juego.Xerath.
  *
  */
 public class Xerath extends Personajes {
@@ -7,12 +9,12 @@ public class Xerath extends Personajes {
     private boolean escudoActivo = false;
 
     /**
-     * Constructor de Xerath con sus estadísticas iniciales.
+     * Constructor de juego.Xerath con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Xerath(String identificador) {
-        super("Xerath", identificador, 160, 70);
+        super("juego.Xerath", identificador, 160, 70);
     }
 
     /**

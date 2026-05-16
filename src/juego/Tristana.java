@@ -1,16 +1,18 @@
+package juego;
+
 /**
- * Clase que representa a Tristana.
+ * Clase que representa a juego.Tristana.
  *
  */
 public class Tristana extends Personajes {
 
     /**
-     * Constructor de Tristana con sus estadísticas iniciales.
+     * Constructor de juego.Tristana con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Tristana(String identificador) {
-        super("Tristana", identificador, 155, 60);
+        super("juego.Tristana", identificador, 155, 60);
     }
 
     /**

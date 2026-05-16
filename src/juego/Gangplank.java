@@ -1,16 +1,18 @@
+package juego;
+
 /**
- * Clase que representa a Gangplank.
+ * Clase que representa a juego.Gangplank.
  *
  */
 public class Gangplank extends Personajes {
 
     /**
-     * Constructor de Gangplank con sus estadísticas iniciales.
+     * Constructor de juego.Gangplank con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Gangplank(String identificador) {
-        super("Gangplank", identificador, 210, 45);
+        super("juego.Gangplank", identificador, 210, 45);
     }
 
     /**

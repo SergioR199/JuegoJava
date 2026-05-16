@@ -1,3 +1,5 @@
+package juego;
+
 /**
  * Clase que representa a Kog'Maw.
  *

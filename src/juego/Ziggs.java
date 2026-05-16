@@ -1,16 +1,18 @@
+package juego;
+
 /**
- * Clase que representa a Ziggs.
+ * Clase que representa a juego.Ziggs.
  *
  */
 public class Ziggs extends Personajes {
 
     /**
-     * Constructor de Ziggs con sus estadísticas iniciales.
+     * Constructor de juego.Ziggs con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Ziggs(String identificador) {
-        super("Ziggs", identificador, 145, 65);
+        super("juego.Ziggs", identificador, 145, 65);
     }
 
     /**
