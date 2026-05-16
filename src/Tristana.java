@@ -16,10 +16,9 @@ public class Tristana extends Personajes {
     /**
      * Método que cura vida al matar a un enemigo.
      *
-     * @param objetivo Personaje eliminado.
      *
      */
-    public void pasivaMatar(Personajes objetivo) {
+    public void pasivaMatar() {
         this.vidas += 15;
 
         if (this.vidas > this.vidaMaxima) {

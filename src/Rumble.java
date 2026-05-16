@@ -18,10 +18,9 @@ public class Rumble extends Personajes {
      *
      * @param equipos Array con todos los personajes de la partida.
      * @param indiceObjetivo Índice del objetivo atacado.
-     * @param danioBase Daño base del ataque.
      *
      */
-    public void alAtacar(Personajes[] equipos, int indiceObjetivo, int danioBase) {
+    public void alAtacar(Personajes[] equipos, int indiceObjetivo) {
         if (indiceObjetivo >= 0 && indiceObjetivo < equipos.length &&
                 equipos[indiceObjetivo].getVidas() > 0) {
 
