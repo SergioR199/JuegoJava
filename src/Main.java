@@ -114,14 +114,13 @@ public class Main {
     }
 
     /**
-     * Método que pide un identificador válido y único.
-     * El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
-     * y no puede repetirse dentro del array de equipos.
-     *
-     * @param sc Scanner utilizado para leer lo que escribe el usuario.
-     * @param equipos Array de personajes ya creados.
-     * @return Identificador válido y no repetido.
-     */
+
+     Método que pide un identificador válido y único.
+     El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
+     y no puede repetirse dentro del array de equipos.*,
+     @param sc Scanner utilizado para leer lo que escribe el usuario.,
+     @param equipos Array de personajes ya creados.,
+     @return Identificador válido y no repetido.*/
     public static String pedirIdentificador(Scanner sc, Personajes[] equipos) {
         String identificador;
         boolean repetido = true;
@@ -158,7 +157,7 @@ public class Main {
         for (int i = 0; i < equipos.length; i++) {
             System.out.println("\n[Jugador " + (i + 1) + "]");
             int opcionPersonaje = pedirPersonaje(sc);
-            String identificador = pedirIdentificador(sc, equipos);
+            String identificador = pedirIdentificador(sc,equipos);
             equipos[i] = crearPersonaje(opcionPersonaje, identificador, sc);
 
             System.out.println("Equipo creado: " + equipos[i].getNombre()
@@ -361,10 +360,9 @@ public class Main {
     public static int equiposVivos(Personajes[] equipos) {
         int vivos = 0;
         for (Personajes e : equipos) {
-            boolean estaVivo = (e.getVidas() > 0) ? true : false;
-            if (estaVivo) {
-                vivos++;
-            }
+           if (e.getVidas()>0){
+               vivos++;
+           }
         }
         return vivos;
     }
@@ -554,7 +552,7 @@ public class Main {
                 int danioHecho = equipos[indiceObjetivoReal].accion("atacar", misiles, atacante);
 
                 if (atacante instanceof Rumble) {
-                    ((Rumble) atacante).alAtacar(equipos, indiceObjetivoReal, danioHecho);
+                    ((Rumble) atacante).alAtacar(equipos, indiceObjetivoReal);
                 }
 
                 if (atacante instanceof Ziggs) {

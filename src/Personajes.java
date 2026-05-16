@@ -1,5 +1,3 @@
-import java.lang.classfile.Interfaces;
-
 import interfaces.InterfacePasivas;
 
 /**
@@ -7,7 +5,7 @@ import interfaces.InterfacePasivas;
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public class Personajes implements InterfacePasivas {
+public class Personajes{
     protected String nombre;
     protected String identificador;
     protected int vidas;
@@ -106,21 +104,6 @@ public class Personajes implements InterfacePasivas {
     public int pasivaCuracion(int curacionBase){
         return 0;
     }
-
-    /**
-     * Método que se ejecuta cuando el personaje elimina a otro.
-     * Puede ser sobrescrito por subclases para aplicar efectos especiales al matar,
-     * como obtener bonificaciones o activar habilidades.
-     */
-    public void pasivaMatar(){}
-
-    /**
-     * Método que se ejecuta cuando el personaje muere.
-     * Puede ser sobrescrito por subclases para aplicar efectos al morir,
-     * como infligir daño adicional o activar habilidades especiales.
-     */
-    public void pasivaMorir(){}
-
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
      *
@@ -148,9 +131,9 @@ public class Personajes implements InterfacePasivas {
             return curacionFinal;
 
         } else if (accion.equalsIgnoreCase("atacar")) {
-            if (this instanceof Corki|this instanceof Heimerdinger|this instanceof Rumble
-                    |this instanceof Tristana|this instanceof YordlePersonalizado
-                    |this instanceof Ziggs && Math.random() < 0.25) {
+            if (this instanceof Corki||this instanceof Heimerdinger||this instanceof Rumble
+                    ||this instanceof Tristana||this instanceof YordlePersonalizado
+                    ||this instanceof Ziggs && Math.random() < 0.25) {
                 System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
@@ -158,24 +141,24 @@ public class Personajes implements InterfacePasivas {
 
             double multiplicador = 1.0;
 
-            if (atacante instanceof Gangplank|atacante instanceof HumanoPersonalizado
-                    |atacante instanceof Jhin|atacante instanceof Jinx
-                    |atacante instanceof Sylas
-                    && this instanceof Corki|this instanceof Heimerdinger
-                    |this instanceof Rumble|this instanceof Tristana
-                    |this instanceof YordlePersonalizado |this instanceof Ziggs) {
+            if (atacante instanceof Gangplank||atacante instanceof HumanoPersonalizado
+                    ||atacante instanceof Jhin||atacante instanceof Jinx
+                    ||atacante instanceof Sylas
+                    && this instanceof Corki||this instanceof Heimerdinger
+                    ||this instanceof Rumble||this instanceof Tristana
+                    ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
                 multiplicador = 1.25;
-            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
-                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
                     && this instanceof Gangplank|this instanceof HumanoPersonalizado
-                    |this instanceof Jhin|this instanceof Jinx
-                    |this instanceof Sylas) {
+                    ||this instanceof Jhin||this instanceof Jinx
+                    ||this instanceof Sylas) {
                 multiplicador = 1.75;
-            } else if (atacante instanceof AurelionSol|atacante instanceof KogMaw
-                    |atacante instanceof SerMagicoPersonalizado|atacante instanceof Xerath
+            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
                     && this instanceof Corki
-                    |this instanceof Heimerdinger|this instanceof Rumble
-                    |this instanceof Tristana |this instanceof YordlePersonalizado |this instanceof Ziggs) {
+                    ||this instanceof Heimerdinger||this instanceof Rumble
+                    ||this instanceof Tristana ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
                 multiplicador = 0.75;
             }
 
@@ -195,9 +178,9 @@ public class Personajes implements InterfacePasivas {
                 System.out.println(this.nombre + " ha sido destruido.");
 
                 if (atacante instanceof Jinx) {
-                    ((Jinx) atacante).pasivaMatar(this);
+                    ((Jinx) atacante).pasivaMatar();
                 } else if (atacante instanceof Tristana) {
-                    ((Tristana) atacante).pasivaMatar(this);
+                    ((Tristana) atacante).pasivaMatar();
                 }
 
                 if (this instanceof KogMaw) {
