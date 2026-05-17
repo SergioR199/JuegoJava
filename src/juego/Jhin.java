@@ -1,17 +1,19 @@
+package juego;
+
 /**
- * Clase que representa a Jhin.
+ * Clase que representa a juego.Jhin.
  *
  */
 public class Jhin extends Personajes {
     private int contadorAtaques = 0;
 
     /**
-     * Constructor de Jhin con sus estadísticas iniciales.
+     * Constructor de juego.Jhin con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Jhin(String identificador) {
-        super("Jhin", identificador, 170, 60);
+        super("juego.Jhin", identificador, 170, 60);
     }
 
     /**

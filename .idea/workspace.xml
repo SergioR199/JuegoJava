@@ -4,8 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="sisisi">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ERRORES CORREGIDOS FINAL">
+      <change afterPath="$PROJECT_DIR$/src/juego/InformacionJuego.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ganadores.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/AurelionSol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ganadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ganadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Gangplank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Heimerdinger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HumanoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/HumanoPersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jhin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jinx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/KogMaw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Rumble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/SerMagicoPersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Tristana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Xerath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/YordlePersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/YordlePersonalizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ziggs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +62,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -55,13 +83,14 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VentanaJuego.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;experimental&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Version.1.3&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -279,13 +308,13 @@
       <option name="project" value="LOCAL" />
       <updated>1778853703847</updated>
     </task>
-    <task id="LOCAL-00023" summary="sisisi">
+    <task id="LOCAL-00023" summary="ERRORES CORREGIDOS FINAL">
       <option name="closed" value="true" />
-      <created>1778950385672</created>
+      <created>1778950532731</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1778950385672</updated>
+      <updated>1778950532732</updated>
     </task>
     <option name="localTasksCounter" value="24" />
     <servers />
@@ -344,7 +373,7 @@
     <MESSAGE value="retoques finales" />
     <MESSAGE value="." />
     <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
-    <MESSAGE value="sisisi" />
-    <option name="LAST_COMMIT_MESSAGE" value="sisisi" />
+    <MESSAGE value="ERRORES CORREGIDOS FINAL" />
+    <option name="LAST_COMMIT_MESSAGE" value="ERRORES CORREGIDOS FINAL" />
   </component>
 </project>

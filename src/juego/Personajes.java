@@ -1,4 +1,4 @@
-import interfaces.InterfacePasivas;
+package juego;
 
 /**
  * Clase que representa un personaje del juego.
@@ -131,9 +131,9 @@ public class Personajes{
             return curacionFinal;
 
         } else if (accion.equalsIgnoreCase("atacar")) {
-            if (this instanceof Corki||this instanceof Heimerdinger||this instanceof Rumble
-                    ||this instanceof Tristana||this instanceof YordlePersonalizado
-                    ||this instanceof Ziggs && Math.random() < 0.25) {
+            if ((this instanceof Corki||this instanceof Heimerdinger ||this instanceof Rumble
+                    ||this instanceof Tristana ||this instanceof YordlePersonalizado
+                    ||this instanceof Ziggs) && Math.random() < 0.25) {
                 System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
@@ -141,24 +141,24 @@ public class Personajes{
 
             double multiplicador = 1.0;
 
-            if (atacante instanceof Gangplank||atacante instanceof HumanoPersonalizado
+            if ((atacante instanceof Gangplank ||atacante instanceof HumanoPersonalizado
                     ||atacante instanceof Jhin||atacante instanceof Jinx
-                    ||atacante instanceof Sylas
-                    && this instanceof Corki||this instanceof Heimerdinger
-                    ||this instanceof Rumble||this instanceof Tristana
-                    ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
+                    ||atacante instanceof Sylas)
+                    && (this instanceof Corki ||this instanceof Heimerdinger
+                    ||this instanceof Rumble ||this instanceof Tristana
+                    ||this instanceof YordlePersonalizado ||this instanceof Ziggs)) {
                 multiplicador = 1.25;
-            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
-                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
-                    && this instanceof Gangplank|this instanceof HumanoPersonalizado
+            } else if ((atacante instanceof AurelionSol ||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado ||atacante instanceof Xerath)
+                    && (this instanceof Gangplank|this instanceof HumanoPersonalizado
                     ||this instanceof Jhin||this instanceof Jinx
-                    ||this instanceof Sylas) {
+                    ||this instanceof Sylas)) {
                 multiplicador = 1.75;
-            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
-                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
-                    && this instanceof Corki
+            } else if ((atacante instanceof AurelionSol||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado ||atacante instanceof Xerath)
+                    && (this instanceof Corki
                     ||this instanceof Heimerdinger||this instanceof Rumble
-                    ||this instanceof Tristana ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
+                    ||this instanceof Tristana ||this instanceof YordlePersonalizado ||this instanceof Ziggs)) {
                 multiplicador = 0.75;
             }
 

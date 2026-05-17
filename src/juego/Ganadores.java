@@ -1,3 +1,6 @@
+package juego;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -35,10 +38,13 @@ public class Ganadores {
                     guardarGanadores.close();
 
                 } catch (IOException e) {
-                    System.out.println("ERROR DE ESCRITURA");
+                    JOptionPane.showMessageDialog(null, "Error de escritura en el fichero de ganadores.");
                 }
 
-                lecturaArchivo();
+                JOptionPane.showMessageDialog(
+                        null,
+                        "EL GANADOR ES: " + equipo.getNombre() + " [" + equipo.getIdentificador() + "]"
+                );
                 return;
             }
         }
@@ -56,31 +62,47 @@ public class Ganadores {
                 guardarGanadores.close();
 
             } catch (IOException e) {
-                System.out.println("ERROR DE ESCRITURA");
+                JOptionPane.showMessageDialog(null, "ERROR DE ESCRITURA.");
             }
 
-            lecturaArchivo();
+            JOptionPane.showMessageDialog(null, "LA PARTIDA HA TERMINADO EN EMPATE.");
         }
     }
 
     /**
-     * Método que lee el contenido de "ganadores.txt" y lo muestra por consola.
+     * Método que lee el contenido completo del fichero de ganadores y lo devuelve como texto.
      *
+     * @return Texto completo del fichero.
      */
-    public static void lecturaArchivo() {
-        String linea = "";
+    public static String getGanadores() {
+        String texto = "";
 
-        try {
-            BufferedReader lecturaGanadores = new BufferedReader(new FileReader("ganadores.txt"));
+        try (BufferedReader br = new BufferedReader(new FileReader("ganadores.txt"))) {
+            String linea;
 
-            while ((linea = lecturaGanadores.readLine()) != null) {
-                System.out.println(linea);
+            while ((linea = br.readLine()) != null) {
+                texto += linea + "\n";
             }
 
-            lecturaGanadores.close();
-
         } catch (IOException e) {
-            System.out.println("ERROR DE LECTURA");
+            return "No se pudo leer el fichero de ganadores.";
+        }
+
+        if (texto.isEmpty()) {
+            return "Todavía no hay ganadores guardados.";
+        }
+
+        return texto;
+    }
+
+    /**
+     * Método que vacía el fichero de ganadores.
+     */
+    public static void borrarGanadores() {
+        try {
+            new FileWriter("ganadores.txt").close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al borrar el archivo de ganadores.");
         }
     }
 }

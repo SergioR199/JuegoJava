@@ -1,16 +1,18 @@
+package juego;
+
 /**
- * Clase que representa a Rumble.
+ * Clase que representa a juego.Rumble.
  *
  */
 public class Rumble extends Personajes {
 
     /**
-     * Constructor de Rumble con sus estadísticas iniciales.
+     * Constructor de juego.Rumble con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Rumble(String identificador) {
-        super("Rumble", identificador, 160, 50);
+        super("juego.Rumble", identificador, 160, 50);
     }
 
     /**

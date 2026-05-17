@@ -1,8 +1,11 @@
-import java.io.FileWriter;
-import java.io.IOException;
+package juego;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import testJuego1_Utils.Validaciones;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import swing.Ventana;
 
 /**
  * Clase principal del juego. Contiene el menú inicial,
@@ -18,94 +21,36 @@ public class Main {
      * @param args Argumentos de línea de comandos.
      * */
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int opcion = -1;
-        int partida = 1;
-
-        do {
-            System.out.print("---- MENU ----\n" +
-                    "1º JUGAR\n" +
-                    "2º REGLAS DEL JUEGO\n" +
-                    "3º INFORMACIÓN GENERAL\n" +
-                    "4º INFORMACIÓN DE PERSONAJES\n" +
-                    "5º MOSTRAR PERSONAJES GANADORES\n" +
-                    "0º SALIR\n" +
-                    "Elige una opción: ");
-
-            do {
-                try {
-                    opcion = sc.nextInt();
-                    sc.nextLine();
-                    if (opcion < 0 || opcion > 5) {
-                        System.out.println("Has introducido una opción no existente. Elige otra opción (0-5).");
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Has introducido un valor no válido. Elige otra opción (0-5).");
-                    sc.nextLine();
-                    opcion = -1;
-                }
-            } while (opcion < 0 || opcion > 5);
-
-            switch (opcion) {
-                case 0:
-                    System.out.println("Saliendo del juego...");
-                    try {
-                        new FileWriter("ganadores.txt").close();
-                    } catch (IOException e) {
-                        System.out.println("ERROR DE BORRADO");
-                    }
-                    break;
-
-                case 1:
-                    System.out.println("Creando equipos...");
-                    equipos = new Personajes[pedirNumeroEquipos(sc)];
-                    crearEquipos(equipos, sc);
-                    jugar(equipos, sc, partida);
-                    partida += 1;
-                    break;
-
-                case 2:
-                    InformacionJuego.mostrarReglas();
-                    break;
-
-                case 3:
-                    InformacionJuego.mostrarInformacionGeneral();
-                    break;
-
-                case 4:
-                    InformacionJuego.mostrarInfoPersonajes(sc);
-                    break;
-
-                case 5:
-                    Ganadores.lecturaArchivo();
-                    break;
-            }
-
-        } while (opcion != 0);
+        SwingUtilities.invokeLater(() -> new Ventana());
     }
 
     /**
      * Método que pregunta al usuario cuantos equipos quiere crear para la partida.
      * El mínimo son 3; si mete algo menor, reseteamos el valor a 0 para que el bucle le vuelva a preguntar.
      *
-     * @param sc Scanner para leer lo que escribe el usuario.
      * @return Número de equipos que ha elegido, siempre 3 o más.
      */
-    public static int pedirNumeroEquipos(Scanner sc) {
+    public static int pedirNumeroEquipos() {
         int numEquipos = 0;
 
         do {
-            System.out.print("¿Cuántos equipos quieres crear? (mínimo 3): ");
+            String entrada = JOptionPane.showInputDialog(null,
+                    "¿Cuántos equipos quieres crear? (mínimo 3):");
+
+            if (entrada == null) {
+                return -1;
+            }
+
             try {
-                numEquipos = sc.nextInt();
-                sc.nextLine();
-                numEquipos = (numEquipos >= 3) ? numEquipos : 0;
-                if (numEquipos == 0) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (mínimo 3).");
+                numEquipos = Integer.parseInt(entrada);
+
+                if (numEquipos < 3) {
+                    JOptionPane.showMessageDialog(null,
+                            "Debes introducir un número mínimo de 3.");
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (mínimo 3).");
-                sc.nextLine();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,
+                        "Has introducido un valor no válido.");
                 numEquipos = 0;
             }
         } while (numEquipos < 3);
@@ -114,29 +59,37 @@ public class Main {
     }
 
     /**
-
-     Método que pide un identificador válido y único.
-     El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
-     y no puede repetirse dentro del array de equipos.*,
-     @param sc Scanner utilizado para leer lo que escribe el usuario.,
-     @param equipos Array de personajes ya creados.,
-     @return Identificador válido y no repetido.*/
-    public static String pedirIdentificador(Scanner sc, Personajes[] equipos) {
+     * Método que pide un identificador válido y único.
+     * El formato debe ser de 4 números seguidos de 3 letras mayúsculas,
+     * y no puede repetirse dentro del array de equipos.
+     *
+     * @param equipos Array de personajes ya creados.
+     * @return Identificador válido y no repetido.
+     */
+    public static String pedirIdentificador(Personajes[] equipos) {
         String identificador;
         boolean repetido = true;
 
         do {
-            System.out.print("Introduce el identificador (4 números y 3 letras mayúsculas, ej. 4325EIS): ");
-            identificador = sc.nextLine().trim();
+            identificador = JOptionPane.showInputDialog(null,
+                    "Introduce el identificador (4 números y 3 letras mayúsculas, ej. 4325EIS):");
+
+            if (identificador == null) {
+                return null;
+            }
+
+            identificador = identificador.trim();
 
             if (!Validaciones.validarIdentificador(identificador)) {
-                System.out.println("Identificador no válido. Debe tener 4 números seguidos de 3 letras mayúsculas.");
+                JOptionPane.showMessageDialog(null,
+                        "Identificador no válido. Debe tener 4 números seguidos de 3 letras mayúsculas.");
             } else {
                 repetido = false;
 
                 for (int i = 0; i < equipos.length; i++) {
                     if (equipos[i] != null && equipos[i].getIdentificador().equals(identificador)) {
-                        System.out.println("Ese identificador ya está en uso. Introduce otro distinto.");
+                        JOptionPane.showMessageDialog(null,
+                                "Ese identificador ya está en uso. Introduce otro distinto.");
                         repetido = true;
                         break;
                     }
@@ -151,20 +104,32 @@ public class Main {
      * Método que crea todos los equipos de la partida pidiendo al usuario un personaje para cada jugador.
      *
      * @param equipos Array donde se guardarán los personajes creados.
-     * @param sc Scanner utilizado para leer lo que escribe el usuario.
      * */
-    public static void crearEquipos(Personajes[] equipos, Scanner sc) {
+    public static void crearEquipos(Personajes[] equipos) {
         for (int i = 0; i < equipos.length; i++) {
-            System.out.println("\n[Jugador " + (i + 1) + "]");
-            int opcionPersonaje = pedirPersonaje(sc);
-            String identificador = pedirIdentificador(sc,equipos);
-            equipos[i] = crearPersonaje(opcionPersonaje, identificador, sc);
+            JOptionPane.showMessageDialog(null, "Jugador " + (i + 1));
 
-            System.out.println("Equipo creado: " + equipos[i].getNombre()
-                    + " | ID: " + equipos[i].getIdentificador()
-                    + " | Tipo: " + obtenerRaza(equipos[i])
-                    + " | Vidas: " + equipos[i].getVidas()
-                    + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
+            int opcionPersonaje = pedirPersonaje();
+
+            if (opcionPersonaje == -1) {
+                JOptionPane.showMessageDialog(null, "Creación de equipos cancelada.");
+                return;
+            }
+
+            String identificador = pedirIdentificador(equipos);
+
+            if (identificador == null) {
+                return;
+            }
+
+            equipos[i] = crearPersonaje(opcionPersonaje, identificador);
+
+            JOptionPane.showMessageDialog(null,
+                    "Equipo creado: " + equipos[i].getNombre()
+                            + " | ID: " + equipos[i].getIdentificador()
+                            + " | Tipo: " + obtenerRaza(equipos[i])
+                            + " | Vidas: " + equipos[i].getVidas()
+                            + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
         }
     }
 
@@ -173,10 +138,9 @@ public class Main {
      *
      * @param opcion Número que corresponde al personaje elegido.
      * @param identificador Identificador del personaje.
-     * @param sc Scanner utilizado para crear un personaje personalizado si se necesita.
      * @return Instancia del personaje seleccionado.
      * */
-    public static Personajes crearPersonaje(int opcion, String identificador, Scanner sc) {
+    public static Personajes crearPersonaje(int opcion, String identificador) {
         switch (opcion) {
             case 1:
                 return new Jinx(identificador);
@@ -203,10 +167,10 @@ public class Main {
             case 12:
                 return new Corki(identificador);
             case 13:
-                return crearPersonalizado(identificador, sc);
+                return crearPersonalizado(identificador);
             case 14:
                 int aleatorio = (int) (Math.random() * 12) + 1;
-                return crearPersonaje(aleatorio, identificador, sc);
+                return crearPersonaje(aleatorio, identificador);
             default:
                 return new Jinx(identificador);
         }
@@ -216,41 +180,33 @@ public class Main {
      * Método que crea un personaje personalizado introducido por el usuario.
      *
      * @param identificador Identificador del personaje.
-     * @param sc Scanner utilizado para leer el nombre y el tipo del personaje.
      * @return Instancia de un personaje personalizado.
      * */
-    public static Personajes crearPersonalizado(String identificador, Scanner sc) {
-        String nombre;
-        int raza;
+    public static Personajes crearPersonalizado(String identificador) {
+        String nombre = JOptionPane.showInputDialog(null, "Escribe el nombre del personaje:");
 
-        System.out.print("Escribe el nombre del personaje: ");
-        nombre = sc.nextLine();
+        if (nombre == null || nombre.trim().isEmpty()) {
+            nombre = "Personalizado";
+        }
 
-        do {
-            try {
-                System.out.println("Elige la raza del personaje:\n" +
-                        "1- HUMANO\n" +
-                        "2- YORDLE\n" +
-                        "3- SER MAGICO\n" +
-                        "Opción: ");
-                raza = sc.nextInt();
-                sc.nextLine();
-                if (raza < 1 || raza > 3) {
-                    System.out.println("Opción no válida. Elige entre 1 y 3.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido.");
-                sc.nextLine();
-                raza = 0;
-            }
-        } while (raza < 1 || raza > 3);
+        String[] opciones = {"HUMANO", "YORDLE", "SER MAGICO"};
+        int raza = JOptionPane.showOptionDialog(
+                null,
+                "Elige la raza del personaje:",
+                "Raza",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+        );
 
         switch (raza) {
-            case 1:
+            case 0:
                 return new HumanoPersonalizado(nombre, identificador, 200, 50);
-            case 2:
+            case 1:
                 return new YordlePersonalizado(nombre, identificador, 200, 50);
-            case 3:
+            case 2:
                 return new SerMagicoPersonalizado(nombre, identificador, 200, 50);
             default:
                 return new HumanoPersonalizado(nombre, identificador, 200, 50);
@@ -260,35 +216,32 @@ public class Main {
     /**
      * Método que muestra la lista de personajes disponibles y devuelve la opción elegida.
      *
-     * @param sc Scanner utilizado para leer la selección del usuario.
      * @return Número del personaje seleccionado.
      * */
-    public static int pedirPersonaje(Scanner sc) {
-        int personaje = 0;
-        boolean valido = false;
+    public static int pedirPersonaje() {
+        String[] opciones = {
+                "1 - Jinx", "2 - Jhin", "3 - Gangplank", "4 - Rumble",
+                "5 - Heimerdinger", "6 - Kog'Maw", "7 - Aurelion Sol", "8 - Sylas",
+                "9 - Tristana", "10 - Xerath", "11 - Ziggs", "12 - Corki",
+                "13 - Personalizado", "14 - Aleatorio"
+        };
 
-        while (!valido) {
-            try {
-                InformacionJuego.mostrarPersonajes();
-                System.out.println("13- Personalizado\n" +
-                        "14- Aleatorio\n" +
-                        "Escoge el número del personaje: ");
-                personaje = sc.nextInt();
-                sc.nextLine();
+        int seleccion = JOptionPane.showOptionDialog(
+                null,
+                "Escoge un personaje",
+                "Selección de personaje",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+        );
 
-                if (personaje < 1 || personaje > 14) {
-                    System.out.println("Has introducido una opción no existente. Elige otra opción (1-14).");
-                    continue;
-                }
-
-                valido = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Has introducido un valor no válido. Elige otra opción (1-14).");
-                sc.nextLine();
-            }
+        if (seleccion == -1) {
+            return -1;
         }
 
-        return personaje;
+        return seleccion + 1;
     }
 
     /**
@@ -374,15 +327,20 @@ public class Main {
      *
      * @param equipos El array con todos los personajes de la partida.
      */
-    public static void mostrarEstadoRonda(Personajes[] equipos) {
+    public static String mostrarEstadoRonda(Personajes[] equipos) {
+        String texto = "";
+
         for (Personajes equipo : equipos) {
             if (equipo.getVidas() > 0) {
                 String vidaLabel = (equipo.getVidas() == 1) ? "vida" : "vidas";
-                System.out.println(equipo.getNombre() + " [" + equipo.getIdentificador() + "] > " + equipo.getVidas()
-                        + " " + vidaLabel + " | Tipo: " + obtenerRaza(equipo)
-                        + " | Misiles: " + equipo.getMisilesRonda());
+                texto += equipo.getNombre() + " [" + equipo.getIdentificador() + "] > "
+                        + equipo.getVidas() + " " + vidaLabel
+                        + " | Tipo: " + obtenerRaza(equipo)
+                        + " | Misiles: " + equipo.getMisilesRonda() + "\n";
             }
         }
+
+        return texto;
     }
 
     /**
