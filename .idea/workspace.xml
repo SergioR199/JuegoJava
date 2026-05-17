@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ALGUNOS ERRORES CORREGIDOS">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="sisisi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Jinx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Personajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rumble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tristana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778853703847</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="sisisi">
+      <option name="closed" value="true" />
+      <created>1778950385672</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1778950385672</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,6 +344,7 @@
     <MESSAGE value="retoques finales" />
     <MESSAGE value="." />
     <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ALGUNOS ERRORES COREGIDOS" />
+    <MESSAGE value="sisisi" />
+    <option name="LAST_COMMIT_MESSAGE" value="sisisi" />
   </component>
 </project>
