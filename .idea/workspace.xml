@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ERRORES CORREGIDOS FINAL">
-      <change afterPath="$PROJECT_DIR$/src/juego/InformacionJuego.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ganadores.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/AurelionSol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ganadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ganadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Gangplank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Heimerdinger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HumanoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/HumanoPersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InformacionJuego.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jhin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jinx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/KogMaw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Rumble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SerMagicoPersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/SerMagicoPersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Tristana.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Xerath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/YordlePersonalizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/YordlePersonalizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ziggs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778950532732</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=".">
+      <option name="closed" value="true" />
+      <created>1778964271085</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1778964271085</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,9 +352,9 @@
     <MESSAGE value="for" />
     <MESSAGE value="mas errores corregidos" />
     <MESSAGE value="retoques finales" />
-    <MESSAGE value="." />
     <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
     <MESSAGE value="ERRORES CORREGIDOS FINAL" />
-    <option name="LAST_COMMIT_MESSAGE" value="ERRORES CORREGIDOS FINAL" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
