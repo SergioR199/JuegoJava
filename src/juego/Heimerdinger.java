@@ -20,10 +20,10 @@ public class Heimerdinger extends Personajes {
     /**
      * Método que coloca una torreta cada dos turnos globales e inflige daño a los enemigos vivos.
      *
-     * @param turnoGlobal Número de turno global actual.
+     * @param ronda Número de turno actual.
      * */
     @Override
-    public void pasivaRonda(int turnoGlobal) {
+    public void pasivaRonda(int ronda) {
         contador++;
 
         if (contador == 2) {

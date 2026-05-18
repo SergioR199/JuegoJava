@@ -20,10 +20,10 @@ public class Corki extends Personajes {
     /**
      * Método que lanza un misil cada cuatro turnos globales e inflige daño en área.
      *
-     * @param turnoGlobal Número de turno global actual.
+     * @param ronda Número de turno actual.
      * */
     @Override
-    public void pasivaRonda(int turnoGlobal) {
+    public void pasivaRonda(int ronda) {
 
         contadorTurnos++;
 

@@ -13,7 +13,7 @@ public interface InterfacePasivas {
      *
      * @param turnoGlobal Número de turno global actual.
      * */
-    public void pasivaRonda(int turnoGlobal);
+    public void pasivaRonda(int ronda);
 
     /**
      * Método que permite modificar la curación base recibida por el personaje.
