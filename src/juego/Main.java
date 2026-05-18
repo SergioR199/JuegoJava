@@ -190,16 +190,9 @@ public class Main {
         }
 
         String[] opciones = {"HUMANO", "YORDLE", "SER MAGICO"};
-        int raza = JOptionPane.showOptionDialog(
-                null,
-                "Elige la raza del personaje:",
-                "Raza",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
-                null,
-                opciones,
-                opciones[0]
-        );
+        int raza = JOptionPane.showOptionDialog(null, "Elige la raza del personaje:",
+                "Raza", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                opciones, opciones[0]);
 
         switch (raza) {
             case 0:
@@ -226,16 +219,9 @@ public class Main {
                 "13 - Personalizado", "14 - Aleatorio"
         };
 
-        int seleccion = JOptionPane.showOptionDialog(
-                null,
-                "Escoge un personaje",
-                "Selección de personaje",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
-                null,
-                opciones,
-                opciones[0]
-        );
+        int seleccion = JOptionPane.showOptionDialog(null, "Escoge un personaje", "Selección de personaje",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                opciones, opciones[0]);
 
         if (seleccion == -1) {
             return -1;
