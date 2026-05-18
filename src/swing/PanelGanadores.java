@@ -19,8 +19,6 @@ public class PanelGanadores extends JPanel implements ActionListener {
 
         areaTexto = new JTextArea();
         areaTexto.setEditable(false);
-        areaTexto.setLineWrap(true);
-        areaTexto.setWrapStyleWord(true);
         areaTexto.setText(Ganadores.getGanadores());
 
         JScrollPane scroll = new JScrollPane(areaTexto);

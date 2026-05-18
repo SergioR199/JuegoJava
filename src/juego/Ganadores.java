@@ -41,10 +41,8 @@ public class Ganadores {
                     JOptionPane.showMessageDialog(null, "Error de escritura en el fichero de ganadores.");
                 }
 
-                JOptionPane.showMessageDialog(
-                        null,
-                        "EL GANADOR ES: " + equipo.getNombre() + " [" + equipo.getIdentificador() + "]"
-                );
+                JOptionPane.showMessageDialog(null, "EL GANADOR ES: "
+                        + equipo.getNombre() + " [" + equipo.getIdentificador() + "]");
                 return;
             }
         }
