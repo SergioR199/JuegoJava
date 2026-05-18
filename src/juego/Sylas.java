@@ -23,7 +23,7 @@ public class Sylas extends Personajes {
      * @param turnoGlobal Número del turno global actual del juego.
      */
     @Override
-    public void pasivaRonda(int turnoGlobal) {
+    public void pasivaRonda(int ronda) {
 
         contadorTurnos++;
 

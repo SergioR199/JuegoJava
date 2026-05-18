@@ -1,11 +1,13 @@
 package juego;
 
+import interfaces.InterfacePasivas;
+
 /**
  * Clase que representa un personaje del juego.
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public class Personajes{
+public class Personajes implements InterfacePasivas{
     protected String nombre;
     protected String identificador;
     protected int vidas;
@@ -82,9 +84,9 @@ public class Personajes{
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
-     * @param turnoGlobal Número de turno global actual.
+     * @param ronda Número de turno actual.
      * */
-    public void pasivaRonda(int turnoGlobal) {
+    public void pasivaRonda(int ronda) {
         if (quemadura > 0) {
             this.vidas -= quemadura;
             if (this.vidas < 0) {
@@ -104,6 +106,17 @@ public class Personajes{
     public int pasivaCuracion(int curacionBase){
         return 0;
     }
+
+    /**
+     * Método que se ejecuta cuando algun jugador elimina a otro.
+     * */
+    public void pasivaMatar(){}
+
+    /**
+     * Método que ejecuta cuando el jugador es eliminado.
+     * */
+    public void pasivaMorir(){}
+
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
      *

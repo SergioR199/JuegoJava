@@ -18,10 +18,10 @@ public class AurelionSol extends Personajes {
     /**
      * Método que aumenta permanentemente el daño del personaje al inicio de cada turno global.
      *
-     * @param turnoGlobal Número de turno global actual.
+     * @param ronda Número de turno actual.
      * */
     @Override
-    public void pasivaRonda(int turnoGlobal) {
+    public void pasivaRonda(int ronda) {
         misilesBase += 5;
         System.out.println(nombre + " gana +5 daño permanente!");
     }

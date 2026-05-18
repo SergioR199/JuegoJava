@@ -239,16 +239,14 @@ public class Main {
      * */
     public static void jugar(Personajes[] equipos, Scanner sc, int partida) {
         int ronda = 1;
-        int turnoGlobal = 0;
 
         while (equiposVivos(equipos) > 1) {
             for (Personajes p : equipos) {
                 if (p.getVidas() > 0) {
-                    p.pasivaRonda(turnoGlobal);
+                    p.pasivaRonda(ronda);
                 }
             }
 
-            turnoGlobal++;
             System.out.println("\n---- " + ronda + "ª RONDA ----");
             mostrarEstadoRonda(equipos);
 
