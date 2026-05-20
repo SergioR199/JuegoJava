@@ -2,43 +2,59 @@ package swing;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.*;
 
 public class PanelMenu extends PanelFondo implements ActionListener {
     private JButton botonJugar, botonReglas, botonCreadores, botonPersonajes, botonGanadores, botonSalir;
+    private Image fondo;
 
     public PanelMenu() {
         super("/imagenes/leagueoflatam.png");
         setLayout(null);
 
-        botonJugar = new JButton("Jugar");
-        botonJugar.setBounds(250, 50, 200, 30);
+        fondo = new ImageIcon(getClass().getResource("/fondo.png")).getImage();
+
+        int anchoBoton = 260;
+        int altoBoton = 35;
+        int x = 510;     // posición horizontal centrada aproximada
+        int yInicial = 300;
+        int separacion = 20;
+
+        botonJugar = new botonJugar("JUGAR");
+        botonJugar.setBounds(x, yInicial, anchoBoton, altoBoton);
         add(botonJugar);
         botonJugar.addActionListener(this);
 
-        botonReglas = new JButton("Reglas del juego");
-        botonReglas.setBounds(250, 100, 200, 30);
+        botonReglas = new botonJugar("REGLAS DEL JUEGO");
+        botonReglas.setBounds(x, yInicial + (altoBoton + separacion) * 1, anchoBoton, altoBoton);
         add(botonReglas);
         botonReglas.addActionListener(this);
 
-        botonCreadores = new JButton("Información general");
-        botonCreadores.setBounds(250, 150, 200, 30);
+        botonCreadores = new botonJugar("INFORMACIÓN GENERAL");
+        botonCreadores.setBounds(x, yInicial + (altoBoton + separacion) * 2, anchoBoton, altoBoton);
         add(botonCreadores);
         botonCreadores.addActionListener(this);
 
-        botonPersonajes = new JButton("Información de personajes");
-        botonPersonajes.setBounds(250, 200, 200, 30);
+        botonPersonajes = new botonJugar("INFO PERSONAJES");
+        botonPersonajes.setBounds(x, yInicial + (altoBoton + separacion) * 3, anchoBoton, altoBoton);
         add(botonPersonajes);
         botonPersonajes.addActionListener(this);
 
-        botonGanadores = new JButton("Lista de ganadores");
-        botonGanadores.setBounds(250, 250, 200, 30);
+        botonGanadores = new botonJugar("GANADORES");
+        botonGanadores.setBounds(x, yInicial + (altoBoton + separacion) * 4, anchoBoton, altoBoton);
         add(botonGanadores);
         botonGanadores.addActionListener(this);
 
-        botonSalir = new JButton("Salir");
-        botonSalir.setBounds(250, 300, 200, 30);
+        botonSalir = new botonJugar("SALIR");
+        botonSalir.setBounds(x, yInicial + (altoBoton + separacion) * 5, anchoBoton, altoBoton);
         add(botonSalir);
         botonSalir.addActionListener(this);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
     }
 
     @Override
