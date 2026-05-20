@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/imagenes/aurelionsol.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/gangplank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/heimerdinger.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/jhin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/jinx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/kogmaw.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/sylas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/tristana.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/xerath.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/ziggs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/audio/click.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/audio/menu.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/juego/Sonidos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +69,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="3B1DADWSp6HA3vDjpoc3PBAaBDl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -93,7 +90,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Yukita/IdeaProjects/testJuego/src/imagenes",
+    "last_opened_file_path": "C:/Users/Yukita/IdeaProjects/testJuego/src/audio",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -107,9 +104,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\audio" />
       <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\imagenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\audio" />
       <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src" />
       <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src\juego" />
       <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src\swing" />
@@ -343,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779114753555</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary=".">
+      <option name="closed" value="true" />
+      <created>1779311266797</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1779311266797</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
