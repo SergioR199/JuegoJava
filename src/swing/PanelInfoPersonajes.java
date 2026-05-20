@@ -5,13 +5,14 @@ import juego.InformacionJuego;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class PanelInfoPersonajes extends JPanel implements ActionListener {
+public class PanelInfoPersonajes extends PanelFondo implements ActionListener {
 
     private JButton botonAtras;
     private JComboBox<String> comboPersonajes;
     private JTextArea areaTexto;
 
     public PanelInfoPersonajes() {
+        super("/imagenes/infoPerso1.png");
         setLayout(null);
 
         JLabel titulo = new JLabel("INFORMACIÓN DE PERSONAJES");
@@ -36,7 +37,7 @@ public class PanelInfoPersonajes extends JPanel implements ActionListener {
         areaTexto.setText("Selecciona un personaje para ver su información.");
 
         JScrollPane scroll = new JScrollPane(areaTexto);
-        scroll.setBounds(130, 140, 620, 320);
+        scroll.setBounds(250, 110, 200, 200);
         add(scroll);
 
         botonAtras = new JButton("Atrás");

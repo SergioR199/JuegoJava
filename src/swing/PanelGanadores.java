@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import juego.Ganadores;
 
-public class PanelGanadores extends JPanel implements ActionListener {
+public class PanelGanadores extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JTextArea areaTexto;
 
     public PanelGanadores() {
+        super("/imagenes/ganadores.png");
         setLayout(null);
 
         botonVolver = new JButton("Volver");

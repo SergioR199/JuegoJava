@@ -3,11 +3,11 @@ package swing;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class PanelMenu extends JPanel implements ActionListener {
-
+public class PanelMenu extends PanelFondo implements ActionListener {
     private JButton botonJugar, botonReglas, botonCreadores, botonPersonajes, botonGanadores, botonSalir;
 
     public PanelMenu() {
+        super("/imagenes/leagueoflatam.png");
         setLayout(null);
 
         botonJugar = new JButton("Jugar");

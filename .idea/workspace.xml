@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="f">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelCreadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelGanadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelReglas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +40,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -78,6 +84,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adria\IdeaProjects\testJuego\src\Imagenes" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -304,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779114753555</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="f">
+      <option name="closed" value="true" />
+      <created>1779265680437</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1779265680437</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,6 +379,7 @@
     <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
     <MESSAGE value="ERRORES CORREGIDOS FINAL" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="f" />
+    <option name="LAST_COMMIT_MESSAGE" value="f" />
   </component>
 </project>

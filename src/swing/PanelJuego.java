@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import juego.Main;
 
-public class PanelJuego extends JPanel implements ActionListener {
+public class PanelJuego extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JButton botonCrearEquipos;
     private JTextArea areaTexto;
 
     public PanelJuego() {
+        super("/imagenes/leagueoflatam.png");
         setLayout(null);
 
         botonVolver = new JButton("Volver");

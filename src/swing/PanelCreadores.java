@@ -5,13 +5,14 @@ import juego.InformacionJuego;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class PanelCreadores extends JPanel implements ActionListener {
+public class PanelCreadores extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JLabel titulo;
     private JTextArea areaTexto;
 
     public PanelCreadores() {
+        super("/imagenes/infoNuestra.png");
         setLayout(null);
 
         botonVolver = new JButton("Volver");
