@@ -21,7 +21,10 @@ public class Main {
      * @param args Argumentos de línea de comandos.
      * */
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Ventana());
+        SwingUtilities.invokeLater(() -> {
+            new Ventana();
+            Sonidos.reproducirMusica("/audio/menu.wav");
+        });
     }
 
     /**

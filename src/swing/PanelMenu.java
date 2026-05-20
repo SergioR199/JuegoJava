@@ -3,6 +3,7 @@ package swing;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import juego.Sonidos;
 
 public class PanelMenu extends PanelFondo implements ActionListener {
     private JButton botonJugar, botonReglas, botonCreadores, botonPersonajes, botonGanadores, botonSalir;
@@ -13,6 +14,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         setLayout(null);
 
         fondo = new ImageIcon(getClass().getResource("/fondo.png")).getImage();
+        Sonidos.reproducirMusica("/audio/menu.wav");
 
         int anchoBoton = 260;
         int altoBoton = 35;
@@ -61,6 +63,8 @@ public class PanelMenu extends PanelFondo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
 
+        Sonidos.reproducirEfecto("/audio/click.wav");
+
         if (e.getSource().equals(botonReglas)) {
             ventana.setContentPane(new PanelReglas());
             ventana.revalidate();
@@ -82,6 +86,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
             ventana.revalidate();
             ventana.repaint();
         } else if (e.getSource().equals(botonSalir)) {
+            Sonidos.detenerMusica();
             System.exit(0);
         }
     }
