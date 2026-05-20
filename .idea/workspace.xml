@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/imagenes/aurelionsol.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/gangplank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/heimerdinger.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/jhin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/jinx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/kogmaw.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/sylas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/tristana.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/xerath.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/ziggs.png" afterDir="false" />
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,24 +41,8 @@
   }
 }</component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -89,7 +62,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Version.1.4",
+    "git-widget-placeholder": "experimental",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
