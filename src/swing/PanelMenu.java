@@ -14,33 +14,39 @@ public class PanelMenu extends JPanel implements ActionListener {
 
         fondo = new ImageIcon(getClass().getResource("/fondo.png")).getImage();
 
+        int anchoBoton = 260;
+        int altoBoton = 35;
+        int x = 510;     // posición horizontal centrada aproximada
+        int yInicial = 300;
+        int separacion = 20;
+
         botonJugar = new botonJugar("JUGAR");
-        botonJugar.setBounds(560, 340, 160, 60);
+        botonJugar.setBounds(x, yInicial, anchoBoton, altoBoton);
         add(botonJugar);
         botonJugar.addActionListener(this);
 
-        botonReglas = new JButton("Reglas del juego");
-        botonReglas.setBounds(28, 25, 200, 50);
+        botonReglas = new botonJugar("REGLAS DEL JUEGO");
+        botonReglas.setBounds(x, yInicial + (altoBoton + separacion) * 1, anchoBoton, altoBoton);
         add(botonReglas);
         botonReglas.addActionListener(this);
 
-        botonCreadores = new JButton("Información general");
-        botonCreadores.setBounds(284, 25, 200, 50);
+        botonCreadores = new botonJugar("INFORMACIÓN GENERAL");
+        botonCreadores.setBounds(x, yInicial + (altoBoton + separacion) * 2, anchoBoton, altoBoton);
         add(botonCreadores);
         botonCreadores.addActionListener(this);
 
-        botonPersonajes = new JButton("Información de personajes");
-        botonPersonajes.setBounds(540, 25, 200, 50);
+        botonPersonajes = new botonJugar("INFO PERSONAJES");
+        botonPersonajes.setBounds(x, yInicial + (altoBoton + separacion) * 3, anchoBoton, altoBoton);
         add(botonPersonajes);
         botonPersonajes.addActionListener(this);
 
-        botonGanadores = new JButton("Lista de ganadores");
-        botonGanadores.setBounds(796, 25, 200, 50);
+        botonGanadores = new botonJugar("GANADORES");
+        botonGanadores.setBounds(x, yInicial + (altoBoton + separacion) * 4, anchoBoton, altoBoton);
         add(botonGanadores);
         botonGanadores.addActionListener(this);
 
-        botonSalir = new JButton("Salir");
-        botonSalir.setBounds(1052, 25, 200, 50);
+        botonSalir = new botonJugar("SALIR");
+        botonSalir.setBounds(x, yInicial + (altoBoton + separacion) * 5, anchoBoton, altoBoton);
         add(botonSalir);
         botonSalir.addActionListener(this);
     }
@@ -48,7 +54,7 @@ public class PanelMenu extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(fondo, 0, 100, getWidth(), getHeight(), this);
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
     }
 
     @Override
