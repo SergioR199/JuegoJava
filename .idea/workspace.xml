@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/imagenes/corki.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imagenes/rumble.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fondo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/swing/botonJugar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,28 +41,12 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
-    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
+    &quot;accountId&quot;: &quot;98c32c1c-2666-48ac-a1b6-d8f051efb538&quot;
   }
 }</component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -71,35 +56,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.VentanaJuego.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Version.1.4",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Yukita/IdeaProjects/testJuego/src/imagenes",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/alumno/IdeaProjects/testJuego/src/Main.java",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VentanaJuego.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Version.1.4&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/alumno/IdeaProjects/testJuego/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\imagenes" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src" />
+      <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src\juego" />
+      <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src\swing" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -108,7 +94,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -126,6 +113,8 @@
       <workItem from="1776062118538" duration="8031000" />
       <workItem from="1776167310848" duration="3274000" />
       <workItem from="1776685088515" duration="4713000" />
+      <workItem from="1779305286606" duration="1048000" />
+      <workItem from="1779306349870" duration="1051000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
