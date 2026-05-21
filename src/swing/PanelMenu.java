@@ -27,32 +27,32 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         int yInicial = 300;
         int separacion = 20;
 
-        botonJugar = new botonJugar("JUGAR");
+        botonJugar = new botonEstilo("JUGAR");
         botonJugar.setBounds(x, yInicial, anchoBoton, altoBoton);
         add(botonJugar);
         botonJugar.addActionListener(this);
 
-        botonReglas = new botonJugar("REGLAS DEL JUEGO");
+        botonReglas = new botonEstilo("REGLAS DEL JUEGO");
         botonReglas.setBounds(x, yInicial + (altoBoton + separacion) * 1, anchoBoton, altoBoton);
         add(botonReglas);
         botonReglas.addActionListener(this);
 
-        botonCreadores = new botonJugar("INFORMACIÓN GENERAL");
+        botonCreadores = new botonEstilo("INFORMACIÓN GENERAL");
         botonCreadores.setBounds(475, yInicial + (altoBoton + separacion) * 2, anchoBoton * 5/4, altoBoton);
         add(botonCreadores);
         botonCreadores.addActionListener(this);
 
-        botonPersonajes = new botonJugar("INFO PERSONAJES");
+        botonPersonajes = new botonEstilo("INFO PERSONAJES");
         botonPersonajes.setBounds(x, yInicial + (altoBoton + separacion) * 3, anchoBoton, altoBoton);
         add(botonPersonajes);
         botonPersonajes.addActionListener(this);
 
-        botonGanadores = new botonJugar("GANADORES");
+        botonGanadores = new botonEstilo("GANADORES");
         botonGanadores.setBounds(x, yInicial + (altoBoton + separacion) * 4, anchoBoton, altoBoton);
         add(botonGanadores);
         botonGanadores.addActionListener(this);
 
-        botonSalir = new botonJugar("SALIR");
+        botonSalir = new botonEstilo("SALIR");
         botonSalir.setBounds(x, yInicial + (altoBoton + separacion) * 5, anchoBoton, altoBoton);
         add(botonSalir);
         botonSalir.addActionListener(this);
