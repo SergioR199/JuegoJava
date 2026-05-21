@@ -8,17 +8,22 @@ import juego.Sonidos;
 public class PanelMenu extends PanelFondo implements ActionListener {
     private JButton botonJugar, botonReglas, botonCreadores, botonPersonajes, botonGanadores, botonSalir;
     private Image fondo;
+    private JButton botonMute;
+    private boolean muted = false;
+
+    private ImageIcon iconoSonido;
+    private ImageIcon iconoMute;
 
     public PanelMenu() {
         super("/imagenes/leagueoflatam.png");
         setLayout(null);
 
-        fondo = new ImageIcon(getClass().getResource("/fondo.png")).getImage();
+        fondo = new ImageIcon(getClass().getResource("/Imagenes/fondo.png")).getImage();
         Sonidos.reproducirMusica("/audio/menu.wav");
 
         int anchoBoton = 260;
         int altoBoton = 35;
-        int x = 510;     // posición horizontal centrada aproximada
+        int x = 510;
         int yInicial = 300;
         int separacion = 20;
 
@@ -33,7 +38,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         botonReglas.addActionListener(this);
 
         botonCreadores = new botonJugar("INFORMACIÓN GENERAL");
-        botonCreadores.setBounds(x, yInicial + (altoBoton + separacion) * 2, anchoBoton, altoBoton);
+        botonCreadores.setBounds(475, yInicial + (altoBoton + separacion) * 2, anchoBoton * 5/4, altoBoton);
         add(botonCreadores);
         botonCreadores.addActionListener(this);
 
@@ -51,6 +56,27 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         botonSalir.setBounds(x, yInicial + (altoBoton + separacion) * 5, anchoBoton, altoBoton);
         add(botonSalir);
         botonSalir.addActionListener(this);
+
+        iconoSonido = new ImageIcon(getClass().getResource("/imagenes/mute.png"));
+        iconoMute = new ImageIcon(getClass().getResource("/imagenes/demute.png"));
+
+        Image imgSonido = iconoSonido.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        Image imgMute = iconoMute.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+        iconoSonido = new ImageIcon(imgSonido);
+        iconoMute = new ImageIcon(imgMute);
+
+        botonMute = new JButton(iconoSonido);
+        botonMute.setBounds(20, 20, 50, 50);
+
+        botonMute.setContentAreaFilled(false);
+        botonMute.setBorderPainted(false);
+        botonMute.setFocusPainted(false);
+        botonMute.setOpaque(false);
+        botonMute.setBorder(BorderFactory.createLineBorder( new Color(230, 210, 140)));
+
+        add(botonMute);
+        botonMute.addActionListener(this);
     }
 
     @Override
@@ -88,6 +114,16 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         } else if (e.getSource().equals(botonSalir)) {
             Sonidos.detenerMusica();
             System.exit(0);
+        }else if (e.getSource().equals(botonMute)) {
+                muted = !muted;
+
+                if (muted) {
+                    Sonidos.detenerMusica();
+                    botonMute.setIcon(iconoMute);
+                } else {
+                    Sonidos.reproducirMusica("/audio/menu.wav");
+                    botonMute.setIcon(iconoSonido);
+                }
+            }
         }
     }
-}

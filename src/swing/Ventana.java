@@ -11,6 +11,7 @@ public class Ventana extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         add(new PanelMenu());
+        setLocationRelativeTo(null);
 
         setVisible(true);
     }

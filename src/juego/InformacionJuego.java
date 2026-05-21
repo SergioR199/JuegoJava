@@ -16,8 +16,7 @@ public class InformacionJuego {
      * @return Reglas del juego.
      */
     public static String getReglas() {
-        return "\n--- REGLAS DEL JUEGO ---\n" +
-                "1. La partida se juega con un mínimo de 3 equipos.\n" +
+        return "1. La partida se juega con un mínimo de 3 equipos.\n" +
                 "2. Cada equipo comienza con las vidas y los misiles por ronda determinados por su personaje.\n" +
                 "3. Cada personaje tiene estadísticas base propias e identificador propio.\n" +
                 "4. Los YORDLES tienen un 25% de probabilidad de esquivar ataques.\n" +
@@ -37,8 +36,7 @@ public class InformacionJuego {
      * @return Información general.
      */
     public static String getInformacionGeneral() {
-        return "\n--- INFORMACIÓN GENERAL ---\n" +
-                "Versión: 2.1\n" +
+        return "Versión: 2.1\n" +
                 "Contacto: losdelfondo@gmail.com\n" +
                 "Autores: Adrián Vera, Agustín Olivera, Ángel Brito, Mauro Barros, Sergio Rial\n";
     }

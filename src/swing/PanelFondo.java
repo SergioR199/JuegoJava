@@ -19,7 +19,7 @@ public class PanelFondo extends JPanel {
             imagenFondo = new ImageIcon(location).getImage();
         }
 
-        setLayout(null);
+        setLayout(new BorderLayout());
     }
 
     @Override

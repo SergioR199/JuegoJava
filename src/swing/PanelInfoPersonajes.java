@@ -5,7 +5,7 @@ import juego.InformacionJuego;
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelInfoPersonajes extends JPanel {
+public class PanelInfoPersonajes extends PanelFondo{
 
     private JButton botonAtras;
     private JComboBox<String> comboPersonajes;
@@ -13,15 +13,15 @@ public class PanelInfoPersonajes extends JPanel {
     private JLabel etiquetaImagen;
 
     public PanelInfoPersonajes() {
+        super("/imagenes/infoPerson3.png");
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
         JPanel panelSuperior = new JPanel(new BorderLayout());
-        botonAtras = new JButton("Atrás");
+        panelSuperior.setOpaque(false);
+        botonAtras = new botonJugar("VOLVER");
         panelSuperior.add(botonAtras, BorderLayout.WEST);
 
-        JLabel titulo = new JLabel("Información de personajes", SwingConstants.CENTER);
-        panelSuperior.add(titulo, BorderLayout.CENTER);
+
 
         add(panelSuperior, BorderLayout.NORTH);
 
@@ -32,33 +32,66 @@ public class PanelInfoPersonajes extends JPanel {
         };
 
         JPanel panelCentral = new JPanel();
+        panelCentral.setOpaque(false);
         panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
-        panelCentral.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        panelCentral.setBorder(BorderFactory.createEmptyBorder(80, 0, 0, 0));
 
         comboPersonajes = new JComboBox<>(personajes);
-        comboPersonajes.setPreferredSize(new Dimension(260, 30));
-        comboPersonajes.setMaximumSize(new Dimension(260, 30));
+        comboPersonajes.addActionListener(e -> actualizarPersonaje());
+        comboPersonajes.setFont(new Font("Serif", Font.BOLD, 16));
+        comboPersonajes.setPreferredSize(new Dimension(150, 40));
+        comboPersonajes.setMaximumSize(new Dimension(150, 40));
+
+        comboPersonajes.setBackground(new Color(230, 210, 140));
+        comboPersonajes.setForeground(Color.black);
+        comboPersonajes.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(212, 175, 55),
+                        3
+                )
+        );
+        comboPersonajes.setFocusable(false);
 
         JPanel panelCombo = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelCombo.add(comboPersonajes);
+        panelCombo.setOpaque(false);
 
-        JPanel panelInfo = new JPanel(new BorderLayout(15, 15));
-        panelInfo.setPreferredSize(new Dimension(600, 280));
-        panelInfo.setMaximumSize(new Dimension(600, 280));
+
+        JPanel panelInfo = new JPanel(new BorderLayout(0, 0));
+        panelInfo.setPreferredSize(new Dimension(950, 320));
+        panelInfo.setMaximumSize(new Dimension(950, 320));
         panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelInfo.setOpaque(false);
 
         etiquetaImagen = new JLabel();
-        etiquetaImagen.setPreferredSize(new Dimension(180, 220));
+        etiquetaImagen.setOpaque(false);
+        etiquetaImagen.setPreferredSize(new Dimension(520,295));
         etiquetaImagen.setHorizontalAlignment(SwingConstants.CENTER);
         etiquetaImagen.setVerticalAlignment(SwingConstants.CENTER);
-        etiquetaImagen.setBorder(BorderFactory.createEtchedBorder());
+        etiquetaImagen.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(212, 175, 55),
+                        5
+                )
+        );
 
         areaTexto = new JTextArea();
+        areaTexto.setAlignmentX(Component.CENTER_ALIGNMENT);
         areaTexto.setEditable(false);
         areaTexto.setLineWrap(true);
         areaTexto.setWrapStyleWord(true);
-        areaTexto.setMargin(new Insets(10, 10, 10, 10));
+        areaTexto.setMargin(new Insets(13, 13, 13, 13));
         areaTexto.setText("Selecciona un personaje para ver su información.");
+        areaTexto.setFont(new Font("Serif", Font.PLAIN, 20));
+        areaTexto.setForeground(Color.black);
+        areaTexto.setBackground(new Color(230, 210, 140));
+        areaTexto.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(212, 175, 55),
+                        3
+                )
+        );
+
 
         JScrollPane scrollTexto = new JScrollPane(areaTexto);
 
@@ -67,11 +100,12 @@ public class PanelInfoPersonajes extends JPanel {
 
         JPanel panelInfoCentrado = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelInfoCentrado.add(panelInfo);
+        panelInfoCentrado.setOpaque(false);
 
         panelCentral.add(panelCombo);
         panelCentral.add(Box.createVerticalStrut(15));
         panelCentral.add(panelInfoCentrado);
-
+        panelCentral.setOpaque(false);
         add(panelCentral, BorderLayout.CENTER);
 
         botonAtras.addActionListener(e -> {
@@ -80,8 +114,9 @@ public class PanelInfoPersonajes extends JPanel {
             ventana.revalidate();
             ventana.repaint();
         });
+        botonAtras.setPreferredSize(new Dimension(140, 35));
 
-        comboPersonajes.addActionListener(e -> actualizarPersonaje());
+
 
         actualizarPersonaje();
     }
@@ -92,43 +127,43 @@ public class PanelInfoPersonajes extends JPanel {
         areaTexto.setCaretPosition(0);
 
         String ruta = obtenerRutaImagen(personajeSeleccionado);
-        ImageIcon icono = new ImageIcon(ruta);
-        Image imagenEscalada = icono.getImage().getScaledInstance(160, 200, Image.SCALE_SMOOTH);
+        ImageIcon icono = new ImageIcon(getClass().getResource(ruta));
+        Image imagenEscalada = icono.getImage().getScaledInstance(510,295, Image.SCALE_SMOOTH);
         etiquetaImagen.setIcon(new ImageIcon(imagenEscalada));
     }
 
     private String obtenerRutaImagen(String personaje) {
         switch (personaje) {
             case "Jinx":
-                return "src/imagenes/jinx.png";
+                return "/imagenes/jinx.png";
             case "Jhin":
-                return "src/imagenes/jhin.png";
+                return "/imagenes/jhin.png";
             case "Gangplank":
-                return "src/imagenes/gangplank.png";
+                return "/imagenes/gangplank.png";
             case "Rumble":
-                return "src/imagenes/rumble.png";
+                return "/imagenes/rumble.png";
             case "Heimerdinger":
-                return "src/imagenes/heimerdinger.png";
+                return "/imagenes/heimerdinger.png";
             case "Kog'Maw":
-                return "src/imagenes/kogmaw.png";
+                return "/imagenes/kogmaw.png";
             case "Aurelion Sol":
-                return "src/imagenes/aurelionsol.png";
+                return "/imagenes/aurelionsol.png";
             case "Sylas":
-                return "src/imagenes/sylas.png";
+                return "/imagenes/sylas.png";
             case "Tristana":
-                return "src/imagenes/tristana.png";
+                return "/imagenes/tristana.png";
             case "Xerath":
-                return "src/imagenes/xerath.png";
+                return "/imagenes/xerath.png";
             case "Ziggs":
-                return "src/imagenes/ziggs.png";
+                return "/imagenes/ziggs.png";
             case "Corki":
-                return "src/imagenes/corki.png";
+                return "/imagenes/corki.png";
             case "Personalizado":
-                return "src/imagenes/personalizado.png";
+                return "/imagenes/personalizado.png";
             case "Aleatorio":
-                return "src/imagenes/aleatorio.png";
+                return "/imagenes/aleatorio.png";
             default:
-                return "src/imagenes/default.png";
+                return "/imagenes/default.png";
         }
     }
 }

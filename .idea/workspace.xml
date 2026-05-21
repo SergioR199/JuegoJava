@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/audio/click.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/audio/menu.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/juego/Sonidos.java" afterDir="false" />
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=",">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fondo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Imagenes/fondo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/InformacionJuego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelCreadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelFondo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelFondo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelGanadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelReglas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,31 +44,15 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
-    &quot;accountId&quot;: &quot;98c32c1c-2666-48ac-a1b6-d8f051efb538&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SergioR199/testJuego.git",
+    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
-    <McpServerCommand sourceId="UserConfigurationSource">
-      <option name="allowedToolsNames" />
-      <option name="enabled" value="true" />
-      <option name="name" value="" />
-      <option name="programPath" value="" />
-      <option name="arguments" value="" />
-      <option name="workingDirectory" value="" />
-      <envs />
-    </McpServerCommand>
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -86,7 +75,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Version.1.4",
+    "git-widget-placeholder": "experimental",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -108,6 +97,7 @@
       <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\imagenes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adria\IdeaProjects\testJuego\src\Imagenes" />
       <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\audio" />
       <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src" />
       <recent name="C:\Users\xerf1\Desktop\array100\JuegoFinal\src\juego" />
@@ -120,8 +110,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>
@@ -408,6 +397,7 @@
     <MESSAGE value="ALGUNOS ERRORES COREGIDOS" />
     <MESSAGE value="ERRORES CORREGIDOS FINAL" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="," />
+    <option name="LAST_COMMIT_MESSAGE" value="," />
   </component>
 </project>

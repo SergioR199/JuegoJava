@@ -1,6 +1,7 @@
 package swing;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import juego.Main;
 
@@ -11,25 +12,54 @@ public class PanelJuego extends PanelFondo implements ActionListener {
     private JTextArea areaTexto;
 
     public PanelJuego() {
-        super("/imagenes/leagueoflatam.png");
-        setLayout(null);
+        super("/imagenes/Juego.png");
+        setLayout(new BorderLayout());
 
-        botonVolver = new JButton("Volver");
-        botonVolver.setBounds(20, 20, 100, 30);
-        add(botonVolver);
+
+        JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelSuperior.setOpaque(false);
+
+        botonVolver = new botonJugar("VOLVER");
+        botonCrearEquipos = new botonJugar("CREAR EQUIPOS");
+
+        panelSuperior.add(botonVolver);
+        panelSuperior.add(Box.createHorizontalStrut(15)); // 👈 separación
+        panelSuperior.add(botonCrearEquipos);
+
+        add(panelSuperior, BorderLayout.NORTH);
+
         botonVolver.addActionListener(this);
-
-        botonCrearEquipos = new JButton("Crear equipos");
-        botonCrearEquipos.setBounds(140, 20, 150, 30);
-        add(botonCrearEquipos);
         botonCrearEquipos.addActionListener(this);
+
 
         areaTexto = new JTextArea();
         areaTexto.setEditable(false);
+        areaTexto.setLineWrap(true);
+        areaTexto.setWrapStyleWord(true);
+        areaTexto.setMargin(new Insets(10, 10, 10, 10));
+
+        areaTexto.setFont(new Font("Serif", Font.PLAIN, 16));
+        areaTexto.setForeground(Color.black);
+        areaTexto.setBackground(new Color(230, 210, 140));
+
+        areaTexto.setBorder(
+                BorderFactory.createLineBorder(
+                        new Color(212, 175, 55),
+                        3
+                )
+        );
 
         JScrollPane scroll = new JScrollPane(areaTexto);
-        scroll.setBounds(50, 80, 600, 300);
-        add(scroll);
+        scroll.setBorder(BorderFactory.createEmptyBorder());
+        scroll.setPreferredSize(new Dimension(650, 350));
+
+        JPanel panelCentro = new JPanel(new GridBagLayout());
+        panelCentro.setOpaque(false);
+        panelCentro.add(scroll);
+
+        add(panelCentro, BorderLayout.CENTER);
+
+        areaTexto.setText("Pulsa 'CREAR EQUIPOS' para empezar la partida.");
     }
 
     @Override
@@ -40,7 +70,9 @@ public class PanelJuego extends PanelFondo implements ActionListener {
             ventana.setContentPane(new PanelMenu());
             ventana.revalidate();
             ventana.repaint();
-        } else if (e.getSource().equals(botonCrearEquipos)) {
+        }
+
+        else if (e.getSource().equals(botonCrearEquipos)) {
             int numEquipos = Main.pedirNumeroEquipos();
 
             if (numEquipos == -1) {
