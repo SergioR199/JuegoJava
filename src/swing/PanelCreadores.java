@@ -16,7 +16,7 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
         setLayout(new BorderLayout());
 
         // BOTÓN VOLVER
-        botonVolver = new botonJugar("VOLVER");
+        botonVolver = new botonEstilo("VOLVER");
 
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelSuperior.setOpaque(false);

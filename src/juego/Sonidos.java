@@ -70,18 +70,4 @@ public class Sonidos {
             e.printStackTrace();
         }
     }
-
-    public static void cambiarEstadoSonido() {
-        sonidoActivado = !sonidoActivado;
-
-        if (!sonidoActivado) {
-            detenerMusica();
-        } else {
-            reproducirMusica("/audio/menu.wav");
-        }
-    }
-
-    public static boolean isSonidoActivado() {
-        return sonidoActivado;
-    }
 }

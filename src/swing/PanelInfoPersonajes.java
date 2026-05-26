@@ -18,7 +18,7 @@ public class PanelInfoPersonajes extends PanelFondo{
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         JPanel panelSuperior = new JPanel(new BorderLayout());
         panelSuperior.setOpaque(false);
-        botonAtras = new botonJugar("VOLVER");
+        botonAtras = new botonEstilo("VOLVER");
         panelSuperior.add(botonAtras, BorderLayout.WEST);
 
 

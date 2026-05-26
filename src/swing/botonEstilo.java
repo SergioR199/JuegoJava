@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class botonJugar extends JButton {
+public class botonEstilo extends JButton {
 
     private final Color colorNormal = new Color(30, 35, 45);
     private final Color colorHover = new Color(60, 70, 90);
 
-    public botonJugar(String texto) {
+    public botonEstilo(String texto) {
         super(texto);
 
         setFont(new Font("Serif", Font.BOLD, 22));

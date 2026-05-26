@@ -15,7 +15,7 @@ public class PanelReglas extends PanelFondo implements ActionListener {
         setLayout(new BorderLayout());
 
 
-        botonVolver = new botonJugar("VOLVER");
+        botonVolver = new botonEstilo("VOLVER");
 
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelSuperior.setOpaque(false);
