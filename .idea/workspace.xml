@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment=",">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="comitlñ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fondo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Imagenes/fondo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/InformacionJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/InformacionJuego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelCreadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelFondo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelFondo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelGanadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelReglas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Version.1.4" />
+        <entry key="$PROJECT_DIR$" value="experimental" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,12 +34,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -65,32 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.VentanaJuego.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "experimental",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Yukita/IdeaProjects/testJuego/src/audio",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/alumno/IdeaProjects/testJuego/src/Main.java",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VentanaJuego.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Version.1.2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yukita/IdeaProjects/testJuego/src/audio&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/alumno/IdeaProjects/testJuego/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Yukita\IdeaProjects\testJuego\src\audio" />
@@ -339,7 +329,47 @@
       <option name="project" value="LOCAL" />
       <updated>1779311266797</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="comit">
+      <option name="closed" value="true" />
+      <created>1779332906671</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1779332906671</updated>
+    </task>
+    <task id="LOCAL-00028" summary="comitk">
+      <option name="closed" value="true" />
+      <created>1779332935142</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779332935142</updated>
+    </task>
+    <task id="LOCAL-00029" summary="comitl">
+      <option name="closed" value="true" />
+      <created>1779333122436</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1779333122436</updated>
+    </task>
+    <task id="LOCAL-00030" summary="comitl">
+      <option name="closed" value="true" />
+      <created>1779333127237</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1779333127237</updated>
+    </task>
+    <task id="LOCAL-00031" summary="comitlñ">
+      <option name="closed" value="true" />
+      <created>1779333174097</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1779333174097</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,6 +428,10 @@
     <MESSAGE value="ERRORES CORREGIDOS FINAL" />
     <MESSAGE value="." />
     <MESSAGE value="," />
-    <option name="LAST_COMMIT_MESSAGE" value="," />
+    <MESSAGE value="comit" />
+    <MESSAGE value="comitk" />
+    <MESSAGE value="comitl" />
+    <MESSAGE value="comitlñ" />
+    <option name="LAST_COMMIT_MESSAGE" value="comitlñ" />
   </component>
 </project>
