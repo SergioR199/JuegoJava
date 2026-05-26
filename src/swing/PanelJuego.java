@@ -147,6 +147,12 @@ public class PanelJuego extends PanelFondo implements ActionListener {
             creandoEquipos = false;
             areaTexto.append("\n\nEquipos creados correctamente.\n\n");
             areaTexto.append(Main.mostrarEstadoRonda(Main.equipos));
+
+            SwingUtilities.getWindowAncestor(this).dispose();
+
+            Ventana ventana = new Ventana();
+            ventana.setContentPane(new PanelBatalla());
+            ventana.revalidate();
         } else {
             areaTexto.append("\n\nAhora elige personaje para el jugador " + (indiceActual + 1) + ".");
         }
