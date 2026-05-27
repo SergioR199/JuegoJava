@@ -33,7 +33,7 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
 
         areaTexto.setText(InformacionJuego.getInformacionGeneral());
 
-        // 🔧 estilo igual que los otros paneles
+        // estilo igual que los otros paneles
         areaTexto.setFont(new Font("Serif", Font.PLAIN, 20));
         areaTexto.setForeground(Color.black);
         areaTexto.setBackground(new Color(230, 210, 140));
