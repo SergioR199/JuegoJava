@@ -62,6 +62,11 @@ public class Personajes implements InterfacePasivas{
         return vidas;
     }
 
+    public void setVidas(int vidas) {
+
+        this.vidas = vidas;
+    }
+
     /**
      * Getter de los misiles disponibles en la ronda actual.
      *
@@ -78,6 +83,11 @@ public class Personajes implements InterfacePasivas{
      * */
     public void setMisilesRonda(int misilesRonda) {
         this.misilesRonda = misilesRonda;
+    }
+
+    public int getMisilesBase(int misilesBase){
+
+        return misilesBase;
     }
 
     /**
