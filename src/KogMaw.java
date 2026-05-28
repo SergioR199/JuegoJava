@@ -26,14 +26,4 @@ public class KogMaw extends Personajes {
         }
         System.out.println(nombre + " explota y hace 20 de daño!");
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    @Override
-    public String getRaza() {
-        return "SER MAGICO";
-    }
 }

@@ -1,5 +1,3 @@
-import java.lang.classfile.Interfaces;
-
 import interfaces.InterfacePasivas;
 
 /**
@@ -7,7 +5,7 @@ import interfaces.InterfacePasivas;
  * Contiene estadísticas comunes y métodos que pueden ser sobrescritos por las subclases
  * según sus pasivas.
  * */
-public class Personajes implements InterfacePasivas {
+public class Personajes{
     protected String nombre;
     protected String identificador;
     protected int vidas;
@@ -81,25 +79,6 @@ public class Personajes implements InterfacePasivas {
     }
 
     /**
-     * Getter de la vida máxima del personaje.
-     *
-     * @return Vida máxima.
-     * */
-    public int getVidaMaxima() {
-        return vidaMaxima;
-    }
-
-    /**
-     * Getter de la raza del personaje (Humano, Yordle o Ser Mágico).
-     * Por defecto devuelve "Desconocida" pero se puede sobrescribir en subclases.
-     *
-     * @return Tipo del personaje.
-     * */
-    public String getRaza() {
-        return "DESCONOCIDA";
-    }
-
-    /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
@@ -115,14 +94,16 @@ public class Personajes implements InterfacePasivas {
         }
     }
 
+    /**
+     * Método que permite modificar la curación base recibida por el personaje.
+     * Está pensado para ser sobrescrito por subclases que tengan habilidades pasivas de curación.
+     *
+     * @param curacionBase Cantidad de curación inicial calculada.
+     * @return Cantidad final de curación tras aplicar la pasiva.
+     */
     public int pasivaCuracion(int curacionBase){
         return 0;
     }
-
-    public void pasivaMatar(){}
-
-    public void pasivaMorir(){}
-
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
      *
@@ -150,7 +131,9 @@ public class Personajes implements InterfacePasivas {
             return curacionFinal;
 
         } else if (accion.equalsIgnoreCase("atacar")) {
-            if (this.getRaza().equals("YORDLE") && Math.random() < 0.25) {
+            if (this instanceof Corki||this instanceof Heimerdinger||this instanceof Rumble
+                    ||this instanceof Tristana||this instanceof YordlePersonalizado
+                    ||this instanceof Ziggs && Math.random() < 0.25) {
                 System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
@@ -158,11 +141,24 @@ public class Personajes implements InterfacePasivas {
 
             double multiplicador = 1.0;
 
-            if (atacante.getRaza().equals("HUMANO") && this.getRaza().equals("YORDLE")) {
+            if (atacante instanceof Gangplank||atacante instanceof HumanoPersonalizado
+                    ||atacante instanceof Jhin||atacante instanceof Jinx
+                    ||atacante instanceof Sylas
+                    && this instanceof Corki||this instanceof Heimerdinger
+                    ||this instanceof Rumble||this instanceof Tristana
+                    ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
                 multiplicador = 1.25;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("HUMANO")) {
+            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
+                    && this instanceof Gangplank|this instanceof HumanoPersonalizado
+                    ||this instanceof Jhin||this instanceof Jinx
+                    ||this instanceof Sylas) {
                 multiplicador = 1.75;
-            } else if (atacante.getRaza().equals("SER MAGICO") && this.getRaza().equals("YORDLE")) {
+            } else if (atacante instanceof AurelionSol||atacante instanceof KogMaw
+                    ||atacante instanceof SerMagicoPersonalizado||atacante instanceof Xerath
+                    && this instanceof Corki
+                    ||this instanceof Heimerdinger||this instanceof Rumble
+                    ||this instanceof Tristana ||this instanceof YordlePersonalizado ||this instanceof Ziggs) {
                 multiplicador = 0.75;
             }
 
@@ -182,9 +178,9 @@ public class Personajes implements InterfacePasivas {
                 System.out.println(this.nombre + " ha sido destruido.");
 
                 if (atacante instanceof Jinx) {
-                    ((Jinx) atacante).pasivaMatar(this);
+                    ((Jinx) atacante).pasivaMatar();
                 } else if (atacante instanceof Tristana) {
-                    ((Tristana) atacante).pasivaMatar(this);
+                    ((Tristana) atacante).pasivaMatar();
                 }
 
                 if (this instanceof KogMaw) {

@@ -37,14 +37,4 @@ public class Xerath extends Personajes {
 
         return super.accion(accion, misiles, atacante);
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "SER MAGICO".
-     * */
-    @Override
-    public String getRaza() {
-        return "SER MAGICO";
-    }
 }

@@ -16,10 +16,9 @@ public class Tristana extends Personajes {
     /**
      * Método que cura vida al matar a un enemigo.
      *
-     * @param objetivo Personaje eliminado.
      *
      */
-    public void pasivaMatar(Personajes objetivo) {
+    public void pasivaMatar() {
         this.vidas += 15;
 
         if (this.vidas > this.vidaMaxima) {
@@ -27,15 +26,5 @@ public class Tristana extends Personajes {
         }
 
         System.out.println(nombre + " se cura 15 de vida!");
-    }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
     }
 }

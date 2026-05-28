@@ -18,10 +18,9 @@ public class Rumble extends Personajes {
      *
      * @param equipos Array con todos los personajes de la partida.
      * @param indiceObjetivo Índice del objetivo atacado.
-     * @param danioBase Daño base del ataque.
      *
      */
-    public void alAtacar(Personajes[] equipos, int indiceObjetivo, int danioBase) {
+    public void alAtacar(Personajes[] equipos, int indiceObjetivo) {
         if (indiceObjetivo >= 0 && indiceObjetivo < equipos.length &&
                 equipos[indiceObjetivo].getVidas() > 0) {
 
@@ -29,15 +28,5 @@ public class Rumble extends Personajes {
             System.out.println(equipos[indiceObjetivo].getNombre() +
                     " está quemándose! (-5 de vida al inicio de cada turno)");
         }
-    }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "YORDLE".
-     * */
-    @Override
-    public String getRaza() {
-        return "YORDLE";
     }
 }

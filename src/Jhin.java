@@ -32,14 +32,4 @@ public class Jhin extends Personajes {
 
         return danioBase;
     }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
-    }
 }

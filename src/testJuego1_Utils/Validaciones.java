@@ -14,6 +14,6 @@ public class Validaciones {
      * @return true si el identificador es válido, false en caso contrario.
      * */
     public static boolean validarIdentificador(String identificador) {
-        return identificador != null && identificador.matches("^[0-9]{4}[A-Z]{3}$");
+        return identificador.matches("^[0-9]{4}[A-Z]{3}$");
     }
 }

@@ -16,21 +16,10 @@ public class Jinx extends Personajes {
     /**
      * Método que al matar a un enemigo, Jinx gana misiles permanentes.
      *
-     * @param objetivo Personaje eliminado por Jinx.
      *
      */
-    public void pasivaMatar(Personajes objetivo) {
+    public void pasivaMatar() {
         this.bonusMisiles += 10;
         System.out.println(nombre + " gana +10 misiles permanentes!");
-    }
-
-    /**
-     * Getter de la raza del personaje.
-     *
-     * @return String "HUMANO".
-     * */
-    @Override
-    public String getRaza() {
-        return "HUMANO";
     }
 }
