@@ -1,5 +1,6 @@
 package swing;
 
+import juego.Ganadores;
 import juego.Main;
 import juego.Personajes;
 
@@ -8,10 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Panel encargado del combate.
- * Usa el método turnoEquipo() de Main para ejecutar los turnos.
- */
 public class PanelBatalla extends PanelFondo implements ActionListener {
 
     private JTextArea areaTexto;
@@ -27,24 +24,25 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
 
     private String[] acciones = new String[200];
     private int numAcciones = 0;
+    private int inicioAccionesRonda = 0;
+
+    private boolean esperandoNuevaRonda = false;
+    private boolean partidaTerminada = false;
 
     public PanelBatalla() {
         super("/imagenes/Juego.png");
 
         setLayout(new BorderLayout(10, 10));
 
-        // ================= PANEL SUPERIOR =================
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelSuperior.setOpaque(false);
 
         botonVolver = new botonEstilo("VOLVER");
         botonVolver.addActionListener(this);
-
         panelSuperior.add(botonVolver);
 
         add(panelSuperior, BorderLayout.NORTH);
 
-        // ================= AREA TEXTO =================
         areaTexto = new JTextArea();
         areaTexto.setEditable(false);
         areaTexto.setLineWrap(true);
@@ -54,10 +52,8 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         areaTexto.setBackground(new Color(230, 210, 140));
 
         JScrollPane scroll = new JScrollPane(areaTexto);
-
         add(scroll, BorderLayout.CENTER);
 
-        // ================= PANEL BOTONES =================
         JPanel panelBotones = new JPanel(new GridLayout(1, 4, 10, 10));
         panelBotones.setOpaque(false);
 
@@ -81,20 +77,16 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         iniciarRonda();
     }
 
-    /**
-     * Inicia la ronda mostrando el estado de todos los personajes.
-     */
     private void iniciarRonda() {
-        areaTexto.setText("===== RONDA " + ronda + " =====\n\n");
+        esperandoNuevaRonda = false;
+        inicioAccionesRonda = numAcciones;
+
+        areaTexto.append("\n===== RONDA " + ronda + " =====\n\n");
         areaTexto.append(Main.mostrarEstadoRonda(Main.equipos));
         mostrarTurnoActual();
     }
 
-    /**
-     * Muestra qué personaje está jugando.
-     */
     private void mostrarTurnoActual() {
-
         while (indiceTurno < Main.equipos.length
                 && Main.equipos[indiceTurno].getVidas() <= 0) {
             indiceTurno++;
@@ -113,45 +105,75 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         areaTexto.append("Misiles: " + actual.getMisilesRonda() + "\n");
     }
 
-    /**
-     * Ejecuta una acción usando turnoEquipo().
-     */
-    private void ejecutarTurno() {
+    private void ejecutarTurno(String accion) {
+        if (esperandoNuevaRonda || partidaTerminada) {
+            return;
+        }
 
-        // Scanner vacío porque turnoEquipo obliga a recibir Scanner.
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Personajes actual = Main.equipos[indiceTurno];
+        int accionesAntes = numAcciones;
 
         numAcciones = Main.turnoEquipo(
                 Main.equipos,
                 indiceTurno,
-                sc,
+                accion,
                 acciones,
                 numAcciones,
                 ronda
         );
 
-        mostrarAcciones();
+        if (numAcciones == accionesAntes && !accion.equals("TERMINAR")) {
+            return;
+        }
 
-        indiceTurno++;
+        mostrarNuevasAcciones(accionesAntes);
+
+        if (accion.equals("TERMINAR")
+                || actual.getVidas() <= 0
+                || actual.getMisilesRonda() <= 0
+                || Main.equiposVivos(Main.equipos) <= 1) {
+            indiceTurno++;
+        }
+
         mostrarTurnoActual();
     }
 
-    /**
-     * Muestra las acciones realizadas.
-     */
-    private void mostrarAcciones() {
+    private void mostrarNuevasAcciones(int desde) {
+        for (int i = desde; i < numAcciones; i++) {
+            areaTexto.append("\n" + acciones[i] + "\n");
+        }
+    }
 
-        areaTexto.append("\n===== ACCIONES =====\n");
+    private void mostrarAccionesDeLaRonda() {
+        areaTexto.append("\n===== ACCIONES DE LA RONDA =====\n");
 
-        for (int i = 0; i < numAcciones; i++) {
+        if (inicioAccionesRonda == numAcciones) {
+            areaTexto.append("No se ha realizado ninguna acción en esta ronda.\n");
+            return;
+        }
+
+        for (int i = inicioAccionesRonda; i < numAcciones; i++) {
             areaTexto.append(acciones[i] + "\n");
         }
     }
 
-    /**
-     * Finaliza la ronda.
-     */
     private void terminarRonda() {
+        areaTexto.append("\n===== FIN DE RONDA =====\n\n");
+        areaTexto.append(Main.mostrarEstadoRonda(Main.equipos));
+        areaTexto.append("\n");
+
+        mostrarAccionesDeLaRonda();
+
+        if (Main.equiposVivos(Main.equipos) <= 1) {
+            partidaTerminada = true;
+            mostrarGanadorYGuardar();
+
+            botonAtacar.setEnabled(false);
+            botonDefender.setEnabled(false);
+            botonTerminar.setEnabled(false);
+            botonSiguiente.setEnabled(false);
+            return;
+        }
 
         for (Personajes p : Main.equipos) {
             if (p.getVidas() > 0) {
@@ -159,35 +181,40 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
             }
         }
 
-        areaTexto.append("\n===== FIN DE RONDA =====\n\n");
-        areaTexto.append(Main.mostrarEstadoRonda(Main.equipos));
-
-        if (Main.equiposVivos(Main.equipos) <= 1) {
-            areaTexto.append("\n\n¡PARTIDA TERMINADA!");
-
-            botonAtacar.setEnabled(false);
-            botonDefender.setEnabled(false);
-            botonTerminar.setEnabled(false);
-            botonSiguiente.setEnabled(false);
-
-            return;
-        }
-
         ronda++;
         indiceTurno = 0;
+        esperandoNuevaRonda = true;
 
-        areaTexto.append("\n\nPulsa SIGUIENTE TURNO para comenzar la nueva ronda.\n");
+        areaTexto.append("\nPulsa SIGUIENTE TURNO para comenzar la nueva ronda.\n");
+    }
+
+    private void mostrarGanadorYGuardar() {
+
+        for (Personajes p : Main.equipos) {
+            if (p.getVidas() > 0) {
+                areaTexto.append("\n¡PARTIDA TERMINADA!\n");
+                areaTexto.append("GANADOR: " + p.getNombre() + " [" + p.getIdentificador() + "]\n");
+                Ganadores.anunciarGanador(Main.equipos, Main.numeroPartida);
+                Main.numeroPartida++;
+                return;
+            }
+        }
+
+        areaTexto.append("\n¡PARTIDA TERMINADA!\n");
+        areaTexto.append("RESULTADO: EMPATE\n");
+        Ganadores.anunciarGanador(Main.equipos, Main.numeroPartida);
+        Main.numeroPartida++;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         if (e.getSource() == botonVolver) {
             ventana.setContentPane(new PanelMenu());
             ventana.revalidate();
             ventana.repaint();
+            return;
         }
 
         if (Main.equipos == null) {
@@ -195,29 +222,21 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
             return;
         }
 
-        // ================= ATACAR =================
         if (e.getSource() == botonAtacar) {
-            ejecutarTurno();
+            ejecutarTurno("ATACAR");
         }
 
-        // ================= DEFENDER =================
         if (e.getSource() == botonDefender) {
-            ejecutarTurno();
+            ejecutarTurno("DEFENDER");
         }
 
-        // ================= TERMINAR =================
         if (e.getSource() == botonTerminar) {
-            indiceTurno++;
-            mostrarTurnoActual();
+            ejecutarTurno("TERMINAR");
         }
 
-        // ================= SIGUIENTE =================
         if (e.getSource() == botonSiguiente) {
-
-            if (indiceTurno >= Main.equipos.length) {
+            if (esperandoNuevaRonda && !partidaTerminada) {
                 iniciarRonda();
-            } else {
-                mostrarTurnoActual();
             }
         }
     }

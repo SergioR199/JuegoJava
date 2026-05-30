@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Corki.
+ * Clase que representa a Corki.
  *
  */
 public class Corki extends Personajes {
@@ -9,12 +9,12 @@ public class Corki extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de juego.Corki con sus estadísticas iniciales.
+     * Constructor de Corki con sus eStadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Corki(String identificador) {
-        super("juego.Corki", identificador, 165, 55);
+        super("Corki", identificador, 165, 55);
     }
 
     /**

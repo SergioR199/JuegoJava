@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Heimerdinger.
+ * Clase que representa a Heimerdinger.
  *
  */
 public class Heimerdinger extends Personajes {
@@ -9,12 +9,12 @@ public class Heimerdinger extends Personajes {
     private int contador = 0;
 
     /**
-     * Constructor de juego.Heimerdinger con sus estadísticas iniciales.
+     * Constructor de Heimerdinger con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Heimerdinger(String identificador) {
-        super("juego.Heimerdinger", identificador, 150, 55);
+        super("Heimerdinger", identificador, 150, 55);
     }
 
     /**
