@@ -28,6 +28,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
 
     private boolean esperandoNuevaRonda = false;
     private boolean partidaTerminada = false;
+    private boolean[] participaEnRonda;
 
     public PanelBatalla() {
         super("/imagenes/Juego.png");
@@ -81,14 +82,18 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         esperandoNuevaRonda = false;
         inicioAccionesRonda = numAcciones;
 
+        participaEnRonda = new boolean[Main.equipos.length];
+        for (int i = 0; i < Main.equipos.length; i++) {
+            participaEnRonda[i] = Main.equipos[i] != null && Main.equipos[i].getVidas() > 0;
+        }
+
         areaTexto.append("\n===== RONDA " + ronda + " =====\n\n");
         areaTexto.append(Main.mostrarEstadoRonda(Main.equipos));
         mostrarTurnoActual();
     }
 
     private void mostrarTurnoActual() {
-        while (indiceTurno < Main.equipos.length
-                && Main.equipos[indiceTurno].getVidas() <= 0) {
+        while (indiceTurno < Main.equipos.length && !participaEnRonda[indiceTurno]) {
             indiceTurno++;
         }
 
@@ -129,9 +134,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         mostrarNuevasAcciones(accionesAntes);
 
         if (accion.equals("TERMINAR")
-                || actual.getVidas() <= 0
-                || actual.getMisilesRonda() <= 0
-                || Main.equiposVivos(Main.equipos) <= 1) {
+                || actual.getMisilesRonda() <= 0) {
             indiceTurno++;
         }
 

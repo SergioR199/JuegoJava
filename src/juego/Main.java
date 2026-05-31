@@ -1,7 +1,5 @@
 package juego;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import testJuego1_Utils.Validaciones;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -28,40 +26,6 @@ public class Main {
             new Ventana();
             Sonidos.reproducirMusica("/audio/menu.wav");
         });
-    }
-
-    /**
-     * Método que pregunta al usuario cuantos equipos quiere crear para la partida.
-     * El mínimo son 3; si mete algo menor, reseteamos el valor a 0 para que el bucle le vuelva a preguntar.
-     *
-     * @return Número de equipos que ha elegido, siempre 3 o más.
-     */
-    public static int pedirNumeroEquipos() {
-        int numEquipos = 0;
-
-        do {
-            String entrada = JOptionPane.showInputDialog(null,
-                    "¿Cuántos equipos quieres crear? (mínimo 3):");
-
-            if (entrada == null) {
-                return -1;
-            }
-
-            try {
-                numEquipos = Integer.parseInt(entrada);
-
-                if (numEquipos < 3) {
-                    JOptionPane.showMessageDialog(null,
-                            "Debes introducir un número mínimo de 3.");
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null,
-                        "Has introducido un valor no válido.");
-                numEquipos = 0;
-            }
-        } while (numEquipos < 3);
-
-        return numEquipos;
     }
 
     /**
@@ -104,39 +68,6 @@ public class Main {
         } while (repetido);
 
         return identificador;
-    }
-
-    /**
-     * Método que crea todos los equipos de la partida pidiendo al usuario un personaje para cada jugador.
-     *
-     * @param equipos Array donde se guardarán los personajes creados.
-     * */
-    public static void crearEquipos(Personajes[] equipos) {
-        for (int i = 0; i < equipos.length; i++) {
-            JOptionPane.showMessageDialog(null, "Jugador " + (i + 1));
-
-            int opcionPersonaje = pedirPersonaje();
-
-            if (opcionPersonaje == -1) {
-                JOptionPane.showMessageDialog(null, "Creación de equipos cancelada.");
-                return;
-            }
-
-            String identificador = pedirIdentificador(equipos);
-
-            if (identificador == null) {
-                return;
-            }
-
-            equipos[i] = crearPersonaje(opcionPersonaje, identificador);
-
-            JOptionPane.showMessageDialog(null,
-                    "Equipo creado: " + equipos[i].getNombre()
-                            + " | ID: " + equipos[i].getIdentificador()
-                            + " | Tipo: " + obtenerRaza(equipos[i])
-                            + " | Vidas: " + equipos[i].getVidas()
-                            + " | Misiles/ronda: " + equipos[i].getMisilesRonda());
-        }
     }
 
     /**
@@ -213,30 +144,6 @@ public class Main {
     }
 
     /**
-     * Método que muestra la lista de personajes disponibles y devuelve la opción elegida.
-     *
-     * @return Número del personaje seleccionado.
-     * */
-    public static int pedirPersonaje() {
-        String[] opciones = {
-                "1 - Jinx", "2 - Jhin", "3 - Gangplank", "4 - Rumble",
-                "5 - Heimerdinger", "6 - Kog'Maw", "7 - Aurelion Sol", "8 - Sylas",
-                "9 - Tristana", "10 - Xerath", "11 - Ziggs", "12 - Corki",
-                "13 - Personalizado", "14 - Aleatorio"
-        };
-
-        int seleccion = JOptionPane.showOptionDialog(null, "Escoge un personaje", "Selección de personaje",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
-                opciones, opciones[0]);
-
-        if (seleccion == -1) {
-            return -1;
-        }
-
-        return seleccion + 1;
-    }
-
-    /**
      * Método que cuenta cuántos personajes quedan vivos en la partida.
      * Recorre el array y por cada uno comprueba si tiene vidas usando un operador ternario.
      *
@@ -290,7 +197,7 @@ public class Main {
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, String accionSwing, String[] listaAcciones, int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
 
-        if (atacante == null || atacante.getVidas() <= 0 || atacante.getMisilesRonda() <= 0 || equiposVivos(equipos) <= 1) {
+        if (atacante == null || atacante.getMisilesRonda() <= 0) {
             return numAcciones;
         }
 
@@ -442,40 +349,16 @@ public class Main {
             listaAcciones[numAcciones] = mensaje;
             numAcciones++;
 
+            if (!equipos[indiceObjetivoReal].getMensajeEsquiva().isEmpty()) {
+                listaAcciones[numAcciones] = equipos[indiceObjetivoReal].getMensajeEsquiva();
+                numAcciones++;
+                equipos[indiceObjetivoReal].setMensajeEsquiva("");
+            }
+
             return numAcciones;
         }
 
         return numAcciones;
-    }
-
-    /**
-     * Método que lee el número entero que introduce el usuario dentro del rango definido,
-     * teniendo que repetir hasta que se introduzca un valor válido.
-     *
-     * @param sc Scanner que se utiliza para leer el número que introduce el usuario.
-     * @param min Valor mínimo.
-     * @param max Valor máximo.
-     * @param mensaje Mensaje que se le muestra al usuario.
-     * @return Número entero válido.
-     * */
-    public static int leerEnteroRango(Scanner sc, int min, int max, String mensaje) {
-        while (true) {
-            try {
-                System.out.print(mensaje);
-                int valor = sc.nextInt();
-                sc.nextLine();
-
-                if (valor < min || valor > max) {
-                    System.out.println("Elige un número entre " + min + " y " + max + ".");
-                } else {
-                    return valor;
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Valor no válido. Introduce un número entero.");
-                sc.nextLine();
-            }
-        }
     }
 
     /**

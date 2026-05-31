@@ -17,6 +17,7 @@ public class Personajes implements InterfacePasivas{
     protected int quemadura = 0;
     protected int bonusDanio = 0;
     protected int misilesBase;
+    protected String mensajeEsquiva = "";
 
     /**
      * Constructor de un personaje con sus estadísticas iniciales.
@@ -90,6 +91,14 @@ public class Personajes implements InterfacePasivas{
         return misilesBase;
     }
 
+    public String getMensajeEsquiva() {
+        return mensajeEsquiva;
+    }
+
+    public void setMensajeEsquiva(String mensajeEsquiva) {
+        this.mensajeEsquiva = mensajeEsquiva;
+    }
+
     /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
@@ -157,7 +166,7 @@ public class Personajes implements InterfacePasivas{
             if ((this instanceof Corki||this instanceof Heimerdinger ||this instanceof Rumble
                     ||this instanceof Tristana ||this instanceof YordlePersonalizado
                     ||this instanceof Ziggs) && Math.random() < 0.25) {
-                System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+                this.mensajeEsquiva = this.nombre + " ha esquivado el ataque.";
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
             }
