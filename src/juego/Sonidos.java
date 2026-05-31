@@ -1,8 +1,6 @@
 package juego;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import java.net.URL;
 
 public class Sonidos {
@@ -12,11 +10,11 @@ public class Sonidos {
 
     public static void reproducirMusica(String ruta) {
         try {
-            if (!sonidoActivado) {
-                return;
-            }
-
-            if (musicaFondo != null && musicaFondo.isRunning()) {
+            if (musicaFondo != null) {
+                if (!musicaFondo.isRunning()) {
+                    musicaFondo.start();
+                }
+                aplicarEstadoSonido();
                 return;
             }
 
@@ -31,6 +29,8 @@ public class Sonidos {
             musicaFondo.open(audio);
             musicaFondo.loop(Clip.LOOP_CONTINUOUSLY);
             musicaFondo.start();
+
+            aplicarEstadoSonido();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +65,28 @@ public class Sonidos {
             Clip efecto = AudioSystem.getClip();
             efecto.open(audio);
             efecto.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void mutearSonido() {
+        sonidoActivado = false;
+        aplicarEstadoSonido();
+    }
+
+    public static void activarSonido() {
+        sonidoActivado = true;
+        aplicarEstadoSonido();
+    }
+
+    private static void aplicarEstadoSonido() {
+        if (musicaFondo == null) return;
+
+        try {
+            BooleanControl muteControl = (BooleanControl) musicaFondo.getControl(BooleanControl.Type.MUTE);
+            muteControl.setValue(!sonidoActivado);
 
         } catch (Exception e) {
             e.printStackTrace();
