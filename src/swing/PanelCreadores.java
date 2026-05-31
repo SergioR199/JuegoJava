@@ -70,7 +70,7 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
     /**
      * Metodo para los sonidos y esteticas.
      *
-     * @param e the event to be processed
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -11,6 +11,7 @@ public class Sonidos {
 
     private static Clip musicaFondo;
     private static boolean sonidoActivado = true;
+
     /**
      * Reproduce música de fondo en bucle continuo.
      *
@@ -19,7 +20,6 @@ public class Sonidos {
      *
      * @param ruta ruta relativa del archivo de audio
      */
-
     public static void reproducirMusica(String ruta) {
         try {
             if (musicaFondo != null) {
@@ -104,8 +104,7 @@ public class Sonidos {
     /**
      * Activa nuevamente el sonido del juego.
      *
-     * Permite reproducir música
-     * después de haber sido silenciados.
+     * Permite reproducir música después de haber sido silenciados.
      */
     public static void activarSonido() {
         sonidoActivado = true;

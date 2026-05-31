@@ -74,7 +74,7 @@ public class PanelReglas extends PanelFondo implements ActionListener {
      * Si el usuario pulsa el botón volver, reproduce un sonido
      * y regresa a la pantalla principal del menú.
      *
-     * @param e evento generado por la interacción del usuario
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {

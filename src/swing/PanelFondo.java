@@ -33,7 +33,7 @@ public class PanelFondo extends JPanel {
 
     /**
      * Metodo para dibujar la imagen.
-     * @param g the <code>Graphics</code> object to protect
+     * @param g
      */
     @Override
     protected void paintComponent(Graphics g) {

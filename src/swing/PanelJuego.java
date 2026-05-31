@@ -169,7 +169,7 @@ public class PanelJuego extends PanelFondo implements ActionListener {
      * Se ejecuta cuando pulsas VOLVER o CREAR EQUIPOS.
      * VOLVER te lleva al menú y CREAR EQUIPOS pide cuántos equipos quieres.
      *
-     * @param e El evento del botón
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {

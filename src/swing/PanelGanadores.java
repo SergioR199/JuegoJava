@@ -73,7 +73,7 @@ public class PanelGanadores extends PanelFondo implements ActionListener {
      * Si se pulsa el botón volver, reproduce un sonido y cambia
      * la pantalla actual mostrando nuevamente el menú principal.
      *
-     * @param e evento generado por la interacción del usuario
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {

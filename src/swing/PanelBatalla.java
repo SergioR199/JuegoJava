@@ -35,7 +35,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     private boolean[] participaEnRonda;
 
     /**
-     * Metodo para la configuracion de el panel de batalla.
+     * Metodo para la configuracion del panel de batalla.
      */
 
     public PanelBatalla() {
@@ -87,7 +87,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     }
 
     /**
-     * Metodo que para iniciar una nuneva ronda cuando acabe la anterior.
+     * Metodo para iniciar una nueva ronda cuando acabe la anterior.
      */
 
     private void iniciarRonda() {
@@ -105,7 +105,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     }
 
     /**
-     * Metodo que te enseña en Turno en el que te encuentras
+     * Metodo que te enseña el turno en el que te encuentras
      */
     private void mostrarTurnoActual() {
         while (indiceTurno < Main.equipos.length && !participaEnRonda[indiceTurno]) {
@@ -253,7 +253,7 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     /**
      * Metodo para la interfaz
      *
-     * @param e the event to be processed
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {

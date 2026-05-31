@@ -107,7 +107,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
     }
     /**
      * Gestiona los eventos producidos por los botones.
-     * @param e evento generado por la interacción del usuario
+     * @param e Evento generado por la interacción del usuario
      */
     @Override
     public void actionPerformed(ActionEvent e) {
