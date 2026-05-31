@@ -64,7 +64,6 @@ public class Personajes implements InterfacePasivas{
     }
 
     public void setVidas(int vidas) {
-
         this.vidas = vidas;
     }
 

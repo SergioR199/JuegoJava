@@ -6,22 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="A PUNTITO DE CARAMELO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/AurelionSol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Gangplank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Heimerdinger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jhin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jinx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/KogMaw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/juego/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Rumble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Tristana.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Xerath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ziggs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelBatalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelBatalla.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -377,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780233744766</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="A PUNTITO DE CARAMELO">
+      <option name="closed" value="true" />
+      <created>1780239174341</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1780239174341</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
