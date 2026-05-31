@@ -13,25 +13,12 @@ import juego.Personajes;
  */
 public class PanelJuego extends PanelFondo implements ActionListener {
 
-    /** Botón para volver al menú */
     private JButton botonVolver;
-
-    /** Botón para empezar a crear equipos */
     private JButton botonCrearEquipos;
-
-    /** Área donde se va mostrando la información */
     private JTextArea areaTexto;
-
-    /** Panel que tiene los botones de personajes */
     private JPanel panelPersonajes;
-
-    /** Cuántos equipos quiere crear el usuario */
     private int numEquipos;
-
-    /** Qué jugador estamos creando ahora */
     private int indiceActual;
-
-    /** Si está activado el modo de creación de equipos */
     private boolean creandoEquipos = false;
 
     /**
@@ -43,7 +30,6 @@ public class PanelJuego extends PanelFondo implements ActionListener {
         super("/imagenes/Juego.png");
         setLayout(new BorderLayout(10, 10));
 
-        // Panel de arriba con los botones VOLVER y CREAR EQUIPOS
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelSuperior.setOpaque(false);
 
@@ -81,7 +67,6 @@ public class PanelJuego extends PanelFondo implements ActionListener {
 
         add(panelTexto, BorderLayout.CENTER);
 
-        // Panel de abajo con los botones de personajes en 2 columnas
         panelPersonajes = new JPanel(new GridLayout(7, 2, 10, 10));
         panelPersonajes.setOpaque(false);
         panelPersonajes.setBorder(BorderFactory.createEmptyBorder(10, 80, 20, 80));
@@ -114,13 +99,11 @@ public class PanelJuego extends PanelFondo implements ActionListener {
      * @param nombrePersonaje El nombre del personaje que se pulsó
      */
     private void seleccionarPersonaje(String nombrePersonaje) {
-        // Comprobar que ya se haya pulsado CREAR EQUIPOS
         if (!creandoEquipos) {
             areaTexto.setText("Primero pulsa 'CREAR EQUIPOS'.");
             return;
         }
 
-        // Convertir el nombre a número y pedir el ID
         int opcion = convertirPersonajeAOpcion(nombrePersonaje);
         String identificador = Main.pedirIdentificador(Main.equipos);
 
@@ -129,10 +112,8 @@ public class PanelJuego extends PanelFondo implements ActionListener {
             return;
         }
 
-        // Crear el personaje y guardarlo
         Main.equipos[indiceActual] = Main.crearPersonaje(opcion, identificador);
 
-        // Mostrar los datos del personaje creado
         areaTexto.setText("Jugador " + (indiceActual + 1) + " creado correctamente.\n\n");
         areaTexto.append(Main.equipos[indiceActual].getNombre()
                 + " | ID: " + Main.equipos[indiceActual].getIdentificador()
@@ -142,7 +123,6 @@ public class PanelJuego extends PanelFondo implements ActionListener {
 
         indiceActual++;
 
-        // Ver si ya terminamos de crear todos
         if (indiceActual >= numEquipos) {
             creandoEquipos = false;
             areaTexto.append("\n\nEquipos creados correctamente.\n\n");
@@ -195,13 +175,11 @@ public class PanelJuego extends PanelFondo implements ActionListener {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         if (e.getSource().equals(botonVolver)) {
-            // Volver al menú
             ventana.setContentPane(new PanelMenu());
             ventana.revalidate();
             ventana.repaint();
 
         } else if (e.getSource().equals(botonCrearEquipos)) {
-            // Pedir cuántos equipos
             String entrada = JOptionPane.showInputDialog(this,
                     "¿Cuántos equipos quieres crear? (mínimo 3):");
 
@@ -218,7 +196,6 @@ public class PanelJuego extends PanelFondo implements ActionListener {
                     return;
                 }
 
-                // Crear el array y activar el modo creación
                 Main.equipos = new Personajes[numEquipos];
                 indiceActual = 0;
                 creandoEquipos = true;

@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Heimerdinger.
+ * Clase que representa a Heimerdinger.
  *
  */
 public class Heimerdinger extends Personajes {
@@ -9,12 +9,12 @@ public class Heimerdinger extends Personajes {
     private int contador = 0;
 
     /**
-     * Constructor de juego.Heimerdinger con sus estadísticas iniciales.
+     * Constructor de Heimerdinger con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Heimerdinger(String identificador) {
-        super("juego.Heimerdinger", identificador, 150, 55);
+        super("Heimerdinger", identificador, 150, 55);
     }
 
     /**
@@ -24,12 +24,13 @@ public class Heimerdinger extends Personajes {
      * */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
         contador++;
 
         if (contador == 2) {
             contador = 0;
 
-            System.out.println(nombre + " coloca una torreta!");
+            Main.agregarMensajePasiva(nombre + " coloca una torreta!");
 
             for (Personajes p : Main.equipos) {
                 if (p.getVidas() > 0 && p != this) {
@@ -37,7 +38,7 @@ public class Heimerdinger extends Personajes {
                     if (p.vidas < 0) {
                         p.vidas = 0;
                     }
-                    System.out.println(p.getNombre() + " recibe 10 de daño de la torreta");
+                    Main.agregarMensajePasiva(p.getNombre() + " recibe 10 de daño de la torreta");
                 }
             }
         }

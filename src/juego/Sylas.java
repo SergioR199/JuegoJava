@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Sylas.
+ * Clase que representa a Sylas.
  *
  */
 public class Sylas extends Personajes {
@@ -9,21 +9,22 @@ public class Sylas extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de juego.Sylas con sus estadísticas iniciales.
+     * Constructor de Sylas con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Sylas(String identificador) {
-        super("juego.Sylas", identificador, 190, 50);
+        super("Sylas", identificador, 190, 50);
     }
 
     /**
      * Método que hace que este personaje robe vida y misiles cada 2 turnos.
      *
-     * @param turnoGlobal Número del turno global actual del juego.
+     * @param ronda Número de ronda actual del juego.
      */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
 
         contadorTurnos++;
 
@@ -57,7 +58,7 @@ public class Sylas extends Personajes {
                 objetivo.setMisilesRonda(objetivo.getMisilesRonda() - roboMisiles);
                 this.setMisilesRonda(this.getMisilesRonda() + roboMisiles);
 
-                System.out.println(nombre + " roba poder de " + objetivo.getNombre()
+                Main.agregarMensajePasiva(nombre + " roba poder de " + objetivo.getNombre()
                         + " (-10 vida, -" + roboMisiles + " misiles)");
             }
         }

@@ -1,18 +1,18 @@
 package juego;
 
 /**
- * Clase que representa a juego.Ziggs.
+ * Clase que representa a Ziggs.
  *
  */
 public class Ziggs extends Personajes {
 
     /**
-     * Constructor de juego.Ziggs con sus estadísticas iniciales.
+     * Constructor de Ziggs con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Ziggs(String identificador) {
-        super("juego.Ziggs", identificador, 145, 65);
+        super("Ziggs", identificador, 145, 65);
     }
 
     /**
@@ -24,9 +24,9 @@ public class Ziggs extends Personajes {
      *
      */
     public void alAtacar(Personajes[] equipos, int indiceAtacante, int danioBase) {
-        int danioArea = (int) (danioBase * 0.3);
+        int danioArea = (int) (danioBase * 0.2);
 
-        System.out.println(nombre + " lanza una bomba explosiva!");
+        Main.agregarMensajePasiva(nombre + " lanza una bomba explosiva!");
 
         for (int i = 0; i < equipos.length; i++) {
             if (i != indiceAtacante && equipos[i].getVidas() > 0) {
@@ -34,9 +34,9 @@ public class Ziggs extends Personajes {
 
                 if (equipos[i].vidas <= 0) {
                     equipos[i].vidas = 0;
-                    System.out.println(equipos[i].getNombre() + " ha sido destruido por la explosión!");
+                    Main.agregarMensajePasiva(equipos[i].getNombre() + " ha sido destruido por la explosión!");
                 } else {
-                    System.out.println(equipos[i].getNombre() + " recibe " + danioArea + " de daño en área.");
+                    Main.agregarMensajePasiva(equipos[i].getNombre() + " recibe " + danioArea + " de daño en área.");
                 }
             }
         }

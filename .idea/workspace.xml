@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ñ">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="A PUNTITO DE CARAMELO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/AurelionSol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Gangplank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Heimerdinger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jhin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/juego/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jinx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/KogMaw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Rumble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Tristana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Xerath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ziggs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/swing/PanelBatalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelBatalla.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +50,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "ef0e039e-6deb-4e2f-ac8a-0f1a1316d58e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -66,7 +81,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Version.1.2&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;experimental2&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -338,15 +353,31 @@
       <option name="project" value="LOCAL" />
       <updated>1779346122911</updated>
     </task>
-    <task id="LOCAL-00028" summary="ñ">
+    <task id="LOCAL-00028" summary=",">
       <option name="closed" value="true" />
-      <created>1779874295730</created>
+      <created>1780146829011</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1779874295730</updated>
+      <updated>1780146829011</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="sonido arreglado">
+      <option name="closed" value="true" />
+      <created>1780231177214</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1780231177214</updated>
+    </task>
+    <task id="LOCAL-00030" summary="A PUNTITO DE CARAMELO">
+      <option name="closed" value="true" />
+      <created>1780233744766</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1780233744766</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +436,8 @@
     <MESSAGE value="ERRORES CORREGIDOS FINAL" />
     <MESSAGE value="." />
     <MESSAGE value="," />
-    <MESSAGE value="ñ" />
-    <option name="LAST_COMMIT_MESSAGE" value="ñ" />
+    <MESSAGE value="sonido arreglado" />
+    <MESSAGE value="A PUNTITO DE CARAMELO" />
+    <option name="LAST_COMMIT_MESSAGE" value="A PUNTITO DE CARAMELO" />
   </component>
 </project>

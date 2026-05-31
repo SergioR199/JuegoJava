@@ -1,28 +1,27 @@
 package juego;
 
 /**
- * Clase que representa a juego.Jinx.
+ * Clase que representa a Jinx.
  *
  */
 public class Jinx extends Personajes {
 
     /**
-     * Constructor de juego.Jinx con sus estadísticas iniciales.
+     * Constructor de Jinx con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Jinx(String identificador) {
-
-        super("juego.Jinx", identificador, 180, 55);
+        super("Jinx", identificador, 180, 55);
     }
 
     /**
-     * Método que al matar a un enemigo, juego.Jinx gana misiles permanentes.
+     * Método que al matar a un enemigo, Jinx gana misiles permanentes.
      *
      *
      */
     public void pasivaMatar() {
         this.bonusMisiles += 10;
-        System.out.println(nombre + " gana +10 misiles permanentes!");
+        Main.agregarMensajePasiva(nombre + " gana +10 misiles permanentes!");
     }
 }

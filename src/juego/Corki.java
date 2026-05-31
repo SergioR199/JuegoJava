@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Corki.
+ * Clase que representa a Corki.
  *
  */
 public class Corki extends Personajes {
@@ -9,12 +9,12 @@ public class Corki extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de juego.Corki con sus estadísticas iniciales.
+     * Constructor de Corki con sus eStadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Corki(String identificador) {
-        super("juego.Corki", identificador, 165, 55);
+        super("Corki", identificador, 165, 55);
     }
 
     /**
@@ -24,13 +24,14 @@ public class Corki extends Personajes {
      * */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
 
         contadorTurnos++;
 
         if (contadorTurnos == 4) {
             contadorTurnos = 0;
 
-            System.out.println(nombre + " lanza un misil hextech!");
+            Main.agregarMensajePasiva(nombre + " lanza un misil hextech!");
 
             Personajes[] equipo = Main.equipos;
             int indiceObjetivo = -1;
@@ -47,11 +48,11 @@ public class Corki extends Personajes {
             }
 
             equipo[indiceObjetivo].vidas -= 75;
-            System.out.println(equipo[indiceObjetivo].getNombre() + " recibe 75 de daño.");
+            Main.agregarMensajePasiva(equipo[indiceObjetivo].getNombre() + " recibe 75 de daño.");
 
             if (equipo[indiceObjetivo].getVidas() <= 0) {
                 equipo[indiceObjetivo].vidas = 0;
-                System.out.println(equipo[indiceObjetivo].getNombre() + " ha sido destruido!");
+                Main.agregarMensajePasiva(equipo[indiceObjetivo].getNombre() + " ha sido destruido!");
             }
 
             for (int i = 0; i < equipo.length; i++) {
@@ -59,9 +60,9 @@ public class Corki extends Personajes {
                     equipo[i].vidas -= 10;
                     if (equipo[i].vidas <= 0) {
                         equipo[i].vidas = 0;
-                        System.out.println(equipo[i].getNombre() + " ha sido destruido por la explosión!");
+                        Main.agregarMensajePasiva(equipo[i].getNombre() + " ha sido destruido por la explosión!");
                     } else {
-                        System.out.println(equipo[i].getNombre() + " recibe 10 de daño en área.");
+                        Main.agregarMensajePasiva(equipo[i].getNombre() + " recibe 10 de daño en área.");
                     }
                 }
             }

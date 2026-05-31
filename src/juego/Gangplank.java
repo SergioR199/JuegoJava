@@ -1,18 +1,18 @@
 package juego;
 
 /**
- * Clase que representa a juego.Gangplank.
+ * Clase que representa a Gangplank.
  *
  */
 public class Gangplank extends Personajes {
 
     /**
-     * Constructor de juego.Gangplank con sus estadísticas iniciales.
+     * Constructor de Gangplank con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Gangplank(String identificador) {
-        super("juego.Gangplank", identificador, 210, 45);
+        super("Gangplank", identificador, 210, 45);
     }
 
     /**
@@ -25,7 +25,7 @@ public class Gangplank extends Personajes {
     public int pasivaCuracion(int curacionBase) {
         int curacionMejorada = (int) (curacionBase * 1.5);
 
-        System.out.println(nombre + " mejora su curación!");
+        Main.agregarMensajePasiva(nombre + " mejora su curación!");
         return curacionMejorada;
     }
 }

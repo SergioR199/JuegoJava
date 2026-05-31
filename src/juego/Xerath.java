@@ -1,7 +1,7 @@
 package juego;
 
 /**
- * Clase que representa a juego.Xerath.
+ * Clase que representa a Xerath.
  *
  */
 public class Xerath extends Personajes {
@@ -9,12 +9,12 @@ public class Xerath extends Personajes {
     private boolean escudoActivo = false;
 
     /**
-     * Constructor de juego.Xerath con sus estadísticas iniciales.
+     * Constructor de Xerath con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Xerath(String identificador) {
-        super("juego.Xerath", identificador, 160, 70);
+        super("Xerath", identificador, 160, 70);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Xerath extends Personajes {
         if (accion.equalsIgnoreCase("atacar")) {
             if (this.vidas <= 50 && !escudoActivo) {
                 escudoActivo = true;
-                System.out.println(nombre + " activa escudo!");
+                Main.agregarMensajePasiva(nombre + " activa escudo!");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
             }

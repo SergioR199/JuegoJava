@@ -1,19 +1,19 @@
 package juego;
 
 /**
- * Clase que representa a juego.Jhin.
+ * Clase que representa a Jhin.
  *
  */
 public class Jhin extends Personajes {
     private int contadorAtaques = 0;
 
     /**
-     * Constructor de juego.Jhin con sus estadísticas iniciales.
+     * Constructor de Jhin con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Jhin(String identificador) {
-        super("juego.Jhin", identificador, 170, 60);
+        super("Jhin", identificador, 170, 60);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Jhin extends Personajes {
 
         if (contadorAtaques == 4) {
             contadorAtaques = 0;
-            System.out.println(nombre + " activa su disparo crítico!");
+            Main.agregarMensajePasiva(nombre + " activa su disparo crítico!");
             return danioBase * 2;
         }
 

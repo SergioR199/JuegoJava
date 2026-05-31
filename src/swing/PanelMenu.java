@@ -3,6 +3,7 @@ package swing;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+
 import juego.Sonidos;
 
 public class PanelMenu extends PanelFondo implements ActionListener {
@@ -38,7 +39,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         botonReglas.addActionListener(this);
 
         botonCreadores = new botonEstilo("INFORMACIÓN GENERAL");
-        botonCreadores.setBounds(475, yInicial + (altoBoton + separacion) * 2, anchoBoton * 5/4, altoBoton);
+        botonCreadores.setBounds(475, yInicial + (altoBoton + separacion) * 2, anchoBoton * 5 / 4, altoBoton);
         add(botonCreadores);
         botonCreadores.addActionListener(this);
 
@@ -73,7 +74,7 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         botonMute.setBorderPainted(false);
         botonMute.setFocusPainted(false);
         botonMute.setOpaque(false);
-        botonMute.setBorder(BorderFactory.createLineBorder( new Color(230, 210, 140)));
+        botonMute.setBorder(BorderFactory.createLineBorder(new Color(230, 210, 140)));
 
         add(botonMute);
         botonMute.addActionListener(this);
@@ -114,16 +115,16 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         } else if (e.getSource().equals(botonSalir)) {
             Sonidos.detenerMusica();
             System.exit(0);
-        }else if (e.getSource().equals(botonMute)) {
-                muted = !muted;
+        } else if (e.getSource().equals(botonMute)) {
+            muted = !muted;
 
-                if (muted) {
-                    Sonidos.detenerMusica();
-                    botonMute.setIcon(iconoMute);
-                } else {
-                    Sonidos.reproducirMusica("/audio/menu.wav");
-                    botonMute.setIcon(iconoSonido);
-                }
+            if (muted) {
+                Sonidos.mutearSonido();
+                botonMute.setIcon(iconoMute);
+            } else {
+                Sonidos.activarSonido();
+                botonMute.setIcon(iconoSonido);
             }
         }
     }
+}

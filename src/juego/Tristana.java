@@ -1,18 +1,18 @@
 package juego;
 
 /**
- * Clase que representa a juego.Tristana.
+ * Clase que representa a Tristana.
  *
  */
 public class Tristana extends Personajes {
 
     /**
-     * Constructor de juego.Tristana con sus estadísticas iniciales.
+     * Constructor de Tristana con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */
     public Tristana(String identificador) {
-        super("juego.Tristana", identificador, 155, 60);
+        super("Tristana", identificador, 155, 60);
     }
 
     /**
@@ -27,6 +27,6 @@ public class Tristana extends Personajes {
             this.vidas = this.vidaMaxima;
         }
 
-        System.out.println(nombre + " se cura 15 de vida!");
+        Main.agregarMensajePasiva(nombre + " se cura 15 de vida!");
     }
 }

@@ -22,7 +22,8 @@ public class AurelionSol extends Personajes {
      * */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
         misilesBase += 5;
-        System.out.println(nombre + " gana +5 daño permanente!");
+        Main.agregarMensajePasiva(nombre + " gana +5 daño permanente!");
     }
 }

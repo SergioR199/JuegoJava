@@ -17,6 +17,7 @@ public class Personajes implements InterfacePasivas{
     protected int quemadura = 0;
     protected int bonusDanio = 0;
     protected int misilesBase;
+    protected String mensajeEsquiva = "";
 
     /**
      * Constructor de un personaje con sus estadísticas iniciales.
@@ -90,6 +91,14 @@ public class Personajes implements InterfacePasivas{
         return misilesBase;
     }
 
+    public String getMensajeEsquiva() {
+        return mensajeEsquiva;
+    }
+
+    public void setMensajeEsquiva(String mensajeEsquiva) {
+        this.mensajeEsquiva = mensajeEsquiva;
+    }
+
     /**
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
@@ -102,7 +111,7 @@ public class Personajes implements InterfacePasivas{
             if (this.vidas < 0) {
                 this.vidas = 0;
             }
-            System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
+            Main.agregarMensajePasiva(nombre + " sufre quemadura: -" + quemadura + " vida");
         }
     }
 
@@ -114,7 +123,7 @@ public class Personajes implements InterfacePasivas{
      * @return Cantidad final de curación tras aplicar la pasiva.
      */
     public int pasivaCuracion(int curacionBase){
-        return 0;
+        return curacionBase;
     }
 
     /**
@@ -125,7 +134,7 @@ public class Personajes implements InterfacePasivas{
     /**
      * Método que ejecuta cuando el jugador es eliminado.
      * */
-    public void pasivaMorir(){}
+    public void pasivaMorir(Personajes atacante){}
 
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
@@ -139,11 +148,7 @@ public class Personajes implements InterfacePasivas{
 
         if (accion.equalsIgnoreCase("defender")) {
             int curacionBase = misiles / 2;
-            int curacionFinal = curacionBase;
-
-            if (this instanceof Gangplank) {
-                curacionFinal = ((Gangplank) this).pasivaCuracion(curacionBase);
-            }
+            int curacionFinal = pasivaCuracion(curacionBase);
 
             this.vidas += curacionFinal;
 
@@ -157,7 +162,7 @@ public class Personajes implements InterfacePasivas{
             if ((this instanceof Corki||this instanceof Heimerdinger ||this instanceof Rumble
                     ||this instanceof Tristana ||this instanceof YordlePersonalizado
                     ||this instanceof Ziggs) && Math.random() < 0.25) {
-                System.out.println("\n" + this.nombre + " ha esquivado el ataque.");
+                this.mensajeEsquiva = this.nombre + " ha esquivado el ataque.";
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
             }

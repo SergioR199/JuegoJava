@@ -26,6 +26,6 @@ public class KogMaw extends Personajes {
         if (atacante.vidas < 0) {
             atacante.vidas = 0;
         }
-        System.out.println(nombre + " explota y hace 20 de daño!");
+        Main.agregarMensajePasiva(nombre + " explota y hace 20 de daño!");
     }
 }
