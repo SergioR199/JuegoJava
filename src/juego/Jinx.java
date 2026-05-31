@@ -12,6 +12,7 @@ public class Jinx extends Personajes {
      * @param identificador Identificador del personaje.
      */
     public Jinx(String identificador) {
+
         super("juego.Jinx", identificador, 180, 55);
     }
 
