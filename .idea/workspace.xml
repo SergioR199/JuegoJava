@@ -6,21 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ñ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Sonidos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sonidos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/juego/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelBatalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelBatalla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelCreadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelCreadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelFondo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelFondo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelGanadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelGanadores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelInfoPersonajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelReglas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelReglas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/Ventana.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/botonEstilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/botonEstilo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Ganadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ganadores.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +66,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Version.1.2",
+    "git-widget-placeholder": "experimental2",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",

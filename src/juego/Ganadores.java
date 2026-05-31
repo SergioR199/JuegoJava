@@ -92,15 +92,4 @@ public class Ganadores {
 
         return texto;
     }
-
-    /**
-     * Método que vacía el fichero de ganadores.
-     */
-    public static void borrarGanadores() {
-        try {
-            new FileWriter("ganadores.txt").close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al borrar el archivo de ganadores.");
-        }
-    }
 }
