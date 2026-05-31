@@ -111,34 +111,33 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     }
 
     private void ejecutarTurno(String accion) {
-        if (esperandoNuevaRonda || partidaTerminada) {
-            return;
-        }
+        if (esperandoNuevaRonda || partidaTerminada) return;
 
         Personajes actual = Main.equipos[indiceTurno];
         int accionesAntes = numAcciones;
+        Main.numMensajesPasivas = 0;
 
         numAcciones = Main.turnoEquipo(
-                Main.equipos,
-                indiceTurno,
-                accion,
-                acciones,
-                numAcciones,
-                ronda
+                Main.equipos, indiceTurno, accion, acciones, numAcciones, ronda
         );
 
-        if (numAcciones == accionesAntes && !accion.equals("TERMINAR")) {
-            return;
-        }
+        if (numAcciones == accionesAntes && !accion.equals("TERMINAR")) return;
 
         mostrarNuevasAcciones(accionesAntes);
+        mostrarMensajesPasivas();
 
-        if (accion.equals("TERMINAR")
-                || actual.getMisilesRonda() <= 0) {
+        if (accion.equals("TERMINAR") || actual.getMisilesRonda() <= 0) {
             indiceTurno++;
         }
 
         mostrarTurnoActual();
+    }
+
+    private void mostrarMensajesPasivas() {
+        for (int i = 0; i < Main.numMensajesPasivas; i++) {
+            areaTexto.append(" ⚡ " + Main.mensajesPasivas[i] + "\n");
+        }
+        Main.numMensajesPasivas = 0;
     }
 
     private void mostrarNuevasAcciones(int desde) {

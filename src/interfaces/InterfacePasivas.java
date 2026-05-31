@@ -11,7 +11,7 @@ public interface InterfacePasivas {
      * Método que ejecuta las acciones que debe realizar un personaje al comienzo del turno global.
      * Si el personaje tiene quemadura, pierde la vida indicada.
      *
-     * @param turnoGlobal Número de turno global actual.
+     * @param ronda Número de turno global actual.
      * */
     public void pasivaRonda(int ronda);
 
@@ -36,5 +36,5 @@ public interface InterfacePasivas {
      * Puede ser sobrescrito por subclases para aplicar efectos al morir,
      * como infligir daño adicional o activar habilidades especiales.
      */
-    public void pasivaMorir();
+    public void pasivaMorir(juego.Personajes atacante);
 }

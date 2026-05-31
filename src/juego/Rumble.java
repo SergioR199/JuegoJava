@@ -27,7 +27,7 @@ public class Rumble extends Personajes {
                 equipos[indiceObjetivo].getVidas() > 0) {
 
             equipos[indiceObjetivo].quemadura = 5;
-            System.out.println(equipos[indiceObjetivo].getNombre() +
+            Main.agregarMensajePasiva(equipos[indiceObjetivo].getNombre() +
                     " está quemándose! (-5 de vida al inicio de cada turno)");
         }
     }

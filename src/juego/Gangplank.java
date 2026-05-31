@@ -25,7 +25,7 @@ public class Gangplank extends Personajes {
     public int pasivaCuracion(int curacionBase) {
         int curacionMejorada = (int) (curacionBase * 1.5);
 
-        System.out.println(nombre + " mejora su curación!");
+        Main.agregarMensajePasiva(nombre + " mejora su curación!");
         return curacionMejorada;
     }
 }

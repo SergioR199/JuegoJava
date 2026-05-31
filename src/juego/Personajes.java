@@ -111,7 +111,7 @@ public class Personajes implements InterfacePasivas{
             if (this.vidas < 0) {
                 this.vidas = 0;
             }
-            System.out.println(nombre + " sufre quemadura: -" + quemadura + " vida");
+            Main.agregarMensajePasiva(nombre + " sufre quemadura: -" + quemadura + " vida");
         }
     }
 
@@ -123,7 +123,7 @@ public class Personajes implements InterfacePasivas{
      * @return Cantidad final de curación tras aplicar la pasiva.
      */
     public int pasivaCuracion(int curacionBase){
-        return 0;
+        return curacionBase;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Personajes implements InterfacePasivas{
     /**
      * Método que ejecuta cuando el jugador es eliminado.
      * */
-    public void pasivaMorir(){}
+    public void pasivaMorir(Personajes atacante){}
 
     /**
      * Método que ataca o defiende dependiendo de la cadena que se le dé como parámetro.
@@ -148,11 +148,7 @@ public class Personajes implements InterfacePasivas{
 
         if (accion.equalsIgnoreCase("defender")) {
             int curacionBase = misiles / 2;
-            int curacionFinal = curacionBase;
-
-            if (this instanceof Gangplank) {
-                curacionFinal = ((Gangplank) this).pasivaCuracion(curacionBase);
-            }
+            int curacionFinal = pasivaCuracion(curacionBase);
 
             this.vidas += curacionFinal;
 

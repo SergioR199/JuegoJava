@@ -20,10 +20,11 @@ public class Sylas extends Personajes {
     /**
      * Método que hace que este personaje robe vida y misiles cada 2 turnos.
      *
-     * @param turnoGlobal Número del turno global actual del juego.
+     * @param ronda Número de ronda actual del juego.
      */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
 
         contadorTurnos++;
 
@@ -57,7 +58,7 @@ public class Sylas extends Personajes {
                 objetivo.setMisilesRonda(objetivo.getMisilesRonda() - roboMisiles);
                 this.setMisilesRonda(this.getMisilesRonda() + roboMisiles);
 
-                System.out.println(nombre + " roba poder de " + objetivo.getNombre()
+                Main.agregarMensajePasiva(nombre + " roba poder de " + objetivo.getNombre()
                         + " (-10 vida, -" + roboMisiles + " misiles)");
             }
         }

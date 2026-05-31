@@ -12,6 +12,8 @@ import swing.Ventana;
 public class Main {
     public static Personajes[] equipos;
     public static int numeroPartida = 1;
+    public static String[] mensajesPasivas = new String[500];
+    public static int numMensajesPasivas = 0;
 
     /**
      * Punto de entrada del programa. Muestra el menú principal y
@@ -183,6 +185,13 @@ public class Main {
         return texto;
     }
 
+    public static void agregarMensajePasiva(String mensaje) {
+        if (numMensajesPasivas < mensajesPasivas.length) {
+            mensajesPasivas[numMensajesPasivas] = mensaje;
+            numMensajesPasivas++;
+        }
+    }
+
     /**
      * Método que gestiona el turno de un equipo, permitiendo atacar o defenderse.
      *
@@ -197,9 +206,11 @@ public class Main {
     public static int turnoEquipo(Personajes[] equipos, int indiceAtacante, String accionSwing, String[] listaAcciones, int numAcciones, int ronda) {
         Personajes atacante = equipos[indiceAtacante];
 
-        if (atacante == null || atacante.getMisilesRonda() <= 0) {
+        if (atacante == null || atacante.getVidas() <= 0 || atacante.getMisilesRonda() <= 0) {
             return numAcciones;
         }
+
+        atacante.pasivaRonda(ronda);
 
         if (accionSwing == null) {
             return numAcciones;

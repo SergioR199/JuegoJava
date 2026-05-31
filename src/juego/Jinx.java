@@ -22,6 +22,6 @@ public class Jinx extends Personajes {
      */
     public void pasivaMatar() {
         this.bonusMisiles += 10;
-        System.out.println(nombre + " gana +10 misiles permanentes!");
+        Main.agregarMensajePasiva(nombre + " gana +10 misiles permanentes!");
     }
 }

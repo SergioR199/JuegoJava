@@ -27,6 +27,6 @@ public class Tristana extends Personajes {
             this.vidas = this.vidaMaxima;
         }
 
-        System.out.println(nombre + " se cura 15 de vida!");
+        Main.agregarMensajePasiva(nombre + " se cura 15 de vida!");
     }
 }

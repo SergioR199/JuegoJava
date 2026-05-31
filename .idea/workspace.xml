@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="sonido arreglado">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="A PUNTITO DE CARAMELO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/InterfacePasivas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/AurelionSol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/AurelionSol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Corki.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Corki.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Gangplank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Gangplank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Heimerdinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Heimerdinger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Jhin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jhin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Jinx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Jinx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/KogMaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/KogMaw.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/juego/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/juego/Personajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Rumble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Rumble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Sylas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sylas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Tristana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Tristana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Xerath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Xerath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Ziggs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ziggs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/swing/PanelBatalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelBatalla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/swing/PanelJuego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/swing/PanelJuego.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +50,12 @@
     &quot;assignee&quot;: &quot;SergioR199&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SergioR199/testJuego.git",
-    "accountId": "d1095e2f-1d8b-4e47-ba59-0ef0789f5318"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SergioR199/testJuego.git&quot;,
+    &quot;accountId&quot;: &quot;d1095e2f-1d8b-4e47-ba59-0ef0789f5318&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -357,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780231177214</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="A PUNTITO DE CARAMELO">
+      <option name="closed" value="true" />
+      <created>1780233744766</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1780233744766</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,6 +437,7 @@
     <MESSAGE value="." />
     <MESSAGE value="," />
     <MESSAGE value="sonido arreglado" />
-    <option name="LAST_COMMIT_MESSAGE" value="sonido arreglado" />
+    <MESSAGE value="A PUNTITO DE CARAMELO" />
+    <option name="LAST_COMMIT_MESSAGE" value="A PUNTITO DE CARAMELO" />
   </component>
 </project>

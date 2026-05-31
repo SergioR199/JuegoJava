@@ -31,7 +31,7 @@ public class Xerath extends Personajes {
         if (accion.equalsIgnoreCase("atacar")) {
             if (this.vidas <= 50 && !escudoActivo) {
                 escudoActivo = true;
-                System.out.println(nombre + " activa escudo!");
+                Main.agregarMensajePasiva(nombre + " activa escudo!");
                 atacante.setMisilesRonda(atacante.getMisilesRonda() - misiles);
                 return 0;
             }

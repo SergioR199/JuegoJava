@@ -24,12 +24,13 @@ public class Heimerdinger extends Personajes {
      * */
     @Override
     public void pasivaRonda(int ronda) {
+        super.pasivaRonda(ronda);
         contador++;
 
         if (contador == 2) {
             contador = 0;
 
-            System.out.println(nombre + " coloca una torreta!");
+            Main.agregarMensajePasiva(nombre + " coloca una torreta!");
 
             for (Personajes p : Main.equipos) {
                 if (p.getVidas() > 0 && p != this) {
@@ -37,7 +38,7 @@ public class Heimerdinger extends Personajes {
                     if (p.vidas < 0) {
                         p.vidas = 0;
                     }
-                    System.out.println(p.getNombre() + " recibe 10 de daño de la torreta");
+                    Main.agregarMensajePasiva(p.getNombre() + " recibe 10 de daño de la torreta");
                 }
             }
         }

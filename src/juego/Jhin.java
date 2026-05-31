@@ -28,7 +28,7 @@ public class Jhin extends Personajes {
 
         if (contadorAtaques == 4) {
             contadorAtaques = 0;
-            System.out.println(nombre + " activa su disparo crítico!");
+            Main.agregarMensajePasiva(nombre + " activa su disparo crítico!");
             return danioBase * 2;
         }
 
