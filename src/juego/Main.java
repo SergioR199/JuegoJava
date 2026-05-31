@@ -168,6 +168,7 @@ public class Main {
      * de si son 1 o varias.
      *
      * @param equipos El array con todos los personajes de la partida.
+     * @return Devuelve el estado de los personajes.
      */
     public static String mostrarEstadoRonda(Personajes[] equipos) {
         String texto = "";
@@ -185,6 +186,11 @@ public class Main {
         return texto;
     }
 
+    /**
+     * Metodo que añade el texto cuando se usa una pasiva.
+     *
+     * @param mensaje Texto donde te dice que pasiva estas usando.
+     */
     public static void agregarMensajePasiva(String mensaje) {
         if (numMensajesPasivas < mensajesPasivas.length) {
             mensajesPasivas[numMensajesPasivas] = mensaje;

@@ -1,9 +1,16 @@
 package swing;
 
 import juego.InformacionJuego;
+import juego.Sonidos;
 
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * Pantalla encargada de mostrar información detallada
+ * sobre cada personaje disponible en el juego.
+ * Permite seleccionar personajes mediante un desplegable,
+ */
 
 public class PanelInfoPersonajes extends PanelFondo{
 
@@ -11,6 +18,13 @@ public class PanelInfoPersonajes extends PanelFondo{
     private JComboBox<String> comboPersonajes;
     private JTextArea areaTexto;
     private JLabel etiquetaImagen;
+    /**
+     * Constructor de la pantalla de información de personajes.
+     * Inicializa los componentes gráficos
+     * crea los paneles, botones, selector de personajes,
+     * También configura los eventos necesarios para navegar
+     * entre pantallas y actualizar la información mostrada.
+     */
 
     public PanelInfoPersonajes() {
         super("/imagenes/infoPerson3.png");
@@ -110,6 +124,7 @@ public class PanelInfoPersonajes extends PanelFondo{
 
         botonAtras.addActionListener(e -> {
             JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
+            Sonidos.reproducirEfecto("/audio/click.wav");
             ventana.setContentPane(new PanelMenu());
             ventana.revalidate();
             ventana.repaint();
@@ -120,7 +135,11 @@ public class PanelInfoPersonajes extends PanelFondo{
 
         actualizarPersonaje();
     }
-
+    /**
+     * Metodo para actualizar la información y la imagen del personaje
+     * Obtiene la descripción correspondiente, actualiza el
+     * texto mostrado y carga la imagen asociada al personaje.
+     */
     private void actualizarPersonaje() {
         String personajeSeleccionado = (String) comboPersonajes.getSelectedItem();
         areaTexto.setText(InformacionJuego.getInfoPersonaje(personajeSeleccionado));
@@ -131,7 +150,12 @@ public class PanelInfoPersonajes extends PanelFondo{
         Image imagenEscalada = icono.getImage().getScaledInstance(510,295, Image.SCALE_SMOOTH);
         etiquetaImagen.setIcon(new ImageIcon(imagenEscalada));
     }
-
+    /**
+     * Metodo que devuelve la ruta de la imagen asociada a un personaje.
+     *
+     * @param personaje nombre del personaje seleccionado
+     * @return ruta relativa de la imagen correspondiente
+     */
     private String obtenerRutaImagen(String personaje) {
         switch (personaje) {
             case "Jinx":

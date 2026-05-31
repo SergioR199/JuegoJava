@@ -3,12 +3,16 @@ package swing;
 import juego.Ganadores;
 import juego.Main;
 import juego.Personajes;
+import juego.Sonidos;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase en la que transcurre todo el juego.
+ */
 public class PanelBatalla extends PanelFondo implements ActionListener {
 
     private JTextArea areaTexto;
@@ -29,6 +33,10 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
     private boolean esperandoNuevaRonda = false;
     private boolean partidaTerminada = false;
     private boolean[] participaEnRonda;
+
+    /**
+     * Metodo para la configuracion de el panel de batalla.
+     */
 
     public PanelBatalla() {
         super("/imagenes/Juego.png");
@@ -78,6 +86,10 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         iniciarRonda();
     }
 
+    /**
+     * Metodo que para iniciar una nuneva ronda cuando acabe la anterior.
+     */
+
     private void iniciarRonda() {
         esperandoNuevaRonda = false;
         inicioAccionesRonda = numAcciones;
@@ -92,6 +104,9 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         mostrarTurnoActual();
     }
 
+    /**
+     * Metodo que te enseña en Turno en el que te encuentras
+     */
     private void mostrarTurnoActual() {
         while (indiceTurno < Main.equipos.length && !participaEnRonda[indiceTurno]) {
             indiceTurno++;
@@ -109,6 +124,12 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         areaTexto.append("Vidas: " + actual.getVidas() + "\n");
         areaTexto.append("Misiles: " + actual.getMisilesRonda() + "\n");
     }
+
+    /**
+     * Metodo para ejecutar el turno actual.
+     *
+     * @param accion
+     */
 
     private void ejecutarTurno(String accion) {
         if (esperandoNuevaRonda || partidaTerminada) return;
@@ -133,6 +154,10 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         mostrarTurnoActual();
     }
 
+    /**
+     * Metodo que muestra un mensaje cuando se usa una pasiva.
+     */
+
     private void mostrarMensajesPasivas() {
         for (int i = 0; i < Main.numMensajesPasivas; i++) {
             areaTexto.append(" ⚡ " + Main.mensajesPasivas[i] + "\n");
@@ -140,11 +165,21 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         Main.numMensajesPasivas = 0;
     }
 
+    /**
+     * Metodo que enseña las acciones nuevas.
+     *
+     * @param desde
+     */
+
     private void mostrarNuevasAcciones(int desde) {
         for (int i = desde; i < numAcciones; i++) {
             areaTexto.append("\n" + acciones[i] + "\n");
         }
     }
+
+    /**
+     * Metodo para mostrar las acciones efectuadas en la ronda
+     */
 
     private void mostrarAccionesDeLaRonda() {
         areaTexto.append("\n===== ACCIONES DE LA RONDA =====\n");
@@ -158,6 +193,10 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
             areaTexto.append(acciones[i] + "\n");
         }
     }
+
+    /**
+     * Metodo para terminar una ronda cuando se acaben las acciones.
+     */
 
     private void terminarRonda() {
         areaTexto.append("\n===== FIN DE RONDA =====\n\n");
@@ -190,6 +229,9 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         areaTexto.append("\nPulsa SIGUIENTE TURNO para comenzar la nueva ronda.\n");
     }
 
+    /**
+     * Metodo para enseñar los ganadores al acabar la partida.
+     */
     private void mostrarGanadorYGuardar() {
 
         for (Personajes p : Main.equipos) {
@@ -208,9 +250,15 @@ public class PanelBatalla extends PanelFondo implements ActionListener {
         Main.numeroPartida++;
     }
 
+    /**
+     * Metodo para la interfaz
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
+        Sonidos.reproducirEfecto("/audio/click.wav");
 
         if (e.getSource() == botonVolver) {
             ventana.setContentPane(new PanelMenu());

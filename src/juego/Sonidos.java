@@ -3,6 +3,10 @@ package juego;
 import javax.sound.sampled.*;
 import java.net.URL;
 
+/**
+ * Clase que se encarga de aplicar el sonido tanto al fondo como a los botones
+ * y de silenciarla si es necesario.
+ */
 public class Sonidos {
 
     private static Clip musicaFondo;

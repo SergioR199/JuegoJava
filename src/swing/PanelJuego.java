@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import juego.Main;
 import juego.Personajes;
+import juego.Sonidos;
 
 /**
  * Panel donde se crean los equipos y se eligen los personajes.
@@ -173,6 +174,7 @@ public class PanelJuego extends PanelFondo implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
+        Sonidos.reproducirEfecto("/audio/click.wav");
 
         if (e.getSource().equals(botonVolver)) {
             ventana.setContentPane(new PanelMenu());

@@ -1,21 +1,29 @@
 package swing;
 
 import juego.InformacionJuego;
+import juego.Sonidos;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Clase para dar informacion sobre creadores
+ */
 public class PanelCreadores extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JTextArea areaTexto;
 
+    /**
+     * Metodo para la interfaz
+     */
+
     public PanelCreadores() {
         super("/imagenes/infoGene.png");
         setLayout(new BorderLayout());
 
-        // BOTÓN VOLVER
+
         botonVolver = new botonEstilo("VOLVER");
 
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -24,7 +32,7 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
 
         add(panelSuperior, BorderLayout.NORTH);
 
-        // TEXTO
+
         areaTexto = new JTextArea();
         areaTexto.setEditable(false);
         areaTexto.setLineWrap(true);
@@ -33,7 +41,7 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
 
         areaTexto.setText(InformacionJuego.getInformacionGeneral());
 
-        // estilo igual que los otros paneles
+
         areaTexto.setFont(new Font("Serif", Font.PLAIN, 20));
         areaTexto.setForeground(Color.black);
         areaTexto.setBackground(new Color(230, 210, 140));
@@ -46,9 +54,8 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
         );
 
         JScrollPane scroll = new JScrollPane(areaTexto);
-        scroll.setBorder(BorderFactory.createEmptyBorder());
 
-        // tamaño y centrado
+        scroll.setBorder(BorderFactory.createEmptyBorder());
         scroll.setPreferredSize(new Dimension(650, 350));
 
         JPanel panelCentro = new JPanel(new GridBagLayout());
@@ -60,10 +67,15 @@ public class PanelCreadores extends PanelFondo implements ActionListener {
         botonVolver.addActionListener(this);
     }
 
+    /**
+     * Metodo para los sonidos y esteticas.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
-
+        Sonidos.reproducirEfecto("/audio/click.wav");
         if (e.getSource().equals(botonVolver)) {
             ventana.setContentPane(new PanelMenu());
             ventana.revalidate();

@@ -60,6 +60,7 @@ public class Sylas extends Personajes {
 
                 Main.agregarMensajePasiva(nombre + " roba poder de " + objetivo.getNombre()
                         + " (-10 vida, -" + roboMisiles + " misiles)");
+
             }
         }
     }
