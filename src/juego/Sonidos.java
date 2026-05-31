@@ -11,6 +11,14 @@ public class Sonidos {
 
     private static Clip musicaFondo;
     private static boolean sonidoActivado = true;
+    /**
+     * Reproduce música de fondo en bucle continuo.
+     *
+     * Si ya existe una música cargada, simplemente continúa
+     * reproduciéndola.
+     *
+     * @param ruta ruta relativa del archivo de audio
+     */
 
     public static void reproducirMusica(String ruta) {
         try {
@@ -40,7 +48,10 @@ public class Sonidos {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Detiene completamente la música de fondo actual
+     * y libera los recursos utilizados.
+     */
     public static void detenerMusica() {
         try {
             if (musicaFondo != null) {
@@ -52,7 +63,14 @@ public class Sonidos {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Reproduce un efecto de sonido individual.
+     *
+     * El efecto solamente se reproduce si el sonido
+     * general del juego se encuentra activado.
+     *
+     * @param ruta ruta relativa del archivo de audio
+     */
     public static void reproducirEfecto(String ruta) {
         try {
             if (!sonidoActivado) {
@@ -74,17 +92,30 @@ public class Sonidos {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Desactiva todos los sonidos del juego.
+     *
+     * Silencia la música de fondo
+     */
     public static void mutearSonido() {
         sonidoActivado = false;
         aplicarEstadoSonido();
     }
-
+    /**
+     * Activa nuevamente el sonido del juego.
+     *
+     * Permite reproducir música
+     * después de haber sido silenciados.
+     */
     public static void activarSonido() {
         sonidoActivado = true;
         aplicarEstadoSonido();
     }
-
+    /**
+     * Aplica internamente el estado actual del sonido
+     *
+     * Activa o silencia el clip
+     */
     private static void aplicarEstadoSonido() {
         if (musicaFondo == null) return;
 

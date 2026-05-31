@@ -18,7 +18,8 @@ public class Ganadores {
      *
      * @param equipos Array con todos los personajes de la partida.
      * @param partida Número de la partida que se está registrando.
-     * */
+     *
+     */
     public static void anunciarGanador(Personajes[] equipos, int partida) {
         boolean empate = true;
 

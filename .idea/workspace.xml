@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="ñ">
+    <list default="true" id="232e594d-279b-4fdf-a0a2-2bf372828ff0" name="Changes" comment="lol">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/juego/Ganadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Ganadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/juego/Sonidos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/juego/Sonidos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "experimental2",
+    "git-widget-placeholder": "Version.1.2",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -362,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780233744766</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="lol">
+      <option name="closed" value="true" />
+      <created>1780256908511</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1780256908512</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,6 +432,7 @@
     <MESSAGE value="," />
     <MESSAGE value="sonido arreglado" />
     <MESSAGE value="A PUNTITO DE CARAMELO" />
-    <option name="LAST_COMMIT_MESSAGE" value="A PUNTITO DE CARAMELO" />
+    <MESSAGE value="lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="lol" />
   </component>
 </project>
