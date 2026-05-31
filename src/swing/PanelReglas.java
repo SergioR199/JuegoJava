@@ -4,11 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import juego.InformacionJuego;
+import juego.Sonidos;
+/**
+ * Clase encargada de mostrar las reglas del juego.
+ */
 
 public class PanelReglas extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JTextArea areaTexto;
+    /**
+     * Constructor de la pantalla de reglas.
+     *
+     * Inicializa todos los componentes gráficos
+     * crea el botón para volver al menú principal y configura
+     * el área de texto donde se muestran las reglas del juego.
+     */
 
     public PanelReglas() {
         super("/imagenes/reglas.png");
@@ -57,10 +68,18 @@ public class PanelReglas extends PanelFondo implements ActionListener {
 
         botonVolver.addActionListener(this);
     }
-
+    /**
+     * Gestiona los eventos producidos por los componentes gráficos.
+     *
+     * Si el usuario pulsa el botón volver, reproduce un sonido
+     * y regresa a la pantalla principal del menú.
+     *
+     * @param e evento generado por la interacción del usuario
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
+        Sonidos.reproducirEfecto("/audio/click.wav");
 
         if (e.getSource().equals(botonVolver)) {
             ventana.setContentPane(new PanelMenu());

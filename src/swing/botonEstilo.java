@@ -4,11 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Clase que le da estetica a los botones.
+ */
+
 public class botonEstilo extends JButton {
 
     private final Color colorNormal = new Color(30, 35, 45);
     private final Color colorHover = new Color(60, 70, 90);
 
+    /**
+     * Clase que le da color estilo y sonido al boton.
+     *
+     * @param texto Texto que debe de aparecer en el boton.
+     */
     public botonEstilo(String texto) {
         super(texto);
 

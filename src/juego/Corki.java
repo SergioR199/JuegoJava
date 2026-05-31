@@ -9,7 +9,7 @@ public class Corki extends Personajes {
     private int contadorTurnos = 0;
 
     /**
-     * Constructor de Corki con sus eStadísticas iniciales.
+     * Constructor de Corki con sus estadísticas iniciales.
      *
      * @param identificador Identificador del personaje.
      */

@@ -4,11 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import juego.Ganadores;
+import juego.Sonidos;
+
+/**
+ * Clase para la pantalla que enseña el fichero con los ganadores de cada partida.
+ */
 
 public class PanelGanadores extends PanelFondo implements ActionListener {
 
     private JButton botonVolver;
     private JTextArea areaTexto;
+
+    /**
+     * Constructor de la pantalla de ganadores.
+     * Inicializa la ventana
+     * crea botones, configura el área de
+     * texto que muestra los ganadores almacenados.
+     */
 
     public PanelGanadores() {
         super("/imagenes/ganadores.png");
@@ -56,10 +68,17 @@ public class PanelGanadores extends PanelFondo implements ActionListener {
 
         add(panelCentro, BorderLayout.CENTER);
     }
-
+    /**
+     * Metodo que Gestiona los componentes gráficos.
+     * Si se pulsa el botón volver, reproduce un sonido y cambia
+     * la pantalla actual mostrando nuevamente el menú principal.
+     *
+     * @param e evento generado por la interacción del usuario
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);
+        Sonidos.reproducirEfecto("/audio/click.wav");
 
         if (e.getSource().equals(botonVolver)) {
             ventana.setContentPane(new PanelMenu());

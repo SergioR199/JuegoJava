@@ -5,6 +5,12 @@ import java.awt.event.*;
 import java.awt.*;
 
 import juego.Sonidos;
+/**
+ * Clase encargada de representar el menú principal del juego.
+ *
+ * Desde esta pantalla el usuario puede acceder a las diferentes
+ * secciones del juego.
+ */
 
 public class PanelMenu extends PanelFondo implements ActionListener {
     private JButton botonJugar, botonReglas, botonCreadores, botonPersonajes, botonGanadores, botonSalir;
@@ -14,7 +20,13 @@ public class PanelMenu extends PanelFondo implements ActionListener {
 
     private ImageIcon iconoSonido;
     private ImageIcon iconoMute;
-
+    /**
+     * Constructor del menú principal.
+     *
+     * Inicializa todos los componentes gráficos
+     * crea los botones de navegación, carga imágenes e iconos,
+     * reproduce la música del menú y registra los eventos
+     */
     public PanelMenu() {
         super("/imagenes/leagueoflatam.png");
         setLayout(null);
@@ -79,13 +91,24 @@ public class PanelMenu extends PanelFondo implements ActionListener {
         add(botonMute);
         botonMute.addActionListener(this);
     }
-
+    /**
+     * Dibuja el fondo personalizado del menú.
+     *
+     * Se ejecuta automáticamente cuando el panel necesita
+     * repintarse, escalando la imagen al tamaño actual
+     * de la ventana.
+     *
+     * @param g objeto gráfico utilizado para dibujar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
     }
-
+    /**
+     * Gestiona los eventos producidos por los botones.
+     * @param e evento generado por la interacción del usuario
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame ventana = (JFrame) SwingUtilities.getWindowAncestor(this);

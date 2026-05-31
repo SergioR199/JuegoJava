@@ -63,6 +63,11 @@ public class Personajes implements InterfacePasivas{
         return vidas;
     }
 
+    /**
+     * Setter de la vidas actuals de los personaje.
+     *
+     * @param vidas vidas de cada personaje.
+     */
     public void setVidas(int vidas) {
         this.vidas = vidas;
     }
@@ -85,15 +90,31 @@ public class Personajes implements InterfacePasivas{
         this.misilesRonda = misilesRonda;
     }
 
+    /**
+     * Getter de los misiles iniciales en la ronda actual.
+     *
+     * @param misilesBase misiles iniciales.
+     * @return misiles iniciales.
+     */
     public int getMisilesBase(int misilesBase){
 
         return misilesBase;
     }
 
+    /**
+     * Getter del mensaje al esquivar un ataque.
+     *
+     * @return mensaje.
+     */
     public String getMensajeEsquiva() {
         return mensajeEsquiva;
     }
 
+    /**
+     * Setter del mensaje al esquivar un ataque.
+     *
+     * @param mensajeEsquiva
+     */
     public void setMensajeEsquiva(String mensajeEsquiva) {
         this.mensajeEsquiva = mensajeEsquiva;
     }
